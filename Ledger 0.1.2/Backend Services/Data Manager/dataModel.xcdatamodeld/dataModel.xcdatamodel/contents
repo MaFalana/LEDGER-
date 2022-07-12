@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21223.11" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AltTitle" representedClassName="AltTitle" syncable="YES" codeGenerationType="class"/>
+    <entity name="ContentRating" representedClassName="ContentRating" syncable="YES" codeGenerationType="class"/>
+    <entity name="LinksUnion" representedClassName="LinksUnion" syncable="YES" codeGenerationType="class"/>
+    <entity name="MaAttributes" representedClassName="MaAttributes" syncable="YES" codeGenerationType="class">
+        <attribute name="altTitles" attributeType="Binary"/>
+        <attribute name="attributesDescription" attributeType="Binary"/>
+        <attribute name="availableTranslatedLanguages" optional="YES" attributeType="Binary"/>
+        <attribute name="chapterNumbersResetOnNewVolume" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="contentRating" attributeType="Binary"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="isLocked" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastChapter" optional="YES" attributeType="String"/>
+        <attribute name="lastVolume" optional="YES" attributeType="String"/>
+        <attribute name="links" attributeType="Binary"/>
+        <attribute name="originalLanguage" attributeType="Binary"/>
+        <attribute name="publicationDemographic" optional="YES" attributeType="Binary"/>
+        <attribute name="state" attributeType="Binary"/>
+        <attribute name="status" attributeType="Binary"/>
+        <attribute name="tags" attributeType="Binary"/>
+        <attribute name="title" attributeType="Binary"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="version" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="altTitle" toMany="YES" deletionRule="Nullify" destinationEntity="AltTitle"/>
+        <relationship name="atitle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Title"/>
+        <userInfo>
+            <entry key="jaRo" value="ja-ro"/>
+        </userInfo>
+    </entity>
+    <entity name="MangaEntity" representedClassName="MangaEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="attributes" optional="YES" attributeType="Binary"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="relationships" optional="YES" attributeType="Binary"/>
+        <attribute name="type" optional="YES" attributeType="Binary"/>
+        <relationship name="mangaAttributes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MaAttributes"/>
+        <relationship name="mangaRelationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MaRelationships"/>
+        <relationship name="mangaType" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RelationshipTypeEntity"/>
+    </entity>
+    <entity name="MaRelationships" representedClassName="MaRelationships" syncable="YES" codeGenerationType="class">
+        <attribute name="attributes" optional="YES" attributeType="Binary"/>
+        <attribute name="id" optional="YES" attributeType="String"/>
+        <attribute name="related" optional="YES" attributeType="Binary"/>
+        <attribute name="type" optional="YES" attributeType="Binary"/>
+        <relationship name="relationshipAttributes" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ReAttributes"/>
+        <relationship name="typeRelationships" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RelationshipTypeEntity"/>
+    </entity>
+    <entity name="OriginalLanguage" representedClassName="OriginalLanguage" syncable="YES" codeGenerationType="class"/>
+    <entity name="PublicationDemographic" representedClassName="PublicationDemographic" syncable="YES" codeGenerationType="class"/>
+    <entity name="ReAttributes" representedClassName="ReAttributes" syncable="YES" codeGenerationType="class">
+        <attribute name="attributesDescription" optional="YES" attributeType="Binary"/>
+        <attribute name="biography" optional="YES" attributeType="Binary"/>
+        <attribute name="booth" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fanBox" optional="YES" attributeType="String"/>
+        <attribute name="fantia" optional="YES" attributeType="String"/>
+        <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="imageURL" optional="YES" attributeType="String"/>
+        <attribute name="locale" optional="YES" attributeType="Binary"/>
+        <attribute name="melonBook" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="naver" optional="YES" attributeType="String"/>
+        <attribute name="nicoVideo" optional="YES" attributeType="String"/>
+        <attribute name="pixiv" optional="YES" attributeType="String"/>
+        <attribute name="skeb" optional="YES" attributeType="String"/>
+        <attribute name="tumblr" optional="YES" attributeType="String"/>
+        <attribute name="twitter" optional="YES" attributeType="String"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="version" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="volume" optional="YES" attributeType="String"/>
+        <attribute name="website" optional="YES" attributeType="String"/>
+        <attribute name="weibo" optional="YES" attributeType="String"/>
+        <attribute name="youtube" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="RelationshipTypeEntity" representedClassName="RelationshipTypeEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="attribute" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Title" representedClassName="Title" syncable="YES" codeGenerationType="class">
+        <attribute name="en" attributeType="String"/>
+        <attribute name="es" optional="YES" attributeType="String"/>
+        <attribute name="ja" optional="YES" attributeType="String"/>
+        <attribute name="jaRo" optional="YES" attributeType="String"/>
+        <attribute name="ko" optional="YES" attributeType="String"/>
+        <attribute name="ru" optional="YES" attributeType="String"/>
+        <attribute name="uk" optional="YES" attributeType="String"/>
+        <attribute name="zh" optional="YES" attributeType="String"/>
+        <userInfo>
+            <entry key="jaRo" value="ja-ro"/>
+        </userInfo>
+    </entity>
+    <elements>
+        <element name="AltTitle" positionX="-432" positionY="216" width="128" height="14"/>
+        <element name="ContentRating" positionX="-387" positionY="261" width="128" height="14"/>
+        <element name="LinksUnion" positionX="-414" positionY="234" width="128" height="14"/>
+        <element name="MaAttributes" positionX="-177.2268676757812" positionY="216.6294860839844" width="128" height="28"/>
+        <element name="MangaEntity" positionX="-153.4894409179688" positionY="-18.39317321777344" width="128" height="134"/>
+        <element name="MaRelationships" positionX="-451.80126953125" positionY="40.54269409179688" width="128" height="133"/>
+        <element name="OriginalLanguage" positionX="-423" positionY="225" width="128" height="14"/>
+        <element name="PublicationDemographic" positionX="-405" positionY="243" width="128" height="14"/>
+        <element name="ReAttributes" positionX="-581.0946655273438" positionY="270.9581298828124" width="128" height="388"/>
+        <element name="RelationshipTypeEntity" positionX="124.4533081054688" positionY="-15.23123168945312" width="128" height="44"/>
+        <element name="Title" positionX="-441" positionY="198" width="128" height="149"/>
+    </elements>
+</model>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21223.11" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Entity" representedClassName="Entity" syncable="YES" codeGenerationType="class">
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LibraryEntity"/>
+    </entity>
+    <entity name="LibraryEntity" representedClassName="LibraryEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="dat" attributeType="Binary"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="library" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Entity"/>
+    </entity>
+    <elements>
+        <element name="Entity" positionX="-343.6390380859375" positionY="118.6981353759766" width="128" height="58"/>
+        <element name="LibraryEntity" positionX="-214.9464721679688" positionY="-64.32038879394531" width="128" height="89"/>
+    </elements>
+</model>
