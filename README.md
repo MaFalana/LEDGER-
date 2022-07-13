@@ -55,9 +55,6 @@ Contributors names and contact info
 
 ## Version History
 
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change](https://github.com/MaFalana/Ledger/commits/main) or See [release history]()
 * 0.1
     * Initial Release
 
@@ -69,7 +66,7 @@ This project is licensed under the [NAME HERE]() License - see the LICENSE.md fi
 
 Inspiration, code snippets, etc.
 * [Aidoku](https://github.com/Aidoku/Aidoku)
-* [MangaSoup]
+* [MangaSoup]()
 * [Paperback-IOS](https://github.com/Paperback-iOS/app)
 * [SwiftUIPager](https://github.com/fermoya/SwiftUIPager)
 * [Swiftful Thinking](https://www.youtube.com/c/SwiftfulThinking)
