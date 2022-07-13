@@ -9,7 +9,7 @@ import SwiftUI
 
 struct listRow: View
 {
-    var library: Lib
+    @State var library: Lib
     //let mangaInfo: [String]
     var queuedManga: Manga
     
@@ -20,6 +20,7 @@ struct listRow: View
     @EnvironmentObject var network: CollectionLoader
     //@EnvironmentObject var crudManager: CRUDManager
     @State var showAlert: Bool = false
+    
     
     var isSelected: Bool
     {
@@ -47,7 +48,7 @@ struct listRow: View
             if isSelected //If deselected
             {
                 self.selectedItems.remove(library.id)
-                //CRUDManager.shared.removeManga(Library: library, Id: mangaInfo[0])
+                
                 //crudManager.removeManga(Library: library, selectedManga: X)
                 //Removing data from a library is updating so I need to save the library afterwards
             }
@@ -61,35 +62,27 @@ struct listRow: View
                 //await network.populateChapter(ID: mangaInfo[0])
                 
                 
-                if ((library.data?.contains(queuedManga)) != nil) //Only allows one of each manga to be added
+                if library.data!.contains(where: {($0 as AnyObject).id == queuedManga.id}) //Only allows one of each manga to be added
+                {
+                    
+                    print("\(queuedManga.title) is already in \(library.name)")
+                    //CRUDManager.shared.removeManga(Library: library, selectedManga: queuedManga)
+                    //library.removeFromData(queuedManga)
+                    //CRUDManager.shared.Save()
+                }
+                else
                 {
                     Task
                     {
                         await CRUDManager.shared.addManga(Library: library, Manga: queuedManga)
                         //await network.loadCollection()
                     }
-                    
-                }
-                else
-                {
-                    print("\(queuedManga.title) is already in \(library.name)")
                     //showAlert.toggle().alert(isPresented: $showAlert) { Alert4(Name: library.name) }
                 }
-                
-                
-                /*Task
-                {
-                    let X = try! await mangaManager.createManga(id: mangaInfo[0], title: mangaInfo[1], author: mangaInfo[2], artist: mangaInfo[3], cover: mangaInfo[4], status: mangaInfo[5], synopsis: mangaInfo[6])
-                 
-                    
-                    library.data?.append(X)
-                    
-                    //crudManager.Create()
-                    //libraryManager.Save()
-                }*/
+    
                 
             }
-            //crudManager.Save() // Save function should be called her
+        
         }
     }
 }

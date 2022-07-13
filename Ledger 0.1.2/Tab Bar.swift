@@ -12,7 +12,7 @@ struct TabBar: View  //TabBar
     @EnvironmentObject private var themeManager: ThemeManager
     //@EnvironmentObject private var crudManager: CRUDManager
     //@EnvironmentObject private var  libraryManager: LibraryManager
-    var network = CollectionLoader()
+    var network = CollectionLoader.shared
     //var ss = DD()
     //@EnvironmentObject var coreDM: CoreDataManager
     //var coreDM = CoreDataManager()
@@ -112,7 +112,7 @@ struct TabBar: View  //TabBar
         }
         .environmentObject(network)
         .accentColor(themeManager.selectedTheme.button)
-         .task{ await network.loadCollection() }
+        .task{ await network.loadCollection() }
         //; for i in network.collectionData { await network.fetchDetails(mangaId: i.id) } }
     }
     //.navigationTitle("Swift").toolbar{Image(systemName: "rectangle.grid.3")}

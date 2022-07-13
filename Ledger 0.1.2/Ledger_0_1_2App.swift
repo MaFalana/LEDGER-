@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct Ledger_0_1_2App: App
 {
-    @StateObject var themeManager = ThemeManager()
+    @StateObject var themeManager = ThemeManager.shared
     //@StateObject var network = CollectionLoader()
     //@StateObject var crudManager = CRUDManager()
     

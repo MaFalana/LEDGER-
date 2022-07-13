@@ -15,7 +15,8 @@ struct ButtonView: View
     
     //let coreDM: CoreDataManager
     //@EnvironmentObject var coreDM: CoreDataManager
-    @State var showSheet: Bool = false
+    @State var isAdding: Bool = false
+    @State var isReading: Bool = false
     
     //var info: CollectionResponse.mangaCollection
     var queuedManga: Manga
@@ -32,20 +33,14 @@ struct ButtonView: View
         Divider() // Second Divider
         HStack
         {
-            //Label("Add to Library", systemImage: "folder.badge.plus").foregroundColor(.red).padding() // add to library button
-            //Spacer()
-            
-            //Button(action: {network.addLibrary(mangaId: info.id)}) {Label("Add to Library", systemImage: "folder.badge.plus").foregroundColor(.red).padding()}
-            
-            //Button(action: { coreDM.saveManga(id: id, title: title, author: author, artist: artist, cover: cover, status: status, synopsis: synopsis) }) {Label("Add to Library", systemImage: "folder.badge.plus").foregroundColor(.red).padding()}
-            Button(action: {showSheet.toggle()} ) {Label("Add to Library", systemImage: "folder.badge.plus").padding()}
-                .sheet(isPresented: $showSheet){ AddView(queuedManga: queuedManga) }
+            Button(action: {isAdding.toggle()} ) {Label("Add to Library", systemImage: "folder.badge.plus").padding()}
+                .sheet(isPresented: $isAdding){ AddView(queuedManga: queuedManga) }
             Spacer()
         }
         HStack// 3 - 4 buttons
         {
     
-            Button(action: {showSheet.toggle()} ) { Label("Read", systemImage: "play").labelStyle(AdaptiveLabelStyle()).padding() }.fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle:"A Man's Resolve", ChapterID:"ed6ba867-0472-4f8f-af40-a2697fcd5cfc", MangaID:"316377a7-d44a-461b-903e-9faf917e2f8f", Pages:38, Index: 0, nums: [])} )
+            Button(action: {isReading.toggle()} ) { Label("Read", systemImage: "play").labelStyle(AdaptiveLabelStyle()).padding() }.fullScreenCover(isPresented: $isReading, content: {FC(ReaderTitle:"A Man's Resolve", ChapterID:"ed6ba867-0472-4f8f-af40-a2697fcd5cfc", MangaID:"316377a7-d44a-461b-903e-9faf917e2f8f", Pages:38, Index: 0, nums: [])} )
             
             Spacer()
             Label("Chapters", systemImage: "book").labelStyle(AdaptiveLabelStyle()) //Chapter buttons

@@ -54,7 +54,6 @@ struct Profile: View // Profile for Manga
     var body: some View
     {
         
-        //mangaInfo = [ID, Title, Author, Artist, Cover, Status, Description]
         ScrollView
         {
             InfoView(Title: Title, Author: Author, Artist: Artist, Cover: Cover, Status: Status, Count: Count) //View for basic info of Manga
@@ -68,21 +67,15 @@ struct Profile: View // Profile for Manga
             ChapterListView(quequedManga: info).environmentObject(network) // List View of aviliable Chapters
             
         }
-        .background(themeManager.selectedTheme.background)
-        .navigationBarTitle(Text(Title))
-        .navigationBarTitleDisplayMode(.inline)
         .refreshable
         {
             print(info)
             await CRUDManager.shared.updateManga(Manga: info)
         }
-//            .task
-//            {
-//
-//                crudManager.quequedManga = try! await crudManager.createManga(id: ID, title: Title, author: Author, artist: Artist, cover: Cover, status: Status, synopsis: Description)
-//
-//            }
-        //.task{ await network.populateChapter(ID: ID) }//.task{ while network.chapters.count <= network.chapterTotal {await network.fetchChapter(mangaId: info.id) } }////*///.task{ while network.chapters.count <= network.chapterTotal { await network.fetchChapter(mangaId: info.id) } }
+        .background(themeManager.selectedTheme.background)
+        .navigationBarTitle(Text(Title))
+        .navigationBarTitleDisplayMode(.inline)
+
     }
     
         

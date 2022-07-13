@@ -24,9 +24,10 @@ class CRUDManager: ObservableObject
     @Published var chapters: [ChapterResponse.Chapter]! = [ChapterResponse.Chapter]()
     @Published var XXX: [Chapter] = [Chapter]()
     @Published var YYY: PageResponse!
-    @Published var ZZZ = [String]()
+   // @Published var ZZZ = [String]()
     @Published var History: [Chapter] = [Chapter]()
     @Published var isLoading: Bool = false
+    @Published var editMode = false
     @Published var staticLibrary: Lib = Lib()
     
     //@Published var pageURL: String! = ""
@@ -372,7 +373,7 @@ extension CRUDManager
     
     func addManga(Library: Lib, Manga: Manga) async // Function to add a Manga to a specific Library
     {
-            await addChapters(Manga: Manga)
+            //await addChapters(Manga: Manga)
             Library.addToData(Manga)
             //Library.removeFromData(at: 15)
             Save()
@@ -551,8 +552,6 @@ extension CRUDManager
             
             // decode data
             let decodedResponse = try? newJSONDecoder().decode(ChapterResponse.self, from: data)
-            print(url)
-            print(decodedResponse?.data)
             if let decodedResponse = decodedResponse
             {
                 DispatchQueue.main.async
