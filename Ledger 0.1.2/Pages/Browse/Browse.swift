@@ -10,6 +10,7 @@ import SwiftUI
 
 struct Browse: View
 {
+    //var network = CollectionLoader.shared
     @EnvironmentObject var network: CollectionLoader
     @EnvironmentObject private var themeManager: ThemeManager
 
@@ -20,17 +21,15 @@ struct Browse: View
         {
             ScrollView
             {
+                viewData(Data: network.collectionData, Genre: "").environmentObject(network)
                 
-                Recent().environmentObject(network)
+                viewData(Data: network.shounenData, Genre: "Shounen").environmentObject(network)
                 
-                Shounen().environmentObject(network)
+                viewData(Data: network.shoujoData, Genre: "Shoujo").environmentObject(network)
                 
-                Shoujo().environmentObject(network)
+                viewData(Data: network.joseiData, Genre: "Josei").environmentObject(network)
                 
-                Josei().environmentObject(network)
-                
-                Seinen().environmentObject(network)
-                
+                viewData(Data: network.seinenData, Genre: "Seinen").environmentObject(network)
             }
             //.navigationBarTitle("MangaDex")//.task{ network.chapters.removeAll()  }
             .background(themeManager.selectedTheme.background)

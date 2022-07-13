@@ -69,11 +69,6 @@
 		0C9A9839284ACB9B00C6EB18 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A9838284ACB9B00C6EB18 /* ViewController.swift */; };
 		0C9A983B284AD35A00C6EB18 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C9A983A284AD35A00C6EB18 /* View.xib */; };
 		0C9A9840284BB04000C6EB18 /* viewMore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A983F284BB04000C6EB18 /* viewMore.swift */; };
-		0C9A9844284BD63700C6EB18 /* Recent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A9843284BD63700C6EB18 /* Recent.swift */; };
-		0C9A9846284BD72B00C6EB18 /* Shoujo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A9845284BD72B00C6EB18 /* Shoujo.swift */; };
-		0C9A9848284BE4F200C6EB18 /* Shounen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A9847284BE4F200C6EB18 /* Shounen.swift */; };
-		0C9A984A284BE50300C6EB18 /* Josei.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A9849284BE50300C6EB18 /* Josei.swift */; };
-		0C9A984C284BE51300C6EB18 /* Seinen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A984B284BE51300C6EB18 /* Seinen.swift */; };
 		0C9A9859284C27D400C6EB18 /* CollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A9858284C27D400C6EB18 /* CollectionModel.swift */; };
 		0C9A985B284C280200C6EB18 /* JsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A985A284C280200C6EB18 /* JsonModel.swift */; };
 		0C9A985F284D681700C6EB18 /* Real.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A985E284D681700C6EB18 /* Real.swift */; };
@@ -84,6 +79,7 @@
 		0CB6E47A2878F586008971C2 /* Chapter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6E4782878F586008971C2 /* Chapter+CoreDataClass.swift */; };
 		0CB6E47B2878F586008971C2 /* Chapter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CB6E4792878F586008971C2 /* Chapter+CoreDataProperties.swift */; };
 		0CCE85332876367800A557B0 /* Ledger API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE85322876367800A557B0 /* Ledger API.swift */; };
+		0CD6D51E287F388200930F93 /* viewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6D51D287F388200930F93 /* viewData.swift */; };
 		0CDA84E0287B482C007F9BF9 /* Manga+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDA84DE287B482C007F9BF9 /* Manga+CoreDataClass.swift */; };
 		0CDA84E1287B482C007F9BF9 /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDA84DF287B482C007F9BF9 /* Manga+CoreDataProperties.swift */; };
 		0CDCB014286E5B79004F629C /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDCB013286E5B79004F629C /* Base.swift */; };
@@ -161,11 +157,6 @@
 		0C9A9838284ACB9B00C6EB18 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0C9A983A284AD35A00C6EB18 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		0C9A983F284BB04000C6EB18 /* viewMore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewMore.swift; sourceTree = "<group>"; };
-		0C9A9843284BD63700C6EB18 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
-		0C9A9845284BD72B00C6EB18 /* Shoujo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoujo.swift; sourceTree = "<group>"; };
-		0C9A9847284BE4F200C6EB18 /* Shounen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shounen.swift; sourceTree = "<group>"; };
-		0C9A9849284BE50300C6EB18 /* Josei.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Josei.swift; sourceTree = "<group>"; };
-		0C9A984B284BE51300C6EB18 /* Seinen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seinen.swift; sourceTree = "<group>"; };
 		0C9A9858284C27D400C6EB18 /* CollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionModel.swift; sourceTree = "<group>"; };
 		0C9A985A284C280200C6EB18 /* JsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonModel.swift; sourceTree = "<group>"; };
 		0C9A985E284D681700C6EB18 /* Real.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Real.swift; sourceTree = "<group>"; };
@@ -176,6 +167,7 @@
 		0CB6E4782878F586008971C2 /* Chapter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chapter+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0CB6E4792878F586008971C2 /* Chapter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chapter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0CCE85322876367800A557B0 /* Ledger API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ledger API.swift"; sourceTree = "<group>"; };
+		0CD6D51D287F388200930F93 /* viewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewData.swift; sourceTree = "<group>"; };
 		0CDA84DE287B482C007F9BF9 /* Manga+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0CDA84DF287B482C007F9BF9 /* Manga+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Manga+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0CDCB013286E5B79004F629C /* Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
@@ -287,12 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				0C8BEC522845B6DE005B9A97 /* Browse.swift */,
-				0C9A9847284BE4F200C6EB18 /* Shounen.swift */,
-				0C9A9849284BE50300C6EB18 /* Josei.swift */,
-				0C9A984B284BE51300C6EB18 /* Seinen.swift */,
-				0C9A9843284BD63700C6EB18 /* Recent.swift */,
-				0C9A9845284BD72B00C6EB18 /* Shoujo.swift */,
-				0C9A984F284BF00400C6EB18 /* Viewing Data */,
+				0CD6D51D287F388200930F93 /* viewData.swift */,
+				0C9A983F284BB04000C6EB18 /* viewMore.swift */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -500,14 +488,6 @@
 			path = "Backend Services";
 			sourceTree = "<group>";
 		};
-		0C9A984F284BF00400C6EB18 /* Viewing Data */ = {
-			isa = PBXGroup;
-			children = (
-				0C9A983F284BB04000C6EB18 /* viewMore.swift */,
-			);
-			path = "Viewing Data";
-			sourceTree = "<group>";
-		};
 		0CDCB01F286E76F4004F629C /* Attributes */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,7 +608,6 @@
 				0C8BEC5F28469BD6005B9A97 /* CustomTabView.swift in Sources */,
 				0C74DA2428636E7D007B8509 /* AppDelegate.swift in Sources */,
 				0C0B7F73286A6FC200B64C6F /* Asura Scans.swift in Sources */,
-				0C9A9848284BE4F200C6EB18 /* Shounen.swift in Sources */,
 				0C9160182849602500B9A7D2 /* libProfile.swift in Sources */,
 				0C80148128651C9000F1FB0D /* MangaTransformer.swift in Sources */,
 				0CDCB026286F4151004F629C /* Attributes.swift in Sources */,
@@ -648,8 +627,6 @@
 				0C9AC354287B1B12008BCD2E /* Read_History+CoreDataProperties.swift in Sources */,
 				0CB6E47A2878F586008971C2 /* Chapter+CoreDataClass.swift in Sources */,
 				0CDA84E1287B482C007F9BF9 /* Manga+CoreDataProperties.swift in Sources */,
-				0C9A984C284BE51300C6EB18 /* Seinen.swift in Sources */,
-				0C9A9844284BD63700C6EB18 /* Recent.swift in Sources */,
 				0C2D33412852AB1500D1F72C /* CollectionObject.swift in Sources */,
 				0C2D333E2852939400D1F72C /* AddView.swift in Sources */,
 				0CDCB016286E5BFE004F629C /* MangaDex.swift in Sources */,
@@ -667,7 +644,6 @@
 				0C14282F285D40F700E57F0B /* LibraryManager.swift in Sources */,
 				0C0B7F71286A324000B64C6F /* Mangakakalot.swift in Sources */,
 				0C8BEC592845B6DE005B9A97 /* Reader.swift in Sources */,
-				0C9A9846284BD72B00C6EB18 /* Shoujo.swift in Sources */,
 				0C8BEC5D28469118005B9A97 /* Tab Bar.swift in Sources */,
 				0C8BEC4D2845B64C005B9A97 /* MangaModel.swift in Sources */,
 				0C0B7F7D286B725E00B64C6F /* Bookmarks.swift in Sources */,
@@ -675,11 +651,11 @@
 				0C1428182856FACA00E57F0B /* About.swift in Sources */,
 				0C0B7F6F2868E41700B64C6F /* SwiftUIView.swift in Sources */,
 				0C8BEC6C2847EF60005B9A97 /* Info View.swift in Sources */,
-				0C9A984A284BE50300C6EB18 /* Josei.swift in Sources */,
 				0C8BEC512845B6C4005B9A97 /* CollectionResponse.swift in Sources */,
 				0C8BEC682847EB04005B9A97 /* Button View.swift in Sources */,
 				0CE59D3828526C2A00499B02 /* dataModel.xcdatamodeld in Sources */,
 				0CCE85332876367800A557B0 /* Ledger API.swift in Sources */,
+				0CD6D51E287F388200930F93 /* viewData.swift in Sources */,
 				0CDCB028286F4169004F629C /* Relationship.swift in Sources */,
 				0C91601B284AA8A300B9A7D2 /* Search.swift in Sources */,
 				0C9A985F284D681700C6EB18 /* Real.swift in Sources */,

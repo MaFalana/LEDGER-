@@ -1,28 +1,39 @@
 //
-//  Shounen.swift
+//  viewData.swift
 //  Ledger 0.1.2
 //
-//  Created by Malik Falana on 6/4/22.
+//  Created by Malik Falana on 7/13/22.
 //
 
+import Foundation
 import SwiftUI
 
-struct Shounen: View
+struct viewData: View
 {
     @EnvironmentObject var network: CollectionLoader
     @EnvironmentObject private var themeManager: ThemeManager
     var Data: [Manga]
+    var Genre: String
+    var Title: String
     {
-        return network.shounenData
+        if Genre == ""
+        {
+           return "Recently Updated"
+        }
+        else
+        {
+            return Genre
+        }
+        
     }
     
     var body: some View
     {
         HStack
         {
-            Text("Shounen").fontWeight(.bold).padding()
+            Text(Title).fontWeight(.bold).padding()
             Spacer()
-            NavigationLink(destination: viewMore(Genre: "Shounen", Data: Data).background(themeManager.selectedTheme.background).environmentObject(network) )
+            NavigationLink(destination: viewMore(Genre: Genre, Data: Data).background(themeManager.selectedTheme.background).environmentObject(network) )
             {
                 
                 Text("View More").padding()
@@ -54,4 +65,3 @@ struct Shounen: View
         }
     }
 }
-
