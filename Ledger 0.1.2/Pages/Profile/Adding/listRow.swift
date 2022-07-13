@@ -36,11 +36,14 @@ struct listRow: View
         {
             Text(library.name)
             Spacer()
-            if isSelected || library.data!.contains(queuedManga) // Checking to see if library has a manga
+            if isSelected || library.data!.contains(where: {($0 as AnyObject).id == queuedManga.id}) // Checking to see if library has a manga
             {
                 Image(systemName: "checkmark")
             }
-        }.contentShape(Rectangle()).onTapGesture {
+        }
+        .contentShape(Rectangle())
+        .onTapGesture
+        {
             if isSelected //If deselected
             {
                 self.selectedItems.remove(library.id)

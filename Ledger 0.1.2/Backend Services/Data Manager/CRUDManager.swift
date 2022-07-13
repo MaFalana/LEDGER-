@@ -27,6 +27,7 @@ class CRUDManager: ObservableObject
     @Published var ZZZ = [String]()
     @Published var History: [Chapter] = [Chapter]()
     @Published var isLoading: Bool = false
+    @Published var staticLibrary: Lib = Lib()
     
     //@Published var pageURL: String! = ""
     //@Published var pageHASH: String! = ""
@@ -207,6 +208,21 @@ extension CRUDManager
         //return newLibrary
     }
     
+    func updateLibrary(Library: Lib, name: String)
+    {
+        Library.name = name
+        //activeLibraries.append(newLibrary)
+        //tabs.append(name)
+        //fetchLibraries()
+        // Should save here
+        Save()
+        
+        //fetchLibraries()
+        //Append() // multiple
+        
+        //return newLibrary
+    }
+    
     
     
     func fetchLibraries() //Function that fetaches all saved libraries
@@ -260,12 +276,12 @@ extension CRUDManager
     
     func deleteLibrary(Library: Lib)
     {
-        
+        print("Removing \(Library.name)")
         viewContext.delete(Library)
         Save()
         //fetchLibraries()
     }
-    
+   
     
     
 }
