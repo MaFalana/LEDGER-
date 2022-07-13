@@ -4,9 +4,7 @@ Open Source Manga reading application for IOS
 
 ## Description
 
-First and foremost I do not own any of these titles, this a open-source nonprofit project.
-
-This is just a manga reading app written entirely in Swift for my friends and I to use. Right now it is based around the MangaDex api, but in the future I do intend to add other manga and comic sources.
+This is just a manga reading app written entirely in Swift for my friends and I to use. Right now it is based around the MangaDex api, but in the future I do intend to add other manga and comic sources. This is my first time using Swift, so there is definitely room for improvement.
 
 I have no plans to publish this on the App Store or make any kind of profit from this, it was just meant to be a way to showcase my app development skills.
 
