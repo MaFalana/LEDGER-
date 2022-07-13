@@ -410,48 +410,67 @@ extension CRUDManager
         viewContext.delete(selectedManga)
     }
     
+    
     func updateManga(Manga: Manga) async // Function to update a Manga, as in make sure it has the proper number of Chapters // Will be semi-automatic
     {
-        await addChapters(Manga: Manga)
-        //Manga.chapters = XXX
-            //Manga.addToChapters(XXX)
-        //Manga.insertIntoChapters(XXX)
-        //Manga.insertIntoChapters(XXX, at: 0)
-        if chapters.count == 0 || Manga.chapters?.count == chapterTotal
+        // Get count of chapters manga currently has
+        
+        
+        // Make a request to api to see total number of chapters
+        await fetchChapter(Manga: Manga)
+        
+        let prevChapterCount = Manga.chapters?.count
+        let newChapterCount: Int = chapterTotal
+        let Total = newChapterCount - prevChapterCount!
+        
+        // Check If numbers are equal to each other
+        if prevChapterCount != newChapterCount
         {
-            print("No Chapters found.")
+            if Total == 1
+            {
+                print("\(Total) Chapter found!")
+            }
+            else
+            {
+                print("\(Total) New Chapters found!")
+            }
+            
+            
+            await addChapters(Manga: Manga, prevTotal: prevChapterCount!, Total: Total)
+          
         }
         else
         {
-            print("\(chapters.count) Chapters found!")
+            print("No New Chapters found.")
         }
-        // Should save here
+        
+        
         Save()
     }
     
     
-    func addChapters(Manga: Manga) async // Function to add chapters while saving
+    func addChapters(Manga: Manga, prevTotal: Int, Total: Int) async // Function to add chapters while saving
     {
-        removeElements()
-        await fetchChapter(mangaId: Manga.id)
-        if Manga.chapters?.count != chapterTotal
+        removeElements(Offset: prevTotal)
+        //await fetchChapter(mangaId: Manga.id)
+        //chapterOffset = prevTotal
+        
+        while chapters.count != Total
         {
-            while chapters.count != chapterTotal
-            {
-                await fetchChapter(mangaId: Manga.id)
-            }
-            for i in chapters.indices
-            {
-                DispatchQueue.main.async
-                { [self] in
-                    let E = createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt, mangaTitle: Manga.title, mangaId: Manga.id)
-                    if Manga.chapters?.count != chapterTotal
-                    {
-                        Manga.addToChapters(E)
-                    }
+            await fetchChapter(Manga: Manga)
+        }
+        for i in chapters.indices
+        {
+            DispatchQueue.main.async
+            { [self] in
+                let E = createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt, mangaTitle: Manga.title, mangaId: Manga.id)
+                if Manga.chapters?.count != chapterTotal
+                {
+                    Manga.addToChapters(E)
                 }
             }
         }
+        
     }
     
     func refreshProfile(Manga: Manga) async
@@ -478,29 +497,7 @@ extension CRUDManager
 // MARK:- Chapter related Functions
 extension CRUDManager
 {
-    func populateChapter(ID: String, Title: String) async
-    {
-        removeElements()
-        await fetchChapter(mangaId: ID)
-        while chapters.count != chapterTotal
-        {
-            await fetchChapter(mangaId: ID)
-        }
-        for i in chapters.indices
-        {
-            let E = try! await self.createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt, mangaTitle: Title, mangaId: ID)
-            XXX.append(E)
-            //Manga.addToChapters(E)
-            
-            
-        }
-        //print("XXX: \(XXX[0].title)")
-        print(ID)
-        print("Number of chpaters: \(chapters.count) / \(chapterTotal)")
-        //chapters.removeAll()
-        
-        
-    }
+    
     
     func createChapter(id: String, title: String, chapterNumber: String, pages: Int, publishDate: Date, mangaTitle: String, mangaId: String) -> Chapter
     {
@@ -524,7 +521,7 @@ extension CRUDManager
         return newChapter
     }
     
-    func fetchChapter(mangaId: String) async
+    func fetchChapter(Manga: Manga) async
     {
         var components = URLComponents()
         components.scheme = "https"
@@ -534,7 +531,7 @@ extension CRUDManager
         [
             URLQueryItem(name: "limit", value: "\(chapterLimit)"),
             URLQueryItem(name: "offset", value: "\(chapterOffset)"),
-            URLQueryItem(name: "manga", value: mangaId),
+            URLQueryItem(name: "manga", value: Manga.id),
             URLQueryItem(name: "translatedLanguage[]", value: "en")
         ]
         // create url
@@ -555,12 +552,13 @@ extension CRUDManager
             if let decodedResponse = decodedResponse
             {
                 DispatchQueue.main.async
-                {
-                    self.chapterTotal = decodedResponse.total //Total number of chapters
-                    self.chapterOffset += self.chapterLimit
-                    self.chapters += decodedResponse.data
+                { [self] in
+                    chapterTotal = decodedResponse.total //Total number of chapters
+                    chapterOffset += chapterLimit
+                    chapters += decodedResponse.data
+                    
+                    
                 }
-                
             }
 
         }
@@ -570,13 +568,13 @@ extension CRUDManager
         }
     }
     
-    func removeElements() //Function to reset certain variables related to chapters
+    func removeElements(Offset: Int) //Function to reset certain variables related to chapters
     {
         XXX.removeAll()
         chapters.removeAll()
         //ZZZ.removeAll()
         //chapterTotal = 0
-        chapterOffset = 0
+        chapterOffset = Offset
     }
     
 }

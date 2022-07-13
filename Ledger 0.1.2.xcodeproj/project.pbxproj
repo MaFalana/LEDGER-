@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0C067A272854EE6900B1C7CB /* Hide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C067A262854EE6900B1C7CB /* Hide.swift */; };
-		0C067A2A2855553B00B1C7CB /* userLibrary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C067A282855553B00B1C7CB /* userLibrary.xcdatamodeld */; };
-		0C067A2C285555AD00B1C7CB /* libraryDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C067A2B285555AD00B1C7CB /* libraryDataManager.swift */; };
 		0C0B7F6828689EB800B64C6F /* HistoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B7F6728689EB800B64C6F /* HistoryRow.swift */; };
 		0C0B7F6F2868E41700B64C6F /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B7F6E2868E41700B64C6F /* SwiftUIView.swift */; };
 		0C0B7F71286A324000B64C6F /* Mangakakalot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0B7F70286A324000B64C6F /* Mangakakalot.swift */; };
@@ -22,7 +20,6 @@
 		0C142824285C1CE200E57F0B /* CustomTabPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C142823285C1CE200E57F0B /* CustomTabPage.swift */; };
 		0C142827285C32C700E57F0B /* Ledger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C142825285C32C600E57F0B /* Ledger.xcdatamodeld */; };
 		0C14282D285D3D6600E57F0B /* MangaManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14282C285D3D6600E57F0B /* MangaManager.swift */; };
-		0C14282F285D40F700E57F0B /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C14282E285D40F700E57F0B /* LibraryManager.swift */; };
 		0C164A3A28660D7F00416B03 /* Lib+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C164A3828660D7F00416B03 /* Lib+CoreDataClass.swift */; };
 		0C164A3B28660D7F00416B03 /* Lib+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C164A3928660D7F00416B03 /* Lib+CoreDataProperties.swift */; };
 		0C164A3D2866D43000416B03 /* Tranformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C164A3C2866D43000416B03 /* Tranformer.swift */; };
@@ -62,7 +59,6 @@
 		0C8BEC682847EB04005B9A97 /* Button View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BEC672847EB04005B9A97 /* Button View.swift */; };
 		0C8BEC6A2847EC6C005B9A97 /* ChapterList View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BEC692847EC6C005B9A97 /* ChapterList View.swift */; };
 		0C8BEC6C2847EF60005B9A97 /* Info View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8BEC6B2847EF60005B9A97 /* Info View.swift */; };
-		0C91601628494B4C00B9A7D2 /* dataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91601528494B4C00B9A7D2 /* dataManager.swift */; };
 		0C9160182849602500B9A7D2 /* libProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9160172849602500B9A7D2 /* libProfile.swift */; };
 		0C91601B284AA8A300B9A7D2 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C91601A284AA8A300B9A7D2 /* Search.swift */; };
 		0C9A019F28564412009AC0F6 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A019E28564412009AC0F6 /* Settings.swift */; };
@@ -89,13 +85,10 @@
 		0CDCB028286F4169004F629C /* Relationship.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDCB027286F4169004F629C /* Relationship.swift */; };
 		0CE59D2C2851684200499B02 /* Next.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CE59D2B2851684200499B02 /* Next.swift */; };
 		0CE59D3528524D6700499B02 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 0CE59D3428524D6700499B02 /* SwiftUIPager */; };
-		0CE59D3828526C2A00499B02 /* dataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0CE59D3628526C2A00499B02 /* dataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0C067A262854EE6900B1C7CB /* Hide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hide.swift; sourceTree = "<group>"; };
-		0C067A292855553B00B1C7CB /* userLibrary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = userLibrary.xcdatamodel; sourceTree = "<group>"; };
-		0C067A2B285555AD00B1C7CB /* libraryDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = libraryDataManager.swift; sourceTree = "<group>"; };
 		0C0B7F6728689EB800B64C6F /* HistoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRow.swift; sourceTree = "<group>"; };
 		0C0B7F6E2868E41700B64C6F /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		0C0B7F70286A324000B64C6F /* Mangakakalot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mangakakalot.swift; sourceTree = "<group>"; };
@@ -108,7 +101,6 @@
 		0C142823285C1CE200E57F0B /* CustomTabPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabPage.swift; sourceTree = "<group>"; };
 		0C142826285C32C700E57F0B /* Manga.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Manga.xcdatamodel; sourceTree = "<group>"; };
 		0C14282C285D3D6600E57F0B /* MangaManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MangaManager.swift; sourceTree = "<group>"; };
-		0C14282E285D40F700E57F0B /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
 		0C164A1B28654E5400416B03 /* Manga 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Manga 2.xcdatamodel"; sourceTree = "<group>"; };
 		0C164A3828660D7F00416B03 /* Lib+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lib+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0C164A3928660D7F00416B03 /* Lib+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lib+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -150,7 +142,6 @@
 		0C8BEC672847EB04005B9A97 /* Button View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button View.swift"; sourceTree = "<group>"; };
 		0C8BEC692847EC6C005B9A97 /* ChapterList View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChapterList View.swift"; sourceTree = "<group>"; };
 		0C8BEC6B2847EF60005B9A97 /* Info View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Info View.swift"; sourceTree = "<group>"; };
-		0C91601528494B4C00B9A7D2 /* dataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager.swift; sourceTree = "<group>"; };
 		0C9160172849602500B9A7D2 /* libProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = libProfile.swift; sourceTree = "<group>"; };
 		0C91601A284AA8A300B9A7D2 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		0C9A019E28564412009AC0F6 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -176,7 +167,6 @@
 		0CDCB025286F4151004F629C /* Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attributes.swift; sourceTree = "<group>"; };
 		0CDCB027286F4169004F629C /* Relationship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Relationship.swift; sourceTree = "<group>"; };
 		0CE59D2B2851684200499B02 /* Next.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Next.swift; sourceTree = "<group>"; };
-		0CE59D3728526C2A00499B02 /* dataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = dataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -444,12 +434,7 @@
 		0C91601428494A8200B9A7D2 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
-				0C91601528494B4C00B9A7D2 /* dataManager.swift */,
-				0C14282E285D40F700E57F0B /* LibraryManager.swift */,
-				0CE59D3628526C2A00499B02 /* dataModel.xcdatamodeld */,
-				0C067A282855553B00B1C7CB /* userLibrary.xcdatamodeld */,
 				0C142825285C32C600E57F0B /* Ledger.xcdatamodeld */,
-				0C067A2B285555AD00B1C7CB /* libraryDataManager.swift */,
 				0C14282C285D3D6600E57F0B /* MangaManager.swift */,
 				0C6685FB285FBF0600A61508 /* ChapterManager.swift */,
 				0C74DA1E28612BCF007B8509 /* CRUDManager.swift */,
@@ -590,9 +575,7 @@
 				0C9A9839284ACB9B00C6EB18 /* ViewController.swift in Sources */,
 				0CDA84E0287B482C007F9BF9 /* Manga+CoreDataClass.swift in Sources */,
 				0C164A3B28660D7F00416B03 /* Lib+CoreDataProperties.swift in Sources */,
-				0C067A2A2855553B00B1C7CB /* userLibrary.xcdatamodeld in Sources */,
 				0C8BEC582845B6DE005B9A97 /* Image Loader.swift in Sources */,
-				0C91601628494B4C00B9A7D2 /* dataManager.swift in Sources */,
 				0C2D334A2852D79C00D1F72C /* SlidingTabView.swift in Sources */,
 				0C74DA222862157E007B8509 /* ChapterRow.swift in Sources */,
 				0C8BEC612846EBAF005B9A97 /* WW.swift in Sources */,
@@ -636,12 +619,10 @@
 				0C56D90B284874FD0056CF8F /* Library Toggle.swift in Sources */,
 				0C14282D285D3D6600E57F0B /* MangaManager.swift in Sources */,
 				0C142824285C1CE200E57F0B /* CustomTabPage.swift in Sources */,
-				0C067A2C285555AD00B1C7CB /* libraryDataManager.swift in Sources */,
 				0C9A9863284DAC7000C6EB18 /* ReaderNavBar.swift in Sources */,
 				0C9AC353287B1B12008BCD2E /* Read_History+CoreDataClass.swift in Sources */,
 				0C56D90E28487F060056CF8F /* History.swift in Sources */,
 				0C142827285C32C700E57F0B /* Ledger.xcdatamodeld in Sources */,
-				0C14282F285D40F700E57F0B /* LibraryManager.swift in Sources */,
 				0C0B7F71286A324000B64C6F /* Mangakakalot.swift in Sources */,
 				0C8BEC592845B6DE005B9A97 /* Reader.swift in Sources */,
 				0C8BEC5D28469118005B9A97 /* Tab Bar.swift in Sources */,
@@ -653,7 +634,6 @@
 				0C8BEC6C2847EF60005B9A97 /* Info View.swift in Sources */,
 				0C8BEC512845B6C4005B9A97 /* CollectionResponse.swift in Sources */,
 				0C8BEC682847EB04005B9A97 /* Button View.swift in Sources */,
-				0CE59D3828526C2A00499B02 /* dataModel.xcdatamodeld in Sources */,
 				0CCE85332876367800A557B0 /* Ledger API.swift in Sources */,
 				0CD6D51E287F388200930F93 /* viewData.swift in Sources */,
 				0CDCB028286F4169004F629C /* Relationship.swift in Sources */,
@@ -904,16 +884,6 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		0C067A282855553B00B1C7CB /* userLibrary.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0C067A292855553B00B1C7CB /* userLibrary.xcdatamodel */,
-			);
-			currentVersion = 0C067A292855553B00B1C7CB /* userLibrary.xcdatamodel */;
-			path = userLibrary.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		0C142825285C32C600E57F0B /* Ledger.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
@@ -922,16 +892,6 @@
 			);
 			currentVersion = 0C142826285C32C700E57F0B /* Manga.xcdatamodel */;
 			path = Ledger.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		0CE59D3628526C2A00499B02 /* dataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				0CE59D3728526C2A00499B02 /* dataModel.xcdatamodel */,
-			);
-			currentVersion = 0CE59D3728526C2A00499B02 /* dataModel.xcdatamodel */;
-			path = dataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
