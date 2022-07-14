@@ -68,6 +68,7 @@ Inspiration, code snippets, etc.
 * [Paperback-IOS](https://github.com/Paperback-iOS/app)
 * [SwiftUIPager](https://github.com/fermoya/SwiftUIPager)
 * [Swiftful Thinking](https://www.youtube.com/c/SwiftfulThinking)
+* [Logan Koshenka](https://www.youtube.com/c/LoganKoshenka)
 * [CodeWithChris](https://www.youtube.com/c/CodeWithChris)
 * [Emmanuel Okwara](https://www.youtube.com/c/EmmanuelOkwara/featured)
 * [Hacking with Swift](https://www.hackingwithswift.com)
