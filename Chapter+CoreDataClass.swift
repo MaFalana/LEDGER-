@@ -2,7 +2,7 @@
 //  Chapter+CoreDataClass.swift
 //  Ledger 0.1.2
 //
-//  Created by Malik Falana on 7/8/22.
+//  Created by Malik Falana on 7/14/22.
 //
 //
 

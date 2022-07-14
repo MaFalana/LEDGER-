@@ -28,3 +28,9 @@ func Alert4(Name: String) -> Alert
 {
     return Alert(title: Text("Alert"), message: Text("Manga Already in \(Name)") )
 }
+
+
+func Alert5(Name: String) -> Alert
+{
+    return Alert(title: Text("Alert"), message: Text("Manga Already in \(Name)") )
+}

@@ -32,15 +32,18 @@ struct History: View
                 
                 Button( action: { showSheet.toggle() } )
                 {
-                    HistoryRow(Title: History[i].mangaTitle, Title2: History[i].title!, Num: History[i].chapterNumber!, Date: Date())
-                }.fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: History[i].title!, ChapterID: History[i].id! , MangaID: History[i].mangaId, Pages: Int(History[i].pages), Index: i, nums: [] ).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+                    HistoryRow(Title: History[i].source!.title, Title2: History[i].title!, Num: History[i].chapterNumber!, Date: Date())
+                }.fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: History[i].title!, ChapterID: History[i].id!, MangaID: History[i].source!.id, Pages: Int(History[i].pages)).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
 
                 
                // Divider()
             }
         }
+        .task {
+            print(History)
+        }
         .navigationTitle("History")
-        .listStyle(.insetGrouped)
+        //.listStyle(.insetGrouped)
         .background(themeManager.selectedTheme.background)//.task{ await viewModel.fetchData() }
     }
         

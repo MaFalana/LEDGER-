@@ -254,7 +254,7 @@ extension CRUDManager
             History.removeAll()
             let x = try viewContext.fetch(Read_History.fetchRequest())
             print(x.first?.data)
-            //History = x.first?.data
+            History = x.first?.data ?? []
             //Read_History.fetchRequest().propertiesToFetch?.first.
             //activeLibraries = NSFetchRequest<Lib>(entityName: "Lib")
             //print("Libraries: \(activeLibraries)")
@@ -435,9 +435,7 @@ extension CRUDManager
                 print("\(Total) New Chapters found!")
             }
             
-            
             await addChapters(Manga: Manga, prevTotal: prevChapterCount!, Total: Total)
-          
         }
         else
         {
@@ -463,7 +461,7 @@ extension CRUDManager
         {
             DispatchQueue.main.async
             { [self] in
-                let E = createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt, mangaTitle: Manga.title, mangaId: Manga.id)
+                let E = createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt)
                 if Manga.chapters?.count != chapterTotal
                 {
                     Manga.addToChapters(E)
@@ -499,7 +497,7 @@ extension CRUDManager
 {
     
     
-    func createChapter(id: String, title: String, chapterNumber: String, pages: Int, publishDate: Date, mangaTitle: String, mangaId: String) -> Chapter
+    func createChapter(id: String, title: String, chapterNumber: String, pages: Int, publishDate: Date) -> Chapter
     {
         //await populatePage(ID: id, pages: 0..<pages)
         //let newChapter = Chapter(context: viewContext)
@@ -513,8 +511,7 @@ extension CRUDManager
         newChapter.chapterNumber = chapterNumber
         newChapter.pages = Int64(pages)
         newChapter.publishDate = publishDate
-        newChapter.mangaTitle = mangaTitle
-        newChapter.mangaId = mangaId
+        
         //newChapter.nums = []
         //print(ZZZ)
         Save()

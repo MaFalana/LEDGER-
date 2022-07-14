@@ -394,7 +394,7 @@ class CollectionLoader: ObservableObject
     {
         for i in chapters.indices
         {
-            let E = CRUDManager.shared.createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt, mangaTitle: Title, mangaId: ID)
+            let E = CRUDManager.shared.createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt)
             NC.append(E)
             //Manga.addToChapters(E)
         }

@@ -14,7 +14,6 @@ struct ChapterListView: View
     //@EnvironmentObject var crudManager: CRUDManager
     @EnvironmentObject private var themeManager: ThemeManager
     
-    
     var quequedManga: Manga
     var ID: String
     {
@@ -52,37 +51,24 @@ struct ChapterListView: View
     {
         
         Text(Header).fontWeight(.bold).frame(width: 415, alignment: .leading)
-        
-        ScrollView(.vertical)
+        Divider() // Third Divider
+        ForEach(ChapterList, id: \.id)
         {
-            Divider() // Third Divider
+            i in
             
-            ForEach(ChapterList.indices) // Will need to populate an array of chapters
+            Button(action: { N = 0 ; showSheet.toggle(); CRUDManager.shared.updateHistory(Source: ChapterList[N]) } )
             {
-                i in
-                Button(action: { N = i ; showSheet.toggle(); CRUDManager.shared.updateHistory(Source: ChapterList[N]); quequedManga.addToBookmarks(ChapterList[N]) } )
-                {
-                    ChapterRow(Title: ChapterList[i].title!, Chapter: ChapterList[i].chapterNumber!, Date: ChapterList[i].publishDate! )
-                    .swipeActions(allowsFullSwipe: false)
-                    {
-                        Button
-                        {
-                            print("Muting conversation")
-                            //quequedManga.addToBookmarks(ChapterList[N])
-                        }
-                        label:
-                        {
-                            Label("Bookmark", systemImage: "bell.slash.fill")
-                            
-                        }.tint(.indigo)
-                    }
+                ChapterRow(Manga: quequedManga, Chapter: i)
+                
+                
                     
-                        
-                }
-                .fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: ChapterList[N].title!, ChapterID: ChapterList[N].id! , MangaID: ID, Pages: Int(ChapterList[N].pages), Index: N, nums: [] ).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
-                Divider()
             }
-        }//.refreshable { if (network.chapters.count >= 103) { await network.fetchChapter(mangaId: info.id) } }// Manga Title
+            .fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: i.title!, ChapterID: i.id!, MangaID: i.source!.id, Pages: Int(i.pages)).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+            Divider()
+            
+        }
+        .listStyle(.plain)
+        
         
     }
 }

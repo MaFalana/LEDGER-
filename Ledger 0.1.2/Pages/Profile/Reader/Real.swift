@@ -15,12 +15,11 @@ struct FC: View  //TabBar
     //var screenWidth = UIScreen.main.bounds.width
     
     
-    let ReaderTitle: String?
+    let ReaderTitle: String
     let ChapterID: String
     let MangaID: String
     let Pages: Int // number of pages in chapter
-    let Index: Int
-    let nums: [String]
+ 
     //var sem: ClosedRange<Int>
     @State private var sliderValue: Double = 1
     private let sliderStep: Double = 1
@@ -87,6 +86,7 @@ struct FC: View  //TabBar
     var body: some View
     {
         let sliderRange: ClosedRange<Double> = 1...Double(Pages)
+        let items = Array(0..<Pages)
         //let Y: Int = Int(sliderValue) - 1
         //var newIndex: Int = Index + 1
         
@@ -95,7 +95,7 @@ struct FC: View  //TabBar
         {
             
             
-                Pager(page: page, data: Array(0..<Pages), id: \.self)
+                Pager(page: page, data: items, id: \.self)
                 {
                     index in
                     
@@ -183,7 +183,7 @@ struct FC: View  //TabBar
                 
                     }
                    
-                }.navigationBarTitle(ReaderTitle!, displayMode: .inline).lineLimit(1)
+                }.navigationBarTitle(ReaderTitle, displayMode: .inline).lineLimit(1)
                 
         
                 

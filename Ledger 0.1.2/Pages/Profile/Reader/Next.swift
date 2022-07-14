@@ -20,7 +20,7 @@ struct Next: View
         //nextChapter(Index: Index)
         
         
-        FC(ReaderTitle: network.chapters[newIndex].attributes.title ?? "", ChapterID: network.chapters[newIndex].id , MangaID: MangaID, Pages: network.chapters[newIndex].attributes.pages, Index: newIndex, nums: [] ).environmentObject(network)
+//        FC(ReaderTitle: network.chapters[newIndex].attributes.title ?? "", ChapterID: network.chapters[newIndex].id , MangaID: MangaID, Pages: network.chapters[newIndex].attributes.pages, Index: newIndex, nums: [] ).environmentObject(network)
     }
     
     func nextChapter(Index: Int)

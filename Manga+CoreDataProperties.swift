@@ -2,7 +2,7 @@
 //  Manga+CoreDataProperties.swift
 //  Ledger 0.1.2
 //
-//  Created by Malik Falana on 7/10/22.
+//  Created by Malik Falana on 7/14/22.
 //
 //
 
@@ -21,10 +21,10 @@ extension Manga {
     @NSManaged public var status: String?
     @NSManaged public var synopsis: String?
     @NSManaged public var title: String
+    @NSManaged public var artist: Artist?
+    @NSManaged public var author: Author?
     @NSManaged public var bookmarks: NSOrderedSet?
     @NSManaged public var chapters: NSOrderedSet?
-    @NSManaged public var author: Author?
-    @NSManaged public var artist: Artist?
     @NSManaged public var tags: NSOrderedSet?
 
 }

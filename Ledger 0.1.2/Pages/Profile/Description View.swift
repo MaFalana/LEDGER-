@@ -14,11 +14,17 @@ struct DescriptionView: View
     @State private var lineLimit = 3
     var body: some View
     {
+        // Manga Description
         Text("Description").fontWeight(.bold).frame(width: 415, alignment: .leading)
         ScrollView(.vertical)
         {
-            Text(Synopsis).padding()//.lineLimit(lineLimit) // Manga Description
-            //Text(Manga.attributes.description.additionalProp1).padding() // Manga Description
+            Text(Synopsis).padding()
+            .lineLimit(lineLimit)
+            .onTapGesture
+            {
+                lineLimit = 100
+            }
+            
         }
     }
 }
