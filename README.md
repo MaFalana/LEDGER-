@@ -27,6 +27,7 @@ Feel free to use this code any may you want.
 * Library storing
 * Image Saving
 * Searching
+* Dark/light mode switch
 
 ### Future Features
 
@@ -58,7 +59,7 @@ Contributors names and contact info
 
 ## License
 
-This project is licensed under the [MIT](https://github.com/MaFalana/Ledger/blob/main/LICENSE) License - see the LICENSE.md file for details
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/MaFalana/Ledger/blob/main/LICENSE) file for details
 
 ## Acknowledgments
 
@@ -68,6 +69,7 @@ Inspiration, code snippets, etc.
 * [Paperback-IOS](https://github.com/Paperback-iOS/app)
 * [SwiftUIPager](https://github.com/fermoya/SwiftUIPager)
 * [Swiftful Thinking](https://www.youtube.com/c/SwiftfulThinking)
+* [Logan Koshenka](https://www.youtube.com/c/LoganKoshenka)
 * [CodeWithChris](https://www.youtube.com/c/CodeWithChris)
 * [Emmanuel Okwara](https://www.youtube.com/c/EmmanuelOkwara/featured)
 * [Hacking with Swift](https://www.hackingwithswift.com)
