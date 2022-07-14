@@ -27,6 +27,7 @@ Feel free to use this code any may you want.
 * Library storing
 * Image Saving
 * Searching
+* Dark/light mode switch
 
 ### Future Features
 
