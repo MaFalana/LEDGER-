@@ -21,7 +21,7 @@ struct ButtonView: View
     @State var isPopulated: Bool = false
     
     //var info: CollectionResponse.mangaCollection
-    var queuedManga: Manga
+    @StateObject var  queuedManga: Manga
     
     //let id, title, author, artist, cover, status, synopsis: String
     
@@ -57,7 +57,10 @@ struct ButtonView: View
                 
             
             Spacer()
-            Label("Chapters", systemImage: "book").labelStyle(AdaptiveLabelStyle()) //Chapter buttons
+            NavigationLink(destination: SavedChapters(queuedManga: queuedManga) )
+            {
+                Label("Chapters", systemImage: "book").labelStyle(AdaptiveLabelStyle()) //Chapter buttons
+            }
             Spacer()
             //Label("Bookmarks", systemImage: "bookmark").labelStyle(AdaptiveLabelStyle()).padding()
             

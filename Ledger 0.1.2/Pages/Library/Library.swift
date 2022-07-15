@@ -15,7 +15,7 @@ struct Library: View
 {
 
     @EnvironmentObject var network: CollectionLoader
-    @State  var selectedMangaIndex = 0
+    @State var selectedMangaIndex = 0
     
     //@EnvironmentObject var libraryManager: LibraryManager
     //@EnvironmentObject var coreDM: CoreDataManager

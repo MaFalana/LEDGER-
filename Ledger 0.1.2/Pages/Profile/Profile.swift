@@ -14,7 +14,7 @@ struct Profile: View // Profile for Manga
     @EnvironmentObject var crudManager: CRUDManager
     @EnvironmentObject private var themeManager: ThemeManager
     
-    var info: Manga
+    @StateObject var info: Manga
     
     private var Title: String
     {
@@ -53,29 +53,23 @@ struct Profile: View // Profile for Manga
 
     var body: some View
     {
-        GeometryReader
+        
+        ScrollView(.vertical)
         {
-            g in
-            ScrollView(.vertical)
-            {
-                InfoView(Title: Title, Author: Author, Artist: Artist, Cover: Cover, Status: Status, Count: Count) //View for basic info of Manga
-                
-                ButtonView(queuedManga: info).environmentObject(network)//.environmentObject(coreDM) // View for various buttons
-                
-                DescriptionView(Synopsis: Description) // View for Manga Description/Synopsis
-                
-                TagView(queuedManga: info) // View for Genre Tags
-                
-                ChapterListView(quequedManga: info).environmentObject(network) // List View of aviliable Chapters
-                
-            }
+            InfoView(Title: Title, Author: Author, Artist: Artist, Cover: Cover, Status: Status, Count: Count) //View for basic info of Manga
             
-            .refreshable
-            {
-                print(info)
-                await CRUDManager.shared.updateManga(Manga: info)
-            }
+            ButtonView(queuedManga: info).environmentObject(network)//.environmentObject(coreDM) // View for various buttons
+            
+            DescriptionView(Synopsis: Description) // View for Manga Description/Synopsis
+            
+            TagView(queuedManga: info) // View for Genre Tags
+            
+            ChapterListView(quequedManga: info).environmentObject(network) // List View of aviliable Chapters
+            
         }
+            
+            
+    
         
         .background(themeManager.selectedTheme.background)
         .navigationBarTitle(Text(Title))

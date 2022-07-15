@@ -43,6 +43,8 @@ class CollectionLoader: ObservableObject
     @Published var pageDATA: [String]! = []
     @Published var pages: PageResponse!
     
+    @Published var newCover: String = ""
+    
     let chapterLimit = 100
     var chapterOffset = 0
     var chapterTotal = 0
@@ -323,7 +325,7 @@ class CollectionLoader: ObservableObject
                     self.pageDATA = decodedResponse.chapter.data
                     //print("\(decodedResponse.baseURL)/data/\(decodedResponse.chapter.hash)/\(decodedResponse.chapter.data[0])")
                     
-                    print("\(self.pageURL!)/data/\(self.pageHASH!)/\(self.pageDATA!.indices)")
+                    //print("\(self.pageURL!)/data/\(self.pageHASH!)/\(self.pageDATA!.indices)")
                 }
                 
             }
@@ -703,6 +705,68 @@ class CollectionLoader: ObservableObject
         }
     }
     
+    func getManga(Manga_ID: String) async
+    {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api.mangadex.org"
+        components.path = "/manga/\(Manga_ID)"
+        components.queryItems = [
+            //URLQueryItem(name: "limit", value: "100"),
+            //URLQueryItem(name: "offset", value: "0"),
+            //URLQueryItem(name: "authors[]", value: Manga_ID),
+            URLQueryItem(name: "includes[]", value: "author"),
+            URLQueryItem(name: "includes[]", value: "artist"),
+            URLQueryItem(name: "includes[]", value: "cover_art")
+        ]
+        
+        guard let url = components.url
+                
+        else
+        {
+            print("Error")
+            return
+        }
+        print(url)
+        // fetch data from url
+        do
+        {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            // decode data
+            let decodedResponse = try? newJSONDecoder().decode(MangaResponse.self, from: data)
+            
+            if let decodedResponse = decodedResponse
+            {
+    
+                DispatchQueue.main.async
+                { [self] in
+                    
+                    
+                        
+                        var INC = 0
+                        
+                        while decodedResponse.data.relationships[INC].type != "cover_art"
+                        {
+                            INC += 1
+                        }
+                        
+                        
+                        newCover = "https://uploads.mangadex.org/covers/\(Manga_ID)/\(decodedResponse.data.relationships[INC].attributes!.fileName ?? "")"
+                        
+                    print(newCover)
+                    
+                }
+                   
+            }
+            //print("Data: \(decodedResponse?.data)")
+            
+        }
+        catch let error
+        {
+            print("ERROR = \(error.localizedDescription)")
+        }
+    }
     
 }
 

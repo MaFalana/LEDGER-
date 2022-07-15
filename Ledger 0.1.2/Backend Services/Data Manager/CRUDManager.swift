@@ -414,8 +414,13 @@ extension CRUDManager
     func updateManga(Manga: Manga) async // Function to update a Manga, as in make sure it has the proper number of Chapters // Will be semi-automatic
     {
         // Get count of chapters manga currently has
-        
-        
+        await CollectionLoader.shared.getManga(Manga_ID: Manga.id)
+        if Manga.cover != CollectionLoader.shared.newCover
+        {
+            Manga.cover = CollectionLoader.shared.newCover
+            print("\(Manga.title) Cover Art Updated")
+        }
+        print(Manga.cover!)
         // Make a request to api to see total number of chapters
         await fetchChapter(Manga: Manga)
         
@@ -469,6 +474,38 @@ extension CRUDManager
             }
         }
         
+    }
+    
+    func downloadChapter(Manga: Manga, Chapter: Chapter) async
+    {
+        //await fetchChapter(Manga: Chapter.source!)
+        await CollectionLoader.shared.fetchPage(chapterId: Chapter.id!)
+        var i = 0
+        var URL = [String]()
+        let Count = Int(Chapter.pages)
+        
+        let Base = CollectionLoader.shared.pages?.baseURL ?? ""
+        let Hash = CollectionLoader.shared.pages?.chapter.hash ?? ""
+        let Page = CollectionLoader.shared.pages?.chapter.data ?? []
+        
+        while i != Count
+        {
+            let link = "\(CollectionLoader.shared.pages?.baseURL ?? "https://uploads.mangadex.org")/data/\(CollectionLoader.shared.pages?.chapter.hash ?? "61e6709e4b6b57a19e45c486be25b842")/\(CollectionLoader.shared.pages?.chapter.data[i] ?? "13-9026c5b869dbe56a3accbec64800e6d02c9b12444d46317041963b829aa80766.jpg")"
+            URL.append(link)
+            //Chapter.savedPages!.append(link)
+            //Manga.addToSaved(Chapter)
+            //Save()
+            i += 1
+            
+        }
+        print(URL)
+        Chapter.savedPages = URL
+        Manga.addToSaved(Chapter)
+        Save()
+        
+        //"\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")"
+        
+        //print(Chapter.source.)
     }
     
     func refreshProfile(Manga: Manga) async

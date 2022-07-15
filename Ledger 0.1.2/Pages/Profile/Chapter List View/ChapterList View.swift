@@ -14,7 +14,7 @@ struct ChapterListView: View
     //@EnvironmentObject var crudManager: CRUDManager
     @EnvironmentObject private var themeManager: ThemeManager
     
-    var quequedManga: Manga
+    @StateObject var quequedManga: Manga
     var ID: String
     {
         return quequedManga.id

@@ -78,7 +78,7 @@ struct ChapterRow: View
                 
             }
             
-            Button(action: {print("Download")} )
+            Button(action: {print("Download"); Task{await CRUDManager.shared.downloadChapter(Manga: Manga, Chapter: Chapter)} } )
             {
                 Label("Download", systemImage: "square.and.arrow.down")
             }

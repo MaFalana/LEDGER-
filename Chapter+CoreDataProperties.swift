@@ -21,8 +21,11 @@ extension Chapter {
     @NSManaged public var pages: Int64
     @NSManaged public var publishDate: Date?
     @NSManaged public var title: String?
+    @NSManaged public var savedPages: [String]?
+    @NSManaged public var isBookmarked: Bool
     @NSManaged public var source: Manga?
     @NSManaged public var primary: Manga?
+    @NSManaged public var secondary: Manga?
 
 }
 

@@ -26,6 +26,7 @@ extension Manga {
     @NSManaged public var bookmarks: NSOrderedSet?
     @NSManaged public var chapters: NSOrderedSet?
     @NSManaged public var tags: NSOrderedSet?
+    @NSManaged public var saved: NSOrderedSet?
 
 }
 
@@ -131,6 +132,41 @@ extension Manga {
 
     @objc(removeTags:)
     @NSManaged public func removeFromTags(_ values: NSOrderedSet)
+
+}
+
+// MARK: Generated accessors for saved
+extension Manga {
+
+    @objc(insertObject:inSavedAtIndex:)
+    @NSManaged public func insertIntoSaved(_ value: Chapter, at idx: Int)
+
+    @objc(removeObjectFromSavedAtIndex:)
+    @NSManaged public func removeFromSaved(at idx: Int)
+
+    @objc(insertSaved:atIndexes:)
+    @NSManaged public func insertIntoSaved(_ values: [Chapter], at indexes: NSIndexSet)
+
+    @objc(removeSavedAtIndexes:)
+    @NSManaged public func removeFromSaved(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInSavedAtIndex:withObject:)
+    @NSManaged public func replaceSaved(at idx: Int, with value: Chapter)
+
+    @objc(replaceSavedAtIndexes:withSaved:)
+    @NSManaged public func replaceSaved(at indexes: NSIndexSet, with values: [Chapter])
+
+    @objc(addSavedObject:)
+    @NSManaged public func addToSaved(_ value: Chapter)
+
+    @objc(removeSavedObject:)
+    @NSManaged public func removeFromSaved(_ value: Chapter)
+
+    @objc(addSaved:)
+    @NSManaged public func addToSaved(_ values: NSOrderedSet)
+
+    @objc(removeSaved:)
+    @NSManaged public func removeFromSaved(_ values: NSOrderedSet)
 
 }
 

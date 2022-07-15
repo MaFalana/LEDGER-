@@ -17,8 +17,6 @@ struct CustomTabView: View
     //@EnvironmentObject var crudManager: CRUDManager
     @State private var selectedTabIndex = 0
     //SlidingTabView(selection: $selectedTabIndex,tabs: ["First Tab", "Second Tab"])
-    
-    
     @State private var searchText: String = ""
     
     var body: some View
