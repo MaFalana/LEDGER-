@@ -10,19 +10,12 @@ import SwiftUI
 struct TabBar: View  //TabBar
 {
     @EnvironmentObject private var themeManager: ThemeManager
-    //@EnvironmentObject private var crudManager: CRUDManager
-    //@EnvironmentObject private var  libraryManager: LibraryManager
+    
     var network = CollectionLoader.shared
-    //var ss = DD()
-    //@EnvironmentObject var coreDM: CoreDataManager
-    //var coreDM = CoreDataManager()
-    //var info: CollectionResponse.mangaCollection
     
     @State var tabSelection = 1
     @State var showMenu = false
-    //var screenWidth = UIScreen.main.bounds.width
     
-   // init(){ UITableView.appearance().backgroundColor = .clear }
     
     
     var body: some View
@@ -62,7 +55,7 @@ struct TabBar: View  //TabBar
                     .toolbar{
                         ToolbarItemGroup(placement: .navigationBarTrailing)
                         {
-                            Image(systemName: "magnifyingglass").imageScale(.large).foregroundColor(themeManager.selectedTheme.accent)
+                            //Image(systemName: "magnifyingglass").imageScale(.large).foregroundColor(themeManager.selectedTheme.accent)
                            
             
                             Button(action: {showMenu.toggle()} )

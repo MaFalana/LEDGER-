@@ -40,8 +40,7 @@ struct Bookmarks: View
                 
                 Button
                 {
-                    do
-                    {
+                    
                         print("Remove Bookmark")
 //                        let preCount = queuedManga.bookmarks?.count
 //                        let postCount = preCount! - 1
@@ -57,11 +56,7 @@ struct Bookmarks: View
                         //CRUDManager.shared.Save()
 //                        queuedManga.bookmarks?.count = postCount
                         //try CRUDManager.shared.viewContext.save()
-                    }
-                    catch
-                    {
-                        print("Error occured while removing bookmark: \(error.localizedDescription)")
-                    }
+                    
                     
                 }
                 label:
@@ -257,7 +252,7 @@ struct Saved: View
                 }.foregroundColor(.gray)
             }.foregroundColor(themeManager.selectedTheme.label)
         }
-        .fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: Title, ChapterID: ID, MangaID: SourceID, Pages: Pages)} )
+        .fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: Title, ChapterID: ID, MangaID: SourceID, Pages: Pages).accentColor(themeManager.selectedTheme.accent)} )
         
         //.fullScreenCover(isPresented: $showSheet, content: {offlineReader(ReaderTitle: Title, ChapterID: ID, MangaID: SourceID, Pages: Pages).accentColor(themeManager.selectedTheme.accent)} )
         

@@ -31,7 +31,8 @@ struct Browse: View
                 
                 viewData(Data: network.seinenData, Genre: "Seinen").environmentObject(network)
             }
-            //.navigationBarTitle("MangaDex")//.task{ network.chapters.removeAll()  }
+            .navigationBarTitle("ledger")
+            .navigationBarTitleDisplayMode(.inline)
             .background(themeManager.selectedTheme.background)
         }
         

@@ -14,6 +14,7 @@ struct BrowseView: View
     @ObservedObject var urlImageModel: UrlImageModel
     //var covers: CoverResponse.Cover.Attributes?
     static var defaultImage = UIImage(named: "Placeholder")
+    @State var isAdding = false
     //covers?.fileName
     init(urlString: String)
     {
@@ -24,12 +25,16 @@ struct BrowseView: View
     var body: some View
     {
         Image(uiImage: urlImageModel.image ?? BrowseView.defaultImage!).resizable().frame(width: 120, height: 170)
-//            .contextMenu
-//            {
+        .contextMenu
+        {
 //                Button(action: {print("Share")} ) {Label("Start Reading", systemImage: "square.and.arrow.up")}
 //                Button(action: {print("Share")} ) {Label("More Details", systemImage: "square.and.arrow.up")}
-//                Button(action: {crudManager.addManga(Library: urlImageModel.Library!, Manga: urlImageModel.selectedManga)} ) {Label("Add to Library", systemImage: "trash")}.accentColor(.red)
-//            }
+            Button(action: {isAdding.toggle()} )
+            {
+                Label("Add to Library", systemImage: "folder.badge.plus")
+                
+            }.accentColor(.red).sheet(isPresented: $isAdding){ AddView(queuedManga: urlImageModel.selectedManga) }
+        }
 
 
 
@@ -60,19 +65,19 @@ struct LibraryView: View
     {
         Image(uiImage: urlImageModel.image ?? LibraryView.defaultImage!).resizable().frame(width: 120, height: 170)
             .contextMenu {
-                Button(action: {print("Share")} )
-                {
-                    Label("Start Reading", systemImage: "square.and.arrow.up")
-                    
-                }
-                NavigationLink(destination: Profile(info: urlImageModel.selectedManga).environmentObject(network))
-                {
-                    Button(action: {print("Share")} )
-                    {
-                        Label("More Details", systemImage: "square.and.arrow.up")
-                        
-                    }
-                }
+//                Button(action: {print("Share")} )
+//                {
+//                    Label("Start Reading", systemImage: "square.and.arrow.up")
+//
+//                }
+//                NavigationLink(destination: Profile(info: urlImageModel.selectedManga).environmentObject(network))
+//                {
+//                    Button(action: {print("Share")} )
+//                    {
+//                        Label("More Details", systemImage: "square.and.arrow.up")
+//
+//                    }
+//                }
                 Button(action: {CRUDManager.shared.removeManga(Library: urlImageModel.Library!, selectedManga: urlImageModel.selectedManga)} )
                 {
                     Label("Remove from Library", systemImage: "trash")

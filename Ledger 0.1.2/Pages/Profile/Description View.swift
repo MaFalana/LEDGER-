@@ -19,12 +19,6 @@ struct DescriptionView: View
         ScrollView(.vertical)
         {
             Text(Synopsis).padding()
-            .lineLimit(lineLimit)
-            .onTapGesture
-            {
-                lineLimit = 100
-            }
-            
         }
     }
 }

@@ -95,35 +95,34 @@ struct FC: View  //TabBar
         
         NavigationView
         {
-            PaginationView(axis: CRUDManager.shared.isOrient ? .vertical : .horizontal)
-            {
-                ForEach(0..<Pages)
-                {
-                    i in
-                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[i] ?? "")" )
-                }
-            }
-            //.currentPageIndex($currentPage)
-            .pageControlBackgroundStyle(.automatic)
-            //.pageIndicatorAlignment(.bottom)
-            //.pageIndicatorTintColor(.)
-            //.currentPageIndicatorTintColor(.blue)
-//            
-//                Pager(page: page, data: items, id: \.self)
+//            PaginationView(axis: CRUDManager.shared.isOrient ? .vertical : .horizontal)
+//            {
+//                ForEach(0..<Pages)
 //                {
-//                    index in
-//                    
-//                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
-//                    //ReadView(urlString: nums[index])
-//                        .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
-//                        .navigationBarHidden(hideNavigationBar)
-//                        .statusBar(hidden: hideNavigationBar)
+//                    i in
+//                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[i] ?? "")" )
 //                }
-//                //.horizontal()
-//                //.vertical()
-//                .contentLoadingPolicy(.eager)
-//                .onPageChanged({index in sliderValue = Double(index+1) })
-//                .scaleEffect(scale).gesture(zoom)
+//            }
+//            //.currentPageIndex($currentPage)
+//            .pageControlBackgroundStyle(.automatic)
+//            //.pageIndicatorAlignment(.bottom)
+//            //.pageIndicatorTintColor(.)
+//            //.currentPageIndicatorTintColor(.blue)
+//            
+                Pager(page: page, data: items, id: \.self)
+                {
+                    index in
+                    
+                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
+                    //ReadView(urlString: nums[index])
+                        .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
+                        .navigationBarHidden(hideNavigationBar)
+                        .statusBar(hidden: hideNavigationBar)
+                }
+                //CRUDManager.shared.isOrient ? .vertical() : .horizontal()
+                .contentLoadingPolicy(.eager)
+                .onPageChanged({index in sliderValue = Double(index+1) })
+                .scaleEffect(scale).gesture(zoom)
                 .toolbar{
                     ToolbarItemGroup(placement: .bottomBar)
                     {
@@ -131,7 +130,7 @@ struct FC: View  //TabBar
                         {
                             VStack
                             {
-                                Slider(value: $sliderValue, in: sliderRange, step: sliderStep)
+                                Slider(value: $sliderValue, in: sliderRange, step: sliderStep).disabled(true)
                                 
                                 HStack
                                 {

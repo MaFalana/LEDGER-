@@ -31,6 +31,8 @@ class CRUDManager: ObservableObject
     @Published var isLoading: Bool = false
     @Published var editMode = false
     @Published var isOrient = false //pageview oreintation
+    @Published var isReading = false
+   
     
     @Published var staticLibrary: Lib = Lib()
     

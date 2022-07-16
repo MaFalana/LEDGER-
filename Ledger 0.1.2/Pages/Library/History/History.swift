@@ -39,8 +39,12 @@ struct History: View
                // Divider()
             }
         }
-        .task {
-            print(History)
+        .task
+        {
+            for i in History
+            {
+                print("\(i)")
+            }
         }
         .navigationTitle("History")
         //.listStyle(.insetGrouped)

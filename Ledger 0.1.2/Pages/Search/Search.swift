@@ -27,30 +27,30 @@ struct Search: View
         
         ScrollView(.vertical)
         {
-            HStack
-            {
-                //Button {} label: {Image(systemName: "line.3.horizontal.decrease") }
-                Text("List").foregroundColor(.gray)
-                
-                HStack
-                {
-                    Menu
-                    {
-                        Button("Popular") { term = "Popular" }
-                        Button("Latest") { term = "Latest" }
-                        Button("All") { term = "All" }
-                    }
-                    label:
-                    {
-                        Text(term).animation(.easeIn)
-                        Image(systemName: "chevron.down")
-                    }
-                }
-                
-                Spacer()
-                Button {} label: {Image(systemName: "line.3.horizontal.decrease") }.imageScale(.large)
-
-            }.padding()
+//            HStack
+//            {
+//                //Button {} label: {Image(systemName: "line.3.horizontal.decrease") }
+//                Text("List").foregroundColor(.gray)
+//                
+//                HStack
+//                {
+//                    Menu
+//                    {
+//                        Button("Popular") { term = "Popular" }
+//                        Button("Latest") { term = "Latest" }
+//                        Button("All") { term = "All" }
+//                    }
+//                    label:
+//                    {
+//                        Text(term).animation(.easeIn)
+//                        Image(systemName: "chevron.down")
+//                    }
+//                }
+//                
+//                Spacer()
+//                Button {} label: {Image(systemName: "line.3.horizontal.decrease") }.imageScale(.large)
+//
+//            }.padding()
             
             ForEach(network.searchResults)
             {
