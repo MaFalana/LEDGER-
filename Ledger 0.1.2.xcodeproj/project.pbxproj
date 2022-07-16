@@ -73,6 +73,7 @@
 		0CD6D53A288098AB00930F93 /* Manga+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6D538288098AB00930F93 /* Manga+CoreDataProperties.swift */; };
 		0CD6D53D28810FD900930F93 /* Chapter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6D53B28810FD900930F93 /* Chapter+CoreDataClass.swift */; };
 		0CD6D53E28810FD900930F93 /* Chapter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD6D53C28810FD900930F93 /* Chapter+CoreDataProperties.swift */; };
+		0CD6D54128823B2000930F93 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 0CD6D54028823B2000930F93 /* SwiftUIX */; };
 		0CDCB014286E5B79004F629C /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDCB013286E5B79004F629C /* Base.swift */; };
 		0CDCB016286E5BFE004F629C /* MangaDex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDCB015286E5BFE004F629C /* MangaDex.swift */; };
 		0CDCB01C286E7338004F629C /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CDCB01B286E7338004F629C /* Title.swift */; };
@@ -165,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0CE59D3528524D6700499B02 /* SwiftUIPager in Frameworks */,
+				0CD6D54128823B2000930F93 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +494,7 @@
 			name = "Ledger 0.1.2";
 			packageProductDependencies = (
 				0CE59D3428524D6700499B02 /* SwiftUIPager */,
+				0CD6D54028823B2000930F93 /* SwiftUIX */,
 			);
 			productName = "Ledger 0.1.2";
 			productReference = 0C8BEC302845B2CC005B9A97 /* Ledger 0.1.2.app */;
@@ -524,6 +527,7 @@
 			packageReferences = (
 				0CE59D3328524D6700499B02 /* XCRemoteSwiftPackageReference "SwiftUIPager" */,
 				0C2D33462852D2A800D1F72C /* XCRemoteSwiftPackageReference "SlidingTabView" */,
+				0CD6D53F28823B2000930F93 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 0C8BEC312845B2CC005B9A97 /* Products */;
 			projectDirPath = "";
@@ -845,6 +849,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		0CD6D53F28823B2000930F93 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
 		0CE59D3328524D6700499B02 /* XCRemoteSwiftPackageReference "SwiftUIPager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/fermoya/SwiftUIPager.git";
@@ -856,6 +868,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		0CD6D54028823B2000930F93 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0CD6D53F28823B2000930F93 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
 		0CE59D3428524D6700499B02 /* SwiftUIPager */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0CE59D3328524D6700499B02 /* XCRemoteSwiftPackageReference "SwiftUIPager" */;

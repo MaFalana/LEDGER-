@@ -6,6 +6,7 @@
 //
 import SwiftUIPager
 import SwiftUI
+import SwiftUIX
 
 struct FC: View  //TabBar
 {
@@ -23,6 +24,7 @@ struct FC: View  //TabBar
     //var sem: ClosedRange<Int>
     @State private var sliderValue: Double = 1
     private let sliderStep: Double = 1
+    //@State var currentPage: Int = 1
     
     @State private var hideNavigationBar = false
     @State private var hideToolBar = false
@@ -93,23 +95,35 @@ struct FC: View  //TabBar
         
         NavigationView
         {
-            
-            
-                Pager(page: page, data: items, id: \.self)
+            PaginationView(axis: CRUDManager.shared.isOrient ? .vertical : .horizontal)
+            {
+                ForEach(0..<Pages)
                 {
-                    index in
-                    
-                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
-                    //ReadView(urlString: nums[index])
-                        .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
-                        .navigationBarHidden(hideNavigationBar)
-                        .statusBar(hidden: hideNavigationBar)
+                    i in
+                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[i] ?? "")" )
                 }
-                //.horizontal()
-                //.vertical()
-                .contentLoadingPolicy(.eager)
-                .onPageChanged({index in sliderValue = Double(index+1) })
-                .scaleEffect(scale).gesture(zoom)
+            }
+            //.currentPageIndex($currentPage)
+            .pageControlBackgroundStyle(.automatic)
+            //.pageIndicatorAlignment(.bottom)
+            //.pageIndicatorTintColor(.)
+            //.currentPageIndicatorTintColor(.blue)
+//            
+//                Pager(page: page, data: items, id: \.self)
+//                {
+//                    index in
+//                    
+//                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
+//                    //ReadView(urlString: nums[index])
+//                        .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
+//                        .navigationBarHidden(hideNavigationBar)
+//                        .statusBar(hidden: hideNavigationBar)
+//                }
+//                //.horizontal()
+//                //.vertical()
+//                .contentLoadingPolicy(.eager)
+//                .onPageChanged({index in sliderValue = Double(index+1) })
+//                .scaleEffect(scale).gesture(zoom)
                 .toolbar{
                     ToolbarItemGroup(placement: .bottomBar)
                     {

@@ -45,7 +45,7 @@ struct ButtonView: View
                 .sheet(isPresented: $isAdding){ AddView(queuedManga: queuedManga) }
             Spacer()
             
-            Button(action: {Task{await CRUDManager.shared.updateManga(Manga: queuedManga)} } ) {Label("Refresh", systemImage: "arrow.clockwise").padding()}
+            //Button(action: {Task{await CRUDManager.shared.updateManga(Manga: queuedManga)} } ) {Label("Refresh", systemImage: "arrow.clockwise").padding()}
             
         }
         HStack// 3 - 4 buttons

@@ -168,9 +168,10 @@ class CollectionLoader: ObservableObject
             
             // decode data
             let decodedResponse = try? newJSONDecoder().decode(CollectionResponse.self, from: data)
-            TOTAL = decodedResponse!.total
+            
             if let decodedResponse = decodedResponse
             {
+                TOTAL = decodedResponse.total
                 DispatchQueue.main.async
                 { [self] in
                     if Genre == ""
@@ -425,16 +426,16 @@ class CollectionLoader: ObservableObject
                 j += 1
             }
             j = 0
-            
+            //let V = CollectionResponse.mangaCollection.self
             let Id = Data[i].id
             let Title = Data[i].attributes.title!.en ?? Data[i].attributes.title!.ja ?? Data[i].attributes.title!.jaRo ?? Data[i].attributes.title!.ko ?? Data[i].attributes.title!.zh ?? Data[i].attributes.altTitles?.first?.en
             let Author = CRUDManager.shared.getAuthor(Source: X)
             let Artist = CRUDManager.shared.getArtist(Source: Y)
             let Cover = "https://uploads.mangadex.org/covers/\(Id)/\(Data[i].relationships[Z].attributes!.fileName ?? "")"
             let Status = Data[i].attributes.status!.capitalized
-            let Synopsis = Data[i].attributes.attributesDescription.debugDescription.description
+            let Synopsis = Data[i].attributes.attributesDescription.debugDescription
+            //let Synopsis = Data[i].attributes.attributesDescription.map(transform: (V.Attributes.DescriptionUnion.) throws -> String )
             
-           
             //print("Title: \(Title)")
             //Task{
             let NewManga = CRUDManager.shared.findManga(id: Id, title: Title ?? "", author: Author, artist: Artist, cover: Cover, status: Status, synopsis: Synopsis, tags: Tags)

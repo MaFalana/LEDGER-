@@ -140,6 +140,22 @@ struct CollectionResponse: Codable
 
             }
         }
+        struct Description: Codable
+        {
+            let en: String?
+            let jaRo, es, ru: String?
+            let ja, ko, uk, zh: String?
+            let zhHk, esLa, vi, fa: String?
+            let th, ro, ar, ne: String?
+            let hi, pl, cs, sr: String?
+            let bn, my, he, id: String?
+            let zhRo, null, de, it: String?
+            let fr, nl, tr, bg: String?
+            let hu, et, sv, pt: String?
+            let la, ca, el, mn: String?
+            let ptBr, ms, fi: String?
+            let no, koRo, da: String?
+        }
 
         struct Title: Codable
         {
@@ -155,11 +171,27 @@ struct CollectionResponse: Codable
             let la, ca, el, mn: String?
             let ptBr, ms, fi: String?
             let no, koRo, da: String?
+            
+            
 
 
 
-//            enum CodingKeys: String, CodingKey
-//            {
+            enum CodingKeys: String, CodingKey
+            {
+                case en, jaRo = "ja-ro", es, ru
+                case ja, ko, uk, zh
+                case zhHk = "zh-hk", esLa = "es-la", vi, fa
+                
+                case th, ro, ar, ne
+                case hi, pl, cs, sr
+                case bn, my, he, id
+                case zhRo, null, de, it
+                case fr, nl, tr, bg
+                case hu, et, sv, pt
+                case la, ca, el, mn
+                case ptBr, ms, fi
+                case no, koRo, da
+                
 //                case jaRo = "ja-ro"
 //                case es, en, ru, ja, ko, uk, zh
 //                case zhHk = "zh-hk"
@@ -170,7 +202,7 @@ struct CollectionResponse: Codable
 //                case de, it, fr, nl, tr, bg, hu, et, sv, pt, la, ca, el, mn
 //                case ptBr = "pt-br"
 //                case ms, fi
-//            }
+            }
         }
 
         enum RelationshipType: String, Codable
@@ -232,9 +264,11 @@ struct CollectionResponse: Codable
                     throw DecodingError.typeMismatch(LinksUnion.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for LinksUnion"))
                 }
 
-                func encode(to encoder: Encoder) throws {
+                func encode(to encoder: Encoder) throws
+                {
                     var container = encoder.singleValueContainer()
-                    switch self {
+                    switch self
+                    {
                     case .anythingArray(let x):
                         try container.encode(x)
                     case .linksClass(let x):
@@ -267,19 +301,25 @@ struct CollectionResponse: Codable
 
             enum DescriptionUnion: Codable
             {
+                //case RawValue
+                
                 case anythingArray([JSONAny])
-                case descriptionClass(Title)
+                case descriptionClass(Description)
             
-                init(from decoder: Decoder) throws {
-                        let container = try decoder.singleValueContainer()
-                        if let x = try? container.decode([JSONAny].self) {
-                            self = .anythingArray(x)
-                            return
-                        }
-                        if let x = try? container.decode(Title.self) {
-                            self = .descriptionClass(x)
-                            return
-                        }
+                init(from decoder: Decoder) throws
+                {
+                    let container = try decoder.singleValueContainer()
+                    if let x = try? container.decode([JSONAny].self)
+                    {
+                        self = .anythingArray(x)
+                        return
+                    }
+                    if let x = try? container.decode(Description.self)
+                    {
+                        self = .descriptionClass(x)
+                        //CollectionResponse.mangaCollection.Attributes.DescriptionUnion.RawValue = x.en!
+                        return
+                    }
                         throw DecodingError.typeMismatch(DescriptionUnion.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for DescriptionUnion"))
                     }
 
@@ -292,6 +332,8 @@ struct CollectionResponse: Codable
                             try container.encode(x)
                         }
                     }
+                
+
             }
 
 

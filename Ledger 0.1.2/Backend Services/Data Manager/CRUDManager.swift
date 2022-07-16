@@ -26,9 +26,16 @@ class CRUDManager: ObservableObject
     @Published var YYY: PageResponse!
    // @Published var ZZZ = [String]()
     @Published var History: [Chapter] = [Chapter]()
+    
+    
     @Published var isLoading: Bool = false
     @Published var editMode = false
+    @Published var isOrient = false //pageview oreintation
+    
     @Published var staticLibrary: Lib = Lib()
+    
+    
+    var Response: String = ""
     
     //@Published var pageURL: String! = ""
     //@Published var pageHASH: String! = ""
@@ -414,6 +421,7 @@ extension CRUDManager
     func updateManga(Manga: Manga) async // Function to update a Manga, as in make sure it has the proper number of Chapters // Will be semi-automatic
     {
         // Get count of chapters manga currently has
+       
         await CollectionLoader.shared.getManga(Manga_ID: Manga.id)
         if Manga.cover != CollectionLoader.shared.newCover
         {
@@ -422,6 +430,7 @@ extension CRUDManager
         }
         print(Manga.cover!)
         // Make a request to api to see total number of chapters
+        //removeElements(Offset: 0)
         await fetchChapter(Manga: Manga)
         
         let prevChapterCount = Manga.chapters?.count
@@ -433,18 +442,20 @@ extension CRUDManager
         {
             if Total == 1
             {
-                print("\(Total) Chapter found!")
+                Response = "\(Total) Chapter found!"
             }
             else
             {
-                print("\(Total) New Chapters found!")
+                Response = "\(Total) New Chapters found!"
             }
+            print(Response)
             
             await addChapters(Manga: Manga, prevTotal: prevChapterCount!, Total: Total)
         }
         else
         {
-            print("No New Chapters found.")
+            Response = "No New Chapters found."
+            print(Response)
         }
         
         
@@ -604,8 +615,11 @@ extension CRUDManager
     
     func removeElements(Offset: Int) //Function to reset certain variables related to chapters
     {
-        XXX.removeAll()
-        chapters.removeAll()
+        if !XXX.isEmpty && !chapters.isEmpty
+        {
+            XXX.removeAll()
+            chapters.removeAll()
+        }
         //ZZZ.removeAll()
         //chapterTotal = 0
         chapterOffset = Offset

@@ -10,7 +10,9 @@ import SwiftUI
 struct Reader_Menu: View
 {
     var orient = ["Vertical", "Horizontal"]
-    @State private var selectedValue = "Horizontal"
+    //@State private var selectedValue = "Horizontal"
+    @State var selectedValue = CRUDManager.shared.isOrient ? "Vertical" : "Horizontal"
+    
     
     var body: some View
     {
@@ -24,6 +26,20 @@ struct Reader_Menu: View
                     {
                         Text($0)
                     }
+                }
+                .onChange(of: selectedValue)
+                {
+                    i in
+                    if i == "Vertical"
+                    {
+                        CRUDManager.shared.isOrient.toggle()
+                    }
+//                    else
+//                    {
+//                        CRUDManager.shared.isOrient.toggle()
+//                    }
+                    
+                    
                 }
             }//.pickerStyle(.segmented)
         }

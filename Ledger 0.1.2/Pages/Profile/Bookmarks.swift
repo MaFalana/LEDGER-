@@ -113,6 +113,7 @@ struct SavedChapters: View
 {
     @EnvironmentObject private var themeManager: ThemeManager
     @StateObject var queuedManga: Manga
+    @State var showAlert: Bool = false
     
     var Chapters: [Chapter]
     {
@@ -192,6 +193,11 @@ struct SavedChapters: View
         {
             print(queuedManga)
             await CRUDManager.shared.updateManga(Manga: queuedManga)
+            showAlert.toggle()
+        }
+        .alert(isPresented: $showAlert)
+        {
+            Alert5()
         }
         
     }

@@ -30,7 +30,10 @@ func Alert4(Name: String) -> Alert
 }
 
 
-func Alert5(Name: String) -> Alert
+func Alert5() -> Alert
 {
-    return Alert(title: Text("Alert"), message: Text("Manga Already in \(Name)") )
+    //let Total = CRUDManager.shared.Total
+    let Response = CRUDManager.shared.Response
+    let Color = ThemeManager.shared.selectedTheme.accent
+    return Alert(title: Text(Response) )
 }
