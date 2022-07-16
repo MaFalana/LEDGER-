@@ -65,7 +65,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 Inspiration, code snippets, etc.
 * [Aidoku](https://github.com/Aidoku/Aidoku)
-* [MangaSoup]()
+* [MangaSoup](https://github.com/Mantton)
 * [Paperback-IOS](https://github.com/Paperback-iOS/app)
 * [SwiftUIPager](https://github.com/fermoya/SwiftUIPager)
 * [Swiftful Thinking](https://www.youtube.com/c/SwiftfulThinking)
