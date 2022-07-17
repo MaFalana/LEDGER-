@@ -18,8 +18,7 @@ Feel free to use this code any may you want.
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Just click the [link](https://testflight.apple.com/join/947cRtnp) and follow the instructions.
 
 ### Supported Features
 
