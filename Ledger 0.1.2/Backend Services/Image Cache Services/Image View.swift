@@ -25,16 +25,16 @@ struct BrowseView: View
     var body: some View
     {
         Image(uiImage: urlImageModel.image ?? BrowseView.defaultImage!).resizable().frame(width: 120, height: 170)
-        .contextMenu
-        {
-//                Button(action: {print("Share")} ) {Label("Start Reading", systemImage: "square.and.arrow.up")}
-//                Button(action: {print("Share")} ) {Label("More Details", systemImage: "square.and.arrow.up")}
-            Button(action: {isAdding.toggle()} )
-            {
-                Label("Add to Library", systemImage: "folder.badge.plus")
-                
-            }.accentColor(.red).sheet(isPresented: $isAdding){ AddView(queuedManga: urlImageModel.selectedManga) }
-        }
+//        .contextMenu
+//        {
+////                Button(action: {print("Share")} ) {Label("Start Reading", systemImage: "square.and.arrow.up")}
+////                Button(action: {print("Share")} ) {Label("More Details", systemImage: "square.and.arrow.up")}
+//            Button(action: {isAdding.toggle()} )
+//            {
+//                Label("Add to Library", systemImage: "folder.badge.plus")
+//
+//            }.accentColor(.red).sheet(isPresented: $isAdding){ AddView(queuedManga: urlImageModel.selectedManga) }
+//        }
 
 
 
@@ -105,9 +105,11 @@ struct ProfileView: View
     
     var body: some View
     {
-        Image(uiImage: urlImageModel.image ?? ProfileView.defaultImage!).resizable().scaledToFit().frame(width: 220, height: 320).contextMenu{
+        Image(uiImage: urlImageModel.image ?? ProfileView.defaultImage!).resizable().scaledToFit().frame(width: 220, height: 320)
+            .contextMenu
+        {
             Button(action: {UIImageWriteToSavedPhotosAlbum(urlImageModel.image!, nil, nil, nil)} ) {Label("Save Image", systemImage: "square.and.arrow.down")}
-            Button(action: {print("Share")} ) {Label("Share", systemImage: "square.and.arrow.up")}
+            
         }
     }
     
@@ -127,9 +129,11 @@ struct ReadView: View
     
     var body: some View
     {
-        Image(uiImage: urlImageModel.image ?? ReadView.defaultImage!).resizable().scaledToFit().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).contextMenu{
+        Image(uiImage: urlImageModel.image ?? ReadView.defaultImage!).resizable().scaledToFit().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            .contextMenu
+        {
             Button(action: {UIImageWriteToSavedPhotosAlbum(urlImageModel.image!, nil, nil, nil)} ) {Label("Save Image", systemImage: "square.and.arrow.down")}
-            Button(action: {print("Share")} ) {Label("Share", systemImage: "square.and.arrow.up")}
+            
         }
     }
     

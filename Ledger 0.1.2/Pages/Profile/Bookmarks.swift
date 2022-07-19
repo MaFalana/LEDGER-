@@ -158,12 +158,12 @@ struct SavedChapters: View
                         if i.isBookmarked
                         {
                             queuedManga.removeFromBookmarks(i)
-                            print("\(i.title) un-bookmarked")
+                            //print("\(i.title) un-bookmarked")
                         }
                         else
                         {
                             queuedManga.addToBookmarks(i)
-                            print("\(i.title) bookmarked")
+                            //print("\(i.title) bookmarked")
                         }
                         CRUDManager.shared.Save()
                         i.isBookmarked.toggle()
@@ -194,8 +194,9 @@ struct SavedChapters: View
         {
             Alert5()
         }
-        
     }
+        
+    
 }
 
 
@@ -252,7 +253,7 @@ struct Saved: View
                 }.foregroundColor(.gray)
             }.foregroundColor(themeManager.selectedTheme.label)
         }
-        .fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: Title, ChapterID: ID, MangaID: SourceID, Pages: Pages).accentColor(themeManager.selectedTheme.accent)} )
+        .fullScreenCover(isPresented: $showSheet, content: {FC(Chapter: Chapter, Pages: Pages).accentColor(themeManager.selectedTheme.accent)} )
         
         //.fullScreenCover(isPresented: $showSheet, content: {offlineReader(ReaderTitle: Title, ChapterID: ID, MangaID: SourceID, Pages: Pages).accentColor(themeManager.selectedTheme.accent)} )
         

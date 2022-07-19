@@ -32,7 +32,6 @@ struct ChapterRow: View
  
     var body: some View
     {
-        let Accent = themeManager.selectedTheme.accent
         
         HStack
         {
@@ -62,12 +61,12 @@ struct ChapterRow: View
                     if isBookmarked
                     {
                         Manga.removeFromBookmarks(Chapter)
-                        print("\(Chapter.title) un-bookmarked")
+                        //print("\(Chapter.title) un-bookmarked")
                     }
                     else
                     {
                         Manga.addToBookmarks(Chapter)
-                        print("\(Chapter.title) bookmarked")
+                        //print("\(Chapter.title) bookmarked")
                     }
                     CRUDManager.shared.Save()
                     isBookmarked = Manga.bookmarks!.contains(where: {($0 as AnyObject).id == Chapter.id})

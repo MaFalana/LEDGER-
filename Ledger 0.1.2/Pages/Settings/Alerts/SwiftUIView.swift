@@ -34,6 +34,5 @@ func Alert5() -> Alert
 {
     //let Total = CRUDManager.shared.Total
     let Response = CRUDManager.shared.Response
-    let Color = ThemeManager.shared.selectedTheme.accent
     return Alert(title: Text(Response) )
 }

@@ -23,22 +23,23 @@ struct History: View
     
     var body: some View
     {
-        ScrollView
+        ZStack
         {
-            
-            ForEach(History.indices) // Will need to populate an array of recently read manga
+            themeManager.selectedTheme.background.ignoresSafeArea(.all)
+            List(History) // Will need to populate an array of recently read manga
             {
                 i in //Sentry value
                 
                 Button( action: { showSheet.toggle() } )
                 {
-                    HistoryRow(Title: History[i].source!.title, Title2: History[i].title!, Num: History[i].chapterNumber!, Date: Date())
-                }.fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: History[i].title!, ChapterID: History[i].id!, MangaID: History[i].source!.id, Pages: Int(History[i].pages)).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+                    HistoryRow(Title: i.source!.title, Title2: i.title!, Num: i.chapterNumber!, Date: Date())
+                }.fullScreenCover(isPresented: $showSheet, content: {FC(Chapter: i, Pages: Int(i.pages)).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
 
                 
                // Divider()
             }
         }
+        .background(themeManager.selectedTheme.background)
         .task
         {
             for i in History
@@ -48,7 +49,7 @@ struct History: View
         }
         .navigationTitle("History")
         //.listStyle(.insetGrouped)
-        .background(themeManager.selectedTheme.background)//.task{ await viewModel.fetchData() }
+        //.task{ await viewModel.fetchData() }
     }
         
         //fetchdata

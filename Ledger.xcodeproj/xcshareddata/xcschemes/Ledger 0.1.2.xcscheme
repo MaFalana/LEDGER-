@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0C8BEC2F2845B2CC005B9A97"
-               BuildableName = "Ledger 0.1.2.app"
+               BuildableName = "Ledger.app"
                BlueprintName = "Ledger"
                ReferencedContainer = "container:Ledger.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0C8BEC2F2845B2CC005B9A97"
-            BuildableName = "Ledger 0.1.2.app"
+            BuildableName = "Ledger.app"
             BlueprintName = "Ledger"
             ReferencedContainer = "container:Ledger.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0C8BEC2F2845B2CC005B9A97"
-            BuildableName = "Ledger 0.1.2.app"
+            BuildableName = "Ledger.app"
             BlueprintName = "Ledger"
             ReferencedContainer = "container:Ledger.xcodeproj">
          </BuildableReference>

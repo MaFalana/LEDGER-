@@ -51,7 +51,7 @@ struct ButtonView: View
         HStack// 3 - 4 buttons
         {
     
-            Button(action: {isReading.toggle()} ) { Label("Read", systemImage: "play").labelStyle(AdaptiveLabelStyle()).padding() }.fullScreenCover(isPresented: $isReading, content: {FC(ReaderTitle: Chapter.first!.title!, ChapterID: Chapter.first!.id!, MangaID: Chapter.first!.source!.id, Pages: Int(Chapter.first!.pages) ).environmentObject(network).accentColor(ThemeManager.shared.selectedTheme.accent) } )
+            Button(action: {isReading.toggle()} ) { Label("Read", systemImage: "play").labelStyle(AdaptiveLabelStyle()).padding() }.fullScreenCover(isPresented: $isReading, content: {FC(Chapter: Chapter.first!, Pages: Int(Chapter.first!.pages) ).environmentObject(network).accentColor(ThemeManager.shared.selectedTheme.accent) } )
                 .disabled(isPopulated)
                 
                 

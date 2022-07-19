@@ -54,8 +54,8 @@ struct Profile: View // Profile for Manga
     var body: some View
     {
         
-        //ScrollView(.vertical)
-        //{
+        VStack
+        {
             InfoView(Title: Title, Author: Author, Artist: Artist, Cover: Cover, Status: Status, Count: Count) //View for basic info of Manga
             
             ButtonView(queuedManga: info).environmentObject(network)//.environmentObject(coreDM) // View for various buttons
@@ -66,11 +66,7 @@ struct Profile: View // Profile for Manga
             
             //ChapterListView(quequedManga: info).environmentObject(network) // List View of aviliable Chapters
             
-        //}
-            
-            
-    
-        
+        }
         .background(themeManager.selectedTheme.background)
         .navigationBarTitle(Text(Title))
         .navigationBarTitleDisplayMode(.inline)

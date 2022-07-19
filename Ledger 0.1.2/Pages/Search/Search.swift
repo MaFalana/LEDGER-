@@ -18,69 +18,76 @@ struct Search: View
     @EnvironmentObject var network: CollectionLoader
     @State private var searchText: String = ""
     @State private var term: String = "Popular"
+    @State var Results: [Manga] = []
     
     //@State var up: Bool = false
     //ScrollView(up ? .vertical : .horizontal)
     
+   // init() { UITableView.appearance().backgroundColor = UIColor(ThemeManager.shared.selectedTheme.background) }
+    
     var body: some View
     {
-        
-        ScrollView(.vertical)
+        ZStack
         {
-//            HStack
-//            {
-//                //Button {} label: {Image(systemName: "line.3.horizontal.decrease") }
-//                Text("List").foregroundColor(.gray)
-//                
-//                HStack
-//                {
-//                    Menu
-//                    {
-//                        Button("Popular") { term = "Popular" }
-//                        Button("Latest") { term = "Latest" }
-//                        Button("All") { term = "All" }
-//                    }
-//                    label:
-//                    {
-//                        Text(term).animation(.easeIn)
-//                        Image(systemName: "chevron.down")
-//                    }
-//                }
-//                
-//                Spacer()
-//                Button {} label: {Image(systemName: "line.3.horizontal.decrease") }.imageScale(.large)
-//
-//            }.padding()
-            
-            ForEach(network.searchResults)
+            themeManager.selectedTheme.background.ignoresSafeArea(.all)
+            ScrollView(.vertical)
             {
-                item in
-
-                NavigationLink(destination: Profile(info: item).environmentObject(network))
-                {
-                    searchRow(info: item)
-                    //item.attributes.altTitles
-                }//.listStyle(.plain)
-                Divider()
-            }.searchable(text: $searchText).onChange(of: searchText ){
-                value in
-                Task
-                {
-                    //await network.searchManga(searchValue: searchText)
-                    if !value.isEmpty && value.count > 3
-                    {
-                        //await shonenList.search(name: value)
-                        await network.searchManga(searchValue: searchText)
-                    }
-                    else
-                    {
-                        //shonenList.sample.removeAll()
-                        network.searchResults.removeAll()
-                    }
-                }
+    //            HStack
+    //            {
+    //                //Button {} label: {Image(systemName: "line.3.horizontal.decrease") }
+    //                Text("List").foregroundColor(.gray)
+    //
+    //                HStack
+    //                {
+    //                    Menu
+    //                    {
+    //                        Button("Popular") { term = "Popular" }
+    //                        Button("Latest") { term = "Latest" }
+    //                        Button("All") { term = "All" }
+    //                    }
+    //                    label:
+    //                    {
+    //                        Text(term).animation(.easeIn)
+    //                        Image(systemName: "chevron.down")
+    //                    }
+    //                }
+    //
+    //                Spacer()
+    //                Button {} label: {Image(systemName: "line.3.horizontal.decrease") }.imageScale(.large)
+    //
+    //            }.padding()
                 
-            }
-        }.background(themeManager.selectedTheme.background).navigationTitle("Search")
+                ForEach(network.searchResults)
+                {
+                    item in
+
+                    NavigationLink(destination: Profile(info: item).environmentObject(network))
+                    {
+                        searchRow(info: item)
+                        //item.attributes.altTitles
+                    }//.listStyle(.plain)
+                    Divider()
+                }.searchable(text: $searchText).onChange(of: searchText ){
+                    value in
+                    Task
+                    {
+                        //await network.searchManga(searchValue: searchText)
+                        if !value.isEmpty && value.count > 3
+                        {
+                            //await shonenList.search(name: value)
+                            await network.searchManga(searchValue: searchText)
+                        }
+                        else
+                        {
+                            //shonenList.sample.removeAll()
+                            network.searchResults.removeAll()
+                        }
+                    }
+                    
+                }
+            }.background(themeManager.selectedTheme.background).navigationTitle("Search")
+        }
+        
       
     }
     
@@ -93,8 +100,7 @@ struct Search: View
     @Published var sample: [Manga] = []
     func search(name: String) async
     {
-        do
-        {
+        
             print("Before: \(sample)")
             //let mangas = try await Webservice().getShonen(searchTerm: name)
             
@@ -110,11 +116,6 @@ struct Search: View
             //print(mangas)
             //self.sample = mangas.map(ShonenViewModel.init)
             print("After: \(sample)")
-        }
-        catch let error
-        {
-            print("Error: \(error.localizedDescription)")
-        }
     }
 }
 
@@ -154,7 +155,7 @@ class Webservice
         
         do
         {
-            let (data, response) = try await URLSession.shared.data(from: url)
+            let (data, _) = try await URLSession.shared.data(from: url)
             
             let decodedResponse = try? newJSONDecoder().decode(CollectionResponse.self, from: data)
             

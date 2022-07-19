@@ -28,7 +28,7 @@ struct Reader: View
                     ForEach(0 ..< Pages) // number of pages
                     {
                         i in
-                        ReadView(urlString: "\(network.pageURL)/data/\(network.pageHASH)/\(network.pageDATA[i])")
+                        ReadView(urlString: "\(network.pageURL!)/data/\(network.pageHASH!)/\(network.pageDATA[i])")
                     }
                     Rectangle().frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height).foregroundColor(.black).overlay(Text("No more chapters :(").foregroundColor(.white).fontWeight(.heavy))
                 }.navigationBarBackButtonHidden(true).onTapGesture(count: 1) {self.hideNavigationBar.toggle()}.navigationBarHidden(hideNavigationBar)

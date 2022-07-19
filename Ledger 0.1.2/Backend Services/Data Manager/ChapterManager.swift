@@ -132,11 +132,11 @@ class ChapterManager: ObservableObject
                 }
                 
             }
-            print("There are \(decodedResponse?.data.count) chapters")
-            print("Most Recent Chapter: \(decodedResponse?.data.last?.attributes.title)") //Chapter Title
-            print("Most Recent Chapter #: \(decodedResponse?.data.last?.attributes.chapter)")
-            print("Total is \(decodedResponse?.total)")
-            print(decodedResponse?.data)
+//            print("There are \(decodedResponse?.data.count) chapters")
+//            print("Most Recent Chapter: \(decodedResponse?.data.last?.attributes.title)") //Chapter Title
+//            print("Most Recent Chapter #: \(decodedResponse?.data.last?.attributes.chapter)")
+//            print("Total is \(decodedResponse?.total)")
+//            print(decodedResponse?.data)
         }
         catch let error
         {

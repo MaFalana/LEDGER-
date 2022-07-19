@@ -54,7 +54,7 @@ final class Huntington: Theme
     
     var text: Color = Color("textColor_Huntington")
     
-    var themeName: String = "Huntington"
+    var themeName: String = "Granny Smith"
 }
 
 final class MangaSoup: Theme
@@ -89,7 +89,7 @@ final class Crunchyroll: Theme
 
 final class Funimation: Theme
 {
-    var button: Color = Color("AccentColor")
+    var button: Color = Color("AccentColor_Funimation")
     
     var accent: Color = Color("AccentColor_Funimation")
     
@@ -97,7 +97,7 @@ final class Funimation: Theme
     
     var label: Color = Color("labelColor")
     
-    var text: Color = Color("labelColor")
+    var text: Color = Color("textColor_Funimation")
     
     var themeName: String = "Funimation"
 }
@@ -144,7 +144,7 @@ class ThemeManager: ObservableObject
         Blue(),
         MangaSoup(),
         Crunchyroll(),
-        Funimation(),
+        //Funimation(),
         Huntington()
     ]
     

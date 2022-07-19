@@ -143,18 +143,36 @@ struct CollectionResponse: Codable
         struct Description: Codable
         {
             let en: String?
-            let jaRo, es, ru: String?
-            let ja, ko, uk, zh: String?
-            let zhHk, esLa, vi, fa: String?
-            let th, ro, ar, ne: String?
-            let hi, pl, cs, sr: String?
-            let bn, my, he, id: String?
-            let zhRo, null, de, it: String?
-            let fr, nl, tr, bg: String?
-            let hu, et, sv, pt: String?
-            let la, ca, el, mn: String?
-            let ptBr, ms, fi: String?
-            let no, koRo, da: String?
+//            let jaRo, es, ru: String?
+//            let ja, ko, uk, zh: String?
+//            let zhHk, esLa, vi, fa: String?
+//            let th, ro, ar, ne: String?
+//            let hi, pl, cs, sr: String?
+//            let bn, my, he, id: String?
+//            let zhRo, null, de, it: String?
+//            let fr, nl, tr, bg: String?
+//            let hu, et, sv, pt: String?
+//            let la, ca, el, mn: String?
+//            let ptBr, ms, fi: String?
+//            let no, koRo, da: String?
+//
+//            enum CodingKeys: String, CodingKey
+//            {
+//                case en, jaRo = "ja-ro", es, ru
+//                case ja, ko, uk, zh
+//                case zhHk = "zh-hk", esLa = "es-la", vi, fa
+//
+//                case th, ro, ar, ne
+//                case hi, pl, cs, sr
+//                case bn, my, he, id
+//                case zhRo = "zh-ro", null = "NULL", de, it
+//                case fr, nl, tr, bg
+//                case hu, et, sv, pt
+//                case la, ca, el, mn
+//                case ptBr = "pt-br", ms, fi
+//                case no, koRo = "ko-ro", da
+//            }
+            
         }
 
         struct Title: Codable
@@ -185,12 +203,12 @@ struct CollectionResponse: Codable
                 case th, ro, ar, ne
                 case hi, pl, cs, sr
                 case bn, my, he, id
-                case zhRo, null, de, it
+                case zhRo = "zh-ro", null = "NULL", de, it
                 case fr, nl, tr, bg
                 case hu, et, sv, pt
                 case la, ca, el, mn
-                case ptBr, ms, fi
-                case no, koRo, da
+                case ptBr = "pt-br", ms, fi
+                case no, koRo = "ko-ro", da
                 
 //                case jaRo = "ja-ro"
 //                case es, en, ru, ja, ko, uk, zh
@@ -305,7 +323,19 @@ struct CollectionResponse: Codable
                 
                 case anythingArray([JSONAny])
                 case descriptionClass(Description)
-            
+                //let Synop = DescriptionUnion.descriptionClass
+                
+                func get() -> String?
+                {
+                    switch self
+                    {
+                        case .descriptionClass(let x):
+                        return x.en
+                    case .anythingArray(_):
+                        return ""
+                    }
+                }
+                
                 init(from decoder: Decoder) throws
                 {
                     let container = try decoder.singleValueContainer()
@@ -318,6 +348,8 @@ struct CollectionResponse: Codable
                     {
                         self = .descriptionClass(x)
                         //CollectionResponse.mangaCollection.Attributes.DescriptionUnion.RawValue = x.en!
+                        //print(x)
+                        //self.Synop = x.en
                         return
                     }
                         throw DecodingError.typeMismatch(DescriptionUnion.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for DescriptionUnion"))

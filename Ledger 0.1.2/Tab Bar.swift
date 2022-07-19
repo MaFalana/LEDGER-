@@ -55,7 +55,15 @@ struct TabBar: View  //TabBar
                     .toolbar{
                         ToolbarItemGroup(placement: .navigationBarTrailing)
                         {
-                            //Image(systemName: "magnifyingglass").imageScale(.large).foregroundColor(themeManager.selectedTheme.accent)
+//                            Image(systemName: "magnifyingglass").imageScale(.large).foregroundColor(themeManager.selectedTheme.accent)
+                            
+//                            Button(action: {CRUDManager.shared.isHidden.toggle()} )
+//                            {
+//                                Label("Search", systemImage: "magnifyingglass")
+//                                .labelStyle(.iconOnly)
+//                                .imageScale(.large)
+//                                
+//                            }
                            
             
                             Button(action: {showMenu.toggle()} )
@@ -105,7 +113,7 @@ struct TabBar: View  //TabBar
         }
         .environmentObject(network)
         .accentColor(themeManager.selectedTheme.button)
-        .task{ await network.loadCollection() }
+        //.task{ await network.loadCollection() }
         //; for i in network.collectionData { await network.fetchDetails(mangaId: i.id) } }
     }
     //.navigationTitle("Swift").toolbar{Image(systemName: "rectangle.grid.3")}

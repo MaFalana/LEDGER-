@@ -286,11 +286,11 @@ class CollectionLoader: ObservableObject
                 }
                 
             }
-            print("There are \(decodedResponse?.data.count) chapters")
-            print("Most Recent Chapter: \(decodedResponse?.data.last?.attributes.title)") //Chapter Title
-            print("Most Recent Chapter #: \(decodedResponse?.data.last?.attributes.chapter)")
-            print("Total is \(decodedResponse?.total)")
-            print(decodedResponse?.data)
+//            print("There are \(decodedResponse?.data.count) chapters")
+//            print("Most Recent Chapter: \(decodedResponse?.data.last?.attributes.title)") //Chapter Title
+//            print("Most Recent Chapter #: \(decodedResponse?.data.last?.attributes.chapter)")
+//            print("Total is \(decodedResponse?.total)")
+//            print(decodedResponse?.data)
         }
         catch let error
         {
@@ -433,7 +433,7 @@ class CollectionLoader: ObservableObject
             let Artist = CRUDManager.shared.getArtist(Source: Y)
             let Cover = "https://uploads.mangadex.org/covers/\(Id)/\(Data[i].relationships[Z].attributes!.fileName ?? "")"
             let Status = Data[i].attributes.status!.capitalized
-            let Synopsis = Data[i].attributes.attributesDescription.debugDescription
+            let Synopsis = Data[i].attributes.attributesDescription?.get() ?? ""
             //let Synopsis = Data[i].attributes.attributesDescription.map(transform: (V.Attributes.DescriptionUnion.) throws -> String )
             
             //print("Title: \(Title)")
@@ -460,7 +460,7 @@ class CollectionLoader: ObservableObject
     }
     
     
-    func searchManga(searchValue: String) async -> [Manga]
+    func searchManga(searchValue: String) async
     {
         var components = URLComponents()
         components.scheme = "https"
@@ -486,7 +486,7 @@ class CollectionLoader: ObservableObject
         else
         {
             print("Error")
-            return []
+            return 
         }
         print(url)
         // fetch data from url
@@ -504,7 +504,7 @@ class CollectionLoader: ObservableObject
                 
                     Task
                     {
-                        await Trans(Data: decodedResponse.data, Storage: searchResults, Max: decodedResponse.data.count)
+                        Trans(Data: decodedResponse.data, Storage: searchResults, Max: decodedResponse.data.count)
                         searchResults = Temp
                         Temp.removeAll()
                     }
@@ -518,7 +518,7 @@ class CollectionLoader: ObservableObject
             print("ERROR = \(error.localizedDescription)")
         }
         
-        return searchResults ?? []
+        //return searchResults ?? []
     }
     
     func searchByTag(Tag_ID: String?) async
@@ -755,7 +755,7 @@ class CollectionLoader: ObservableObject
                         
                         newCover = "https://uploads.mangadex.org/covers/\(Manga_ID)/\(decodedResponse.data.relationships[INC].attributes!.fileName ?? "")"
                         
-                    print(newCover)
+                    //print(newCover)
                     
                 }
                    

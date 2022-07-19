@@ -15,11 +15,34 @@ struct FC: View  //TabBar
     @State var showMenu = false
     //var screenWidth = UIScreen.main.bounds.width
     
-    
-    let ReaderTitle: String
-    let ChapterID: String
-    let MangaID: String
+    let Chapter: Chapter
+    //let ReaderTitle: String
+    //let ChapterID: String
+    //let MangaID: String
     let Pages: Int // number of pages in chapter
+    
+    private var ASH: [String]
+    {
+        //return (libraryData.data ?? []) as! [Manga]
+        let FOREX: [Tag] = Array(_immutableCocoaArray: Chapter.source?.tags ?? [])
+        var SUM: [String] = []
+        
+        for i in FOREX
+        {
+            SUM.append(i.name!)
+            //SUM.
+        }
+        return SUM
+        
+    }
+    
+//    private var SAM: [String]
+//    {
+//        for i in ASH
+//        {
+//            i.name
+//        }
+//    }
  
     //var sem: ClosedRange<Int>
     @State private var sliderValue: Double = 1
@@ -108,21 +131,30 @@ struct FC: View  //TabBar
 //            //.pageIndicatorAlignment(.bottom)
 //            //.pageIndicatorTintColor(.)
 //            //.currentPageIndicatorTintColor(.blue)
-//            
-                Pager(page: page, data: items, id: \.self)
+//
+            //themeManager.selectedTheme.background.ignoresSafeArea(.all)
+            
+            if ASH.contains("Long Strip") || ASH.contains("Web Comic")
+            {
+                ZStack
                 {
-                    index in
-                    
-                    ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
-                    //ReadView(urlString: nums[index])
-                        .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
-                        .navigationBarHidden(hideNavigationBar)
-                        .statusBar(hidden: hideNavigationBar)
+                    themeManager.selectedTheme.background.ignoresSafeArea(.all)
+                    Pager(page: page, data: items, id: \.self)
+                    {
+                        index in
+                        
+                        ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
+                        //ReadView(urlString: nums[index])
+                            .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
+                            .navigationBarHidden(hideNavigationBar)
+                            .statusBar(hidden: hideNavigationBar)
+                    }
+                    .vertical()
+                    .contentLoadingPolicy(.eager)
+                    .onPageChanged({index in sliderValue = Double(index+1) })
+                    .scaleEffect(scale).gesture(zoom)
+                
                 }
-                //CRUDManager.shared.isOrient ? .vertical() : .horizontal()
-                .contentLoadingPolicy(.eager)
-                .onPageChanged({index in sliderValue = Double(index+1) })
-                .scaleEffect(scale).gesture(zoom)
                 .toolbar{
                     ToolbarItemGroup(placement: .bottomBar)
                     {
@@ -196,12 +228,110 @@ struct FC: View  //TabBar
                 
                     }
                    
-                }.navigationBarTitle(ReaderTitle, displayMode: .inline).lineLimit(1)
+                }.navigationBarTitle(Chapter.title!, displayMode: .inline).lineLimit(1)
+            }
+            else
+            {
+                ZStack
+                {
+                    themeManager.selectedTheme.background.ignoresSafeArea(.all)
+                    Pager(page: page, data: items, id: \.self)
+                    {
+                        index in
+                        
+                        ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
+                        //ReadView(urlString: nums[index])
+                            .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
+                            .navigationBarHidden(hideNavigationBar)
+                            .statusBar(hidden: hideNavigationBar)
+                    }
+                    //CRUDManager.shared.isOrient ? .vertical() : .horizontal()
+                    .contentLoadingPolicy(.eager)
+                    .onPageChanged({index in sliderValue = Double(index+1) })
+                    .scaleEffect(scale).gesture(zoom)
+                
+                }
+                .toolbar{
+                    ToolbarItemGroup(placement: .bottomBar)
+                    {
+                        if hideNavigationBar == false
+                        {
+                            VStack
+                            {
+                                Slider(value: $sliderValue, in: sliderRange, step: sliderStep).disabled(true)
+                                
+                                HStack
+                                {
+                                    Spacer()
+                                    Spacer()
+                                    Text("\(Int(sliderValue)) of \(Pages)").font(.caption2) /* Need to make smaller */
+                                    Spacer()
+                                    if Pages - Int(sliderValue) > 1
+                                    {
+                                        Text("\(Pages - Int(sliderValue)) pages left").font(.caption2).foregroundColor(.gray) //Updates when page updated
+                                    }
+                                    else if Pages - Int(sliderValue) == 1
+                                    {
+                                        Text("\(Pages - Int(sliderValue)) page left").font(.caption2).foregroundColor(.gray) //Updates when page updated
+                                    }
+                                    else
+                                    {
+                                        Text("\(Pages - Int(sliderValue)) pages left").font(.caption2).foregroundColor(.gray).hidden()
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            VStack
+                            {
+                                Slider(value: $sliderValue, in: sliderRange, step: sliderStep)
+                                
+                                HStack
+                                {
+                                    Spacer()
+                                    Spacer()
+                                    Text("\(Int(sliderValue)) of \(Pages)").font(.caption2) /* Need to make smaller */
+                                    Spacer()
+                                    if Pages - Int(sliderValue) > 1
+                                    {
+                                        Text("\(Pages - Int(sliderValue)) pages left").font(.caption2).foregroundColor(.gray) //Updates when page updated
+                                    }
+                                    else if Pages - Int(sliderValue) == 1
+                                    {
+                                        Text("\(Pages - Int(sliderValue)) page left").font(.caption2).foregroundColor(.gray) //Updates when page updated
+                                    }
+                                    else
+                                    {
+                                        Text("\(Pages - Int(sliderValue)) pages left").font(.caption2).foregroundColor(.gray).hidden()
+                                    }
+                                }
+                            }.hidden()
+                        }
+                    }
+                    
+                    ToolbarItemGroup(placement: .navigationBarLeading)
+                    {
+                        Button(action: {presentationMode.wrappedValue.dismiss()}) {Image(systemName: "xmark.circle.fill")}.imageScale(.large)
+                    }
+                    
+                    ToolbarItemGroup(placement: .navigationBarTrailing)
+                    {
+                        Reader_Menu()
+                        
+                            
+                        Button(action: {}) {Image(systemName: "square.stack.3d.up")}.imageScale(.large)
+                
+                    }
+                   
+                }.navigationBarTitle(Chapter.title!, displayMode: .inline).lineLimit(1)
+            }
+            
                 
         
                 
             
-        }.task{ await network.fetchPage(chapterId: ChapterID) }
+        }.task{ await network.fetchPage(chapterId: Chapter.id!) }
     }
 }
 

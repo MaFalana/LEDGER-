@@ -11,7 +11,7 @@ import SwiftUI
 struct Ledger_0_1_2App: App
 {
     @StateObject var themeManager = ThemeManager.shared
-    //@StateObject var network = CollectionLoader()
+    @StateObject var network = CollectionLoader.shared
     //@StateObject var crudManager = CRUDManager()
     
     @AppStorage("isDarkMode") private var isDarkMode = false
@@ -50,6 +50,7 @@ struct Ledger_0_1_2App: App
         {
             //Browse().environmentObject(network)
             TabBar()
+                .task{ await network.loadCollection() }
                 .preferredColorScheme(isSystem ? getScheme(Color: "System") : getScheme(Color: "App") )
                 //.tint(themeManager.selectedTheme.accent)
                 .environmentObject(themeManager)

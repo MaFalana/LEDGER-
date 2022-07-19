@@ -63,7 +63,7 @@ struct ChapterListView: View
                 
                     
             }
-            .fullScreenCover(isPresented: $showSheet, content: {FC(ReaderTitle: i.title!, ChapterID: i.id!, MangaID: i.source!.id, Pages: Int(i.pages)).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+            .fullScreenCover(isPresented: $showSheet, content: {FC(Chapter: i, Pages: Int(i.pages)).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
             Divider()
             
         }

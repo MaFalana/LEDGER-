@@ -16,7 +16,7 @@ struct Settings: View
     //@EnvironmentObject private var crud: CRUDManager
     @AppStorage("isDarkMode") private var isDarkMode = false
     @AppStorage("isSystem") private var isSystem = false
-    @AppStorage("isSync") private var isSync = false
+    //@AppStorage("isSyncing") private var isSyncing = CRUDManager.shared.isSyncing
     init(){ UITableView.appearance().backgroundColor = .clear }
     @State var selectedItem: String = ""
     
@@ -38,11 +38,11 @@ struct Settings: View
             
             Section("General")
             {
-                Toggle("iCloud Sync", isOn: $isSync)
-                NavigationLink(destination: Backups().background(themeManager.selectedTheme.background))
-                {
-                    Text("Backups")
-                }
+                //Toggle("iCloud Sync", isOn: $isSyncing)
+//                NavigationLink(destination: Backups().background(themeManager.selectedTheme.background))
+//                {
+//                    Text("Backups")
+//                }
                 Toggle("Appearance", isOn: $isDarkMode).disabled(isSystem)
                 Toggle("Use System Appearance", isOn: $isSystem)
             }
@@ -50,24 +50,24 @@ struct Settings: View
             
             Section("Theme")
             {
-                ForEach(themeManager.themes.indices)
+                ForEach(0..<themeManager.themes.count)
                 {
                     i in
                     buttonRow(Name: themeManager.themes[i].themeName, Value: i, selectedItem: $selectedItem).foregroundColor(themeManager.selectedTheme.text)
                 }
             }
             
-            Section("Advanced")
-            {
-                Button("Clear Chapter Cache") {}.foregroundColor(themeManager.selectedTheme.text)
-                Button("Clear Manga Cache") {}.foregroundColor(themeManager.selectedTheme.text)
-                Button("Clear Network Cache") {}.foregroundColor(themeManager.selectedTheme.text)
-                Button("Clear Read History") {CRUDManager.shared.History.removeAll()}.foregroundColor(themeManager.selectedTheme.text)
-                Button("Reset") { showAlert.toggle() }.foregroundColor(themeManager.themes.first?.accent).alert(isPresented: $showAlert)
-                {
-                    Alert1()
-                }
-            }
+//            Section("Advanced")
+//            {
+//                Button("Clear Chapter Cache") {}.foregroundColor(themeManager.selectedTheme.text)
+//                Button("Clear Manga Cache") {}.foregroundColor(themeManager.selectedTheme.text)
+//                Button("Clear Network Cache") {}.foregroundColor(themeManager.selectedTheme.text)
+//                Button("Clear Read History") {CRUDManager.shared.History.removeAll()}.foregroundColor(themeManager.selectedTheme.text)
+//                Button("Reset") { showAlert.toggle() }.foregroundColor(themeManager.themes.first?.accent).alert(isPresented: $showAlert)
+//                {
+//                    Alert1()
+//                }
+//            }
             
         }.listStyle(.insetGrouped).background(themeManager.selectedTheme.background)
     }

@@ -57,7 +57,8 @@ struct AddView: View
                         }
                     }
                     
-                }.listStyle(.insetGrouped)//.padding()
+                }
+                .listStyle(.insetGrouped)//.padding()
                 
                 TextField("Collection Name", text: $userInput )
                 .accentColor(themeManager.selectedTheme.label)

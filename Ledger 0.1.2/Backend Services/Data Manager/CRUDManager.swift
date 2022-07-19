@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import CoreData
+import CloudKit
 
 
 class CRUDManager: ObservableObject
@@ -32,12 +33,14 @@ class CRUDManager: ObservableObject
     @Published var editMode = false
     @Published var isOrient = false //pageview oreintation
     @Published var isReading = false
-   
+    @Published var isHidden = true
+    @Published var isSyncing = false
     
     @Published var staticLibrary: Lib = Lib()
     
     
     var Response: String = ""
+    var newCover: String  = ""
     
     //@Published var pageURL: String! = ""
     //@Published var pageHASH: String! = ""
@@ -261,9 +264,12 @@ extension CRUDManager
         do
         {
             History.removeAll()
-            let x = try viewContext.fetch(Read_History.fetchRequest())
-            print(x.first?.data)
-            History = x.first?.data ?? []
+            let request = NSFetchRequest<RHistory>(entityName: "RHistory")
+            let X = try viewContext.fetch(request)
+            //print(X.first?.data)
+
+            //print(x.data)
+            
             //Read_History.fetchRequest().propertiesToFetch?.first.
             //activeLibraries = NSFetchRequest<Lib>(entityName: "Lib")
             //print("Libraries: \(activeLibraries)")
@@ -279,13 +285,21 @@ extension CRUDManager
     
     func updateHistory(Source: Chapter) // func that updates history
     {
-        let newHistory = NSEntityDescription.insertNewObject(forEntityName: "Read_History", into: viewContext) as! Read_History
-        newHistory.data?.append(Source)
+        let newHistory = NSEntityDescription.insertNewObject(forEntityName: "RHistory", into: viewContext) as! RHistory
+        newHistory.addToData(Source)
+        //let X = newHistory.data
+        
         Save()
     }
     
     func deleteLibrary(Library: Lib)
     {
+        
+//        .onDelete { indexSet in
+//            CRUDManager.shared.activeLibraries.remove(atOffsets: indexSet)
+//        }
+//
+        activeLibraries.remove(at: activeLibraries.firstIndex(of: Library)!)
         print("Removing \(Library.name)")
         viewContext.delete(Library)
         Save()
@@ -382,7 +396,7 @@ extension CRUDManager
     
     func addManga(Library: Lib, Manga: Manga) async // Function to add a Manga to a specific Library
     {
-            //await addChapters(Manga: Manga)
+            await updateManga(Manga: Manga)
             Library.addToData(Manga)
             //Library.removeFromData(at: 15)
             Save()
@@ -423,17 +437,21 @@ extension CRUDManager
     func updateManga(Manga: Manga) async // Function to update a Manga, as in make sure it has the proper number of Chapters // Will be semi-automatic
     {
         // Get count of chapters manga currently has
-       
-        await CollectionLoader.shared.getManga(Manga_ID: Manga.id)
-        if Manga.cover != CollectionLoader.shared.newCover
+        //removeElements(Offset: 0)
+        try await CollectionLoader.shared.getManga(Manga_ID: Manga.id)
+        newCover = CollectionLoader.shared.newCover
+        
+        if newCover != "" && newCover.contains(Manga.id) && Manga.cover != newCover
         {
-            Manga.cover = CollectionLoader.shared.newCover
+            print("Previous Cover: \(Manga.cover!)")
+            Manga.cover = newCover
+            print("Current Cover: \(newCover)")
             print("\(Manga.title) Cover Art Updated")
         }
-        print(Manga.cover!)
+        
         // Make a request to api to see total number of chapters
         //removeElements(Offset: 0)
-        await fetchChapter(Manga: Manga)
+        try await fetchChapter(Manga: Manga)
         
         let prevChapterCount = Manga.chapters?.count
         let newChapterCount: Int = chapterTotal
@@ -444,15 +462,15 @@ extension CRUDManager
         {
             if Total == 1
             {
-                Response = "\(Total) Chapter found!"
+                Response = "\(Total) Chapter Found!"
             }
             else
             {
-                Response = "\(Total) New Chapters found!"
+                Response = "\(Total) New Chapters Found!"
             }
             print(Response)
             
-            await addChapters(Manga: Manga, prevTotal: prevChapterCount!, Total: Total)
+            try await addChapters(Manga: Manga, prevTotal: prevChapterCount!, Total: Total)
         }
         else
         {
@@ -477,14 +495,12 @@ extension CRUDManager
         }
         for i in chapters.indices
         {
-            DispatchQueue.main.async
-            { [self] in
-                let E = createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt)
-                if Manga.chapters?.count != chapterTotal
-                {
-                    Manga.addToChapters(E)
-                }
+            let E = createChapter(id: chapters[i].id, title: chapters[i].attributes.title ?? "", chapterNumber: chapters[i].attributes.chapter ?? "", pages: Int(chapters[i].attributes.pages), publishDate: chapters[i].attributes.publishAt)
+            if Manga.chapters?.count != chapterTotal
+            {
+                Manga.addToChapters(E)
             }
+            
         }
         
     }
@@ -497,13 +513,9 @@ extension CRUDManager
         var URL = [String]()
         let Count = Int(Chapter.pages)
         
-        let Base = CollectionLoader.shared.pages?.baseURL ?? ""
-        let Hash = CollectionLoader.shared.pages?.chapter.hash ?? ""
-        let Page = CollectionLoader.shared.pages?.chapter.data ?? []
-        
         while i != Count
         {
-            let link = "\(CollectionLoader.shared.pages?.baseURL ?? "https://uploads.mangadex.org")/data/\(CollectionLoader.shared.pages?.chapter.hash ?? "61e6709e4b6b57a19e45c486be25b842")/\(CollectionLoader.shared.pages?.chapter.data[i] ?? "13-9026c5b869dbe56a3accbec64800e6d02c9b12444d46317041963b829aa80766.jpg")"
+            let link = "\(CollectionLoader.shared.pages?.baseURL ?? "https://uploads.mangadex.org")/data/\(CollectionLoader.shared.pages?.chapter.hash ?? "")/\(CollectionLoader.shared.pages?.chapter.data[i] ?? "")"
             URL.append(link)
             //Chapter.savedPages!.append(link)
             //Manga.addToSaved(Chapter)

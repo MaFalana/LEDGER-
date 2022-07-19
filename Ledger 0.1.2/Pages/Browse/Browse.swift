@@ -31,7 +31,7 @@ struct Browse: View
                 
                 viewData(Data: network.seinenData, Genre: "Seinen").environmentObject(network)
             }
-            .navigationBarTitle("ledger")
+            .navigationBarTitle("Ledger")
             .navigationBarTitleDisplayMode(.inline)
             .background(themeManager.selectedTheme.background)
         }

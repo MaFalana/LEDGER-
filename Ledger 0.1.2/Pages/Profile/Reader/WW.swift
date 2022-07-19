@@ -38,7 +38,7 @@ struct WW: View  //TabBar
                         {
                             i in
                             //let X = try! network.quickMaths(info: info)
-                            ReadView(urlString: "\(network.pageURL!)/data/\(network.pageHASH!)/\(network.pages?.chapter.data[i])")
+                            ReadView(urlString: "\(network.pageURL!)/data/\(network.pageHASH!)/\(network.pages?.chapter.data[i] ?? "")")
                         }
                     }.navigationBarBackButtonHidden(true).onTapGesture(count: 1) {self.hideNavigationBar.toggle();self.hideStatusBar.toggle() }.navigationBarHidden(hideNavigationBar)
                 }

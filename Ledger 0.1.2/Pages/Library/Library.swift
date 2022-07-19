@@ -8,6 +8,7 @@
 //import SlidingTabView
 import Foundation
 import SwiftUI
+import Kingfisher
 
 
 
@@ -25,7 +26,7 @@ struct Library: View
     
     @State private var sheetPresented = false
     @State private var searchText: String = ""
-    //@State public var rowItems: Int = 3
+    @State private var isHidden: Bool = CRUDManager.shared.isHidden
     private var ASH: [Manga]
     {
         //return (libraryData.data ?? []) as! [Manga]
@@ -36,12 +37,12 @@ struct Library: View
     {
         ScrollView(.vertical)
         {
-            var columnLayout = Array(repeating: GridItem(), count: Sort_Menu().rowItems)
+            let columnLayout = Array(repeating: GridItem(), count: Sort_Menu().rowItems)
             
             
             LazyVGrid(columns: columnLayout, spacing: 7.25)
             {
-                ForEach(ASH, id: \.id)
+                ForEach(searchResults, id: \.id)
                 {
                     item in
                     //let X = try! network.quickMaths(info: item)
@@ -49,6 +50,10 @@ struct Library: View
                     {
                         NavigationLink(destination: Profile(info: item).environmentObject(network)  )
                         {
+                            
+                            
+                            
+                           
 
                             LibraryView(urlString: item.cover!, Library: libraryData, selectedManga: item)
                                 .cornerRadius(10)
@@ -70,6 +75,7 @@ struct Library: View
             }
 
         }
+        .searchable(text: $searchText)
         .task
         {
             for i in ASH
@@ -84,12 +90,11 @@ struct Library: View
     {
         if searchText.isEmpty
         {
-            return network.joseiData
+            return ASH
         }
         else
         {
-            return network.joseiData
-            //return network.joseiData.filter { $0.contains(searchText) }
+            return ASH.filter { $0.title.contains(searchText) || $0.author!.name!.contains(searchText) || $0.artist!.name!.contains(searchText) }
         }
     }
 
