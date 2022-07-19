@@ -18,8 +18,7 @@ Feel free to use this code any may you want.
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Just click the [link](https://testflight.apple.com/join/947cRtnp) and follow the instructions.
 
 ### Supported Features
 
@@ -65,7 +64,7 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 
 Inspiration, code snippets, etc.
 * [Aidoku](https://github.com/Aidoku/Aidoku)
-* [MangaSoup]()
+* [MangaSoup](https://github.com/Mantton)
 * [Paperback-IOS](https://github.com/Paperback-iOS/app)
 * [SwiftUIPager](https://github.com/fermoya/SwiftUIPager)
 * [Swiftful Thinking](https://www.youtube.com/c/SwiftfulThinking)
