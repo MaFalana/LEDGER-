@@ -437,8 +437,8 @@ extension CRUDManager
     func updateManga(Manga: Manga) async // Function to update a Manga, as in make sure it has the proper number of Chapters // Will be semi-automatic
     {
         // Get count of chapters manga currently has
-        //removeElements(Offset: 0)
-        try await CollectionLoader.shared.getManga(Manga_ID: Manga.id)
+        
+        await CollectionLoader.shared.getManga(Manga_ID: Manga.id)
         newCover = CollectionLoader.shared.newCover
         
         if newCover != "" && newCover.contains(Manga.id) && Manga.cover != newCover
@@ -451,11 +451,11 @@ extension CRUDManager
         
         // Make a request to api to see total number of chapters
         //removeElements(Offset: 0)
-        try await fetchChapter(Manga: Manga)
+        await fetchChapter(Manga: Manga)
         
-        let prevChapterCount = Manga.chapters?.count
-        let newChapterCount: Int = chapterTotal
-        let Total = newChapterCount - prevChapterCount!
+        let prevChapterCount = Manga.chapters!.count
+        let newChapterCount = chapterTotal
+        let Total = newChapterCount - prevChapterCount
         
         // Check If numbers are equal to each other
         if prevChapterCount != newChapterCount
@@ -470,7 +470,7 @@ extension CRUDManager
             }
             print(Response)
             
-            try await addChapters(Manga: Manga, prevTotal: prevChapterCount!, Total: Total)
+            await addChapters(Manga: Manga, prevTotal: prevChapterCount, Total: Total)
         }
         else
         {
@@ -478,7 +478,7 @@ extension CRUDManager
             print(Response)
         }
         
-        
+        removeElements(Offset: 0)
         Save()
     }
     
@@ -582,6 +582,7 @@ extension CRUDManager
     
     func fetchChapter(Manga: Manga) async
     {
+        print("function called")
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.mangadex.org"
@@ -600,28 +601,24 @@ extension CRUDManager
             print("Error")
             return
         }
-                
+         print("Url created")
         // fetch data from url
         do
         {
             let (data, _) = try await URLSession.shared.data(from: url)
-            
+            print("Data assigned")
             // decode data
             let decodedResponse = try? newJSONDecoder().decode(ChapterResponse.self, from: data)
             if let decodedResponse = decodedResponse
             {
-                DispatchQueue.main.async
-                { [self] in
-                    chapterTotal = decodedResponse.total //Total number of chapters
-                    chapterOffset += chapterLimit
-                    chapters += decodedResponse.data
-                    
-                    
-                }
+                chapterTotal = decodedResponse.total //Total number of chapters
+                chapterOffset += chapterLimit
+                chapters += decodedResponse.data
+
             }
 
         }
-        catch let error
+        catch
         {
             print("ERROR = \(error.localizedDescription)")
         }

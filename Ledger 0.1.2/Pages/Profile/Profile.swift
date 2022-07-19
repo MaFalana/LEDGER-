@@ -54,7 +54,7 @@ struct Profile: View // Profile for Manga
     var body: some View
     {
         
-        VStack
+        ScrollView(.vertical)
         {
             InfoView(Title: Title, Author: Author, Artist: Artist, Cover: Cover, Status: Status, Count: Count) //View for basic info of Manga
             
@@ -64,12 +64,27 @@ struct Profile: View // Profile for Manga
             
             TagView(queuedManga: info) // View for Genre Tags
             
-            //ChapterListView(quequedManga: info).environmentObject(network) // List View of aviliable Chapters
+            if Count == 0
+            {
+                
+            }
+            else
+            {
+                ChapterListView(quequedManga: info).environmentObject(network) // List View of aviliable Chapters
+            }
             
         }
         .background(themeManager.selectedTheme.background)
         .navigationBarTitle(Text(Title))
         .navigationBarTitleDisplayMode(.inline)
+        .task
+        {
+            if Count == 0
+            {
+                await CRUDManager.shared.updateManga(Manga: info)
+            }
+            
+        }
 
     }
     

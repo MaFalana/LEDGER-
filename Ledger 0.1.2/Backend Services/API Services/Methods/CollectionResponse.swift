@@ -740,24 +740,21 @@ class CollectionLoader: ObservableObject
             if let decodedResponse = decodedResponse
             {
     
-                DispatchQueue.main.async
-                { [self] in
-                    
-                    
+               
                         
-                        var INC = 0
-                        
-                        while decodedResponse.data.relationships[INC].type != "cover_art"
-                        {
-                            INC += 1
-                        }
-                        
-                        
-                        newCover = "https://uploads.mangadex.org/covers/\(Manga_ID)/\(decodedResponse.data.relationships[INC].attributes!.fileName ?? "")"
+                var INC = 0
+                
+                while decodedResponse.data.relationships[INC].type != "cover_art"
+                {
+                    INC += 1
+                }
+                
+                
+                newCover = "https://uploads.mangadex.org/covers/\(Manga_ID)/\(decodedResponse.data.relationships[INC].attributes!.fileName ?? "")"
                         
                     //print(newCover)
                     
-                }
+                
                    
             }
             //print("Data: \(decodedResponse?.data)")
