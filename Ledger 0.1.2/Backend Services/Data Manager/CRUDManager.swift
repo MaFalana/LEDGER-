@@ -18,8 +18,8 @@ class CRUDManager: ObservableObject
     //@Published var libraryManager = LibraryManager()
     //@Published var mangaManager = MangaManager()
     
-    
-    let chapterLimit = 100
+    var WON = 0
+    var chapterLimit = 100
     var chapterOffset = 0
     var chapterTotal = 0
     @Published var chapters: [ChapterResponse.Chapter]! = [ChapterResponse.Chapter]()
@@ -451,6 +451,8 @@ extension CRUDManager
         
         // Make a request to api to see total number of chapters
         //removeElements(Offset: 0)
+        
+        
         await fetchChapter(Manga: Manga)
         
         let prevChapterCount = Manga.chapters!.count
@@ -478,19 +480,26 @@ extension CRUDManager
             print(Response)
         }
         
-        removeElements(Offset: 0)
+        chapters.removeAll()
+        XXX.removeAll()
+        chapterLimit = 100
         Save()
     }
     
     
     func addChapters(Manga: Manga, prevTotal: Int, Total: Int) async // Function to add chapters while saving
     {
-        removeElements(Offset: prevTotal)
-        //await fetchChapter(mangaId: Manga.id)
-        //chapterOffset = prevTotal
+        chapters.removeAll()
+        chapterOffset = prevTotal
         
         while chapters.count != Total
         {
+            print("Chapter Count: \(chapters.count)\t Total: \(Total)")
+            let Remainder = Total - chapters.count
+            if Remainder <= 100
+            {
+                chapterLimit = Remainder
+            }
             await fetchChapter(Manga: Manga)
         }
         for i in chapters.indices
@@ -562,11 +571,11 @@ extension CRUDManager
     func createChapter(id: String, title: String, chapterNumber: String, pages: Int, publishDate: Date) -> Chapter
     {
         //await populatePage(ID: id, pages: 0..<pages)
-        //let newChapter = Chapter(context: viewContext)
+        let newChapter = Chapter(context: viewContext)
         //let PIECE = NSEntityDescription.entity(forEntityName: "Chapter", in: viewContext)!
         //let newChapter = Chapter(entity: PIECE, insertInto: viewContext)
         
-        let newChapter = NSEntityDescription.insertNewObject(forEntityName: "Chapter", into: viewContext) as! Chapter
+        //let newChapter = NSEntityDescription.insertNewObject(forEntityName: "Chapter", into: viewContext) as! Chapter
         
         newChapter.id = id
         newChapter.title = title
@@ -583,6 +592,7 @@ extension CRUDManager
     func fetchChapter(Manga: Manga) async
     {
         print("function called")
+        print(WON)
         var components = URLComponents()
         components.scheme = "https"
         components.host = "api.mangadex.org"
@@ -609,19 +619,23 @@ extension CRUDManager
             print("Data assigned")
             // decode data
             let decodedResponse = try? newJSONDecoder().decode(ChapterResponse.self, from: data)
+            print("Data decoded")
             if let decodedResponse = decodedResponse
             {
                 chapterTotal = decodedResponse.total //Total number of chapters
                 chapterOffset += chapterLimit
                 chapters += decodedResponse.data
+                print(decodedResponse.data.first)
 
             }
+            print("Data saved to chapters")
 
         }
         catch
         {
             print("ERROR = \(error.localizedDescription)")
         }
+        WON += 1
     }
     
     func removeElements(Offset: Int) //Function to reset certain variables related to chapters
