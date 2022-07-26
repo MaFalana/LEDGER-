@@ -1,8 +1,8 @@
 //
 //  Chapter+CoreDataProperties.swift
-//  Ledger 0.1.2
+//  LEDGERº
 //
-//  Created by Malik Falana on 7/14/22.
+//  Created by Malik Falana on 7/25/22.
 //
 //
 
@@ -18,14 +18,16 @@ extension Chapter {
 
     @NSManaged public var chapterNumber: String?
     @NSManaged public var id: String?
+    @NSManaged public var isBookmarked: Bool
     @NSManaged public var pages: Int64
     @NSManaged public var publishDate: Date?
-    @NSManaged public var title: String?
     @NSManaged public var savedPages: [String]?
-    @NSManaged public var isBookmarked: Bool
-    @NSManaged public var source: Manga?
+    @NSManaged public var title: String?
+    @NSManaged public var externalURL: String?
+    @NSManaged public var history: RHistory?
     @NSManaged public var primary: Manga?
     @NSManaged public var secondary: Manga?
+    @NSManaged public var source: Manga?
 
 }
 
