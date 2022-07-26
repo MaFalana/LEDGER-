@@ -1,4 +1,4 @@
-# Ledger
+# LEDGERº
 
 Open Source Manga reading application for IOS
 
