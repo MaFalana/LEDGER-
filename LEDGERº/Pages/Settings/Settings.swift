@@ -43,7 +43,17 @@ struct Settings: View
 //                {
 //                    Text("Backups")
 //                }
-                Toggle("Appearance", isOn: $isDarkMode).disabled(isSystem)
+                HStack
+                {
+                    Text("Appearance")
+                    Spacer()
+                    Picker("Appearance", selection: $isDarkMode)
+                    {
+                        Text("Light").tag(false)
+                        Text("Dark").tag(true)
+                    }.pickerStyle(.segmented).fixedSize().disabled(isSystem)
+                }
+                //Toggle("Appearance", isOn: $isDarkMode).disabled(isSystem)
                 Toggle("Use System Appearance", isOn: $isSystem)
             }
             

@@ -61,12 +61,7 @@ struct BigButton: View
                 }
                 print(FirstChapter)
             }
-            .lineLimit(3)
-            .padding()
-            .foregroundColor(Label)
-            .background(BackGround)
-            .cornerRadius(5)
-            .frame(maxWidth: .infinity)
+            .buttonStyle(RoundedRectangleButtonStyle())
             .fullScreenCover(isPresented: $showFirst, content: {FC(Chapter: FirstChapter).accentColor(BackGround)} )
             .sheet(isPresented: $showWebView)
             {
@@ -79,7 +74,7 @@ struct BigButton: View
             {
                 if LatestChapter.pages != 0
                 {
-                    showFirst.toggle()
+                    showLatest.toggle()
                 }
                 else
                 {
@@ -87,12 +82,7 @@ struct BigButton: View
                 }
                 print(LatestChapter)
             }
-            .lineLimit(3)
-            .padding()
-            .foregroundColor(Label)
-            .background(BackGround)
-            .cornerRadius(5)
-            .frame(maxWidth: .infinity)
+            .buttonStyle(RoundedRectangleButtonStyle())
             .fullScreenCover(isPresented: $showLatest, content: {FC(Chapter: LatestChapter).accentColor(BackGround)} )
             .sheet(isPresented: $showWebView)
             {
@@ -101,5 +91,4 @@ struct BigButton: View
         }
     }
 }
-
 

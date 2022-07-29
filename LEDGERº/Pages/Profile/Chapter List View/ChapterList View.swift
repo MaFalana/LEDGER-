@@ -24,8 +24,17 @@ struct ChapterListView: View
     
     var ChapterList: [Chapter]
     {
-        return Array(_immutableCocoaArray: quequedManga.chapters ?? [] )
+        if mode == false
+        {
+            return Array(_immutableCocoaArray: quequedManga.chapters ?? [] )
+        }
+        else
+        {
+            return Array(_immutableCocoaArray: quequedManga.bookmarks ?? [] )
+        }
     }
+    
+    
     
     var Header: String
     {
@@ -39,25 +48,45 @@ struct ChapterListView: View
         }
     }
     
+    var Header2: String
+    {
+        if ChapterList.count == 0
+        {
+            return "No Bookmarks"
+        }
+        else
+        {
+            return "Bookmarks"
+        }
+    }
+    
     @State var N: Int = 0
-    @State var readChapter: Bool = false
+    @State private var readChapter: Bool = false
     @State private var showAlert = false
     @State private var showWebView = false
     
+    @State private var mode: Bool = false
+    
     var body: some View
     {
-        HStack
-        {
-            Text(Header).fontWeight(.bold).padding()
-            Spacer()
-            chapterSort().padding() // Chapter Sorting button
-        }
+        //HStack
+        //{
+            Text(mode ? Header2 : Header).fontWeight(.bold).frame(width: 415, alignment: .leading)
+            //Spacer()
+            //chapterSort().padding() // Chapter Sorting button
+        //}
         Divider() // Third Divider
+        Picker("Chapters", selection: $mode)
+        {
+            Text("Chapters").tag(false)
+            Text("Bookmarks").tag(true)
+        }.pickerStyle(.segmented).foregroundColor(themeManager.selectedTheme.accent)
+        
         List(ChapterList)
         {
             i in
             
-            Button(action: { N = 0 ; if i.pages != 0 { readChapter.toggle() } else{showWebView.toggle()}; CRUDManager.shared.updateHistory(Source: ChapterList[N]) } )
+            Button(action: { N = 0 ; if i.pages != 0 { print(i);readChapter.toggle() } else{showWebView.toggle()}; CRUDManager.shared.updateHistory(Source: ChapterList[N]) } )
             {
                 ChapterRow(Manga: quequedManga, Chapter: i)
        
@@ -74,7 +103,7 @@ struct ChapterListView: View
                 {
                     Label("Delete", systemImage: "trash")
                     
-                }.tint(.indigo)
+                }.tint(.indigo).hidden()
                 
                 
                 
@@ -118,9 +147,12 @@ struct ChapterListView: View
         //.listRowBackground(themeManager.selectedTheme.background)
         .refreshable
         {
-            print(quequedManga)
-            await CRUDManager.shared.updateManga(Manga: quequedManga)
-            showAlert.toggle()
+            if mode == false
+            {
+                print(quequedManga)
+                await CRUDManager.shared.updateManga(Manga: quequedManga)
+                showAlert.toggle()
+            }
         }
         .alert(isPresented: $showAlert)
         {

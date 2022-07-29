@@ -32,7 +32,7 @@ struct TagView: View
                     i in
                     NavigationLink(destination: viewTag(Genre: i).background(themeManager.selectedTheme.background) )
                     {
-                        RoundedRectangle(cornerRadius: 25).frame(width: 130, height: 30).foregroundColor(.gray).overlay( Text(i.name!) )
+                        RoundedRectangle(cornerRadius: 25).frame(width: 130, height: 30).foregroundColor(themeManager.selectedTheme.listBack).overlay( Text(i.name!) )
                     }.foregroundColor(themeManager.selectedTheme.label)
                 }
             }

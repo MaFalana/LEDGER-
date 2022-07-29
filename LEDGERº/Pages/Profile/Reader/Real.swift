@@ -168,7 +168,8 @@ struct FC: View  //TabBar
                         
                         ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
                         //ReadView(urlString: nums[index])
-                            .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
+                            .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle();print(index)}}
+                            .onAppear{print("Index is \(index)")}
                             .navigationBarHidden(hideNavigationBar)
                             .statusBar(hidden: hideNavigationBar)
                     }

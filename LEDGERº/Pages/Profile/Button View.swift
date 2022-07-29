@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ButtonView: View
 {
-    //@EnvironmentObject var DD: LibraryDataManager
+
     @EnvironmentObject var network: CollectionLoader
     @EnvironmentObject var crudManager: CRUDManager
     
@@ -30,7 +30,7 @@ struct ButtonView: View
     {
         return Array(_immutableCocoaArray: queuedManga.chapters ?? [] )
     }
-   
+    
     
     var body: some View
     {
@@ -39,18 +39,19 @@ struct ButtonView: View
         
         //return X
         Divider() // Second Divider
-        HStack
-        {
-            Button(action: {isAdding.toggle()} ) {Label("Add to Library", systemImage: "folder.badge.plus").padding()}
-                .sheet(isPresented: $isAdding){ AddView(queuedManga: queuedManga) }
-            Spacer()
+        //HStack
+        //{
+            //Button(action: {isAdding.toggle()} ) {Label("Add to Library", systemImage: "folder.badge.plus").padding()}
+               // .sheet(isPresented: $isAdding){ AddView(queuedManga: queuedManga) }
             
-            NavigationLink(destination: Bookmarks(queuedManga: queuedManga) )
+            Button("Add to Library")
             {
-                Label("Bookmarks", systemImage: "bookmark").labelStyle(.iconOnly).padding().imageScale(.large)
+                isAdding.toggle()
             }
-            
-        }
+            .buttonStyle(RoundedRectangleButtonStyle())
+            .sheet(isPresented: $isAdding){ AddView(queuedManga: queuedManga) }
+           
+        //}
         
         if !Chapter.isEmpty
         {
@@ -83,4 +84,23 @@ struct AdaptiveLabelStyle: LabelStyle
     }
 }
 
+struct RoundedRectangleButtonStyle: ButtonStyle
+{
+    @EnvironmentObject private var themeManager: ThemeManager
+    func makeBody(configuration: Configuration) -> some View
+    {
+        HStack
+        {
+          Spacer()
+            configuration.label
+                .foregroundColor(themeManager.selectedTheme.label)
+                .lineLimit(3)
+                .multilineTextAlignment(.center)
+          Spacer()
+        }
+        .padding()
+        .background(themeManager.selectedTheme.accent.cornerRadius(8))
+        .scaleEffect(configuration.isPressed ? 0.95 : 1)
+  }
+}
 

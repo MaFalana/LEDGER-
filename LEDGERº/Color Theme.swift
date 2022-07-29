@@ -24,11 +24,14 @@ protocol Theme
     var text: Color{get set}
     var button: Color{get set}
     var themeName: String{get set}
+    var listBack: Color{get set}
     
 }
 
 final class Default: Theme
 {
+    var listBack: Color = Color(UIColor.tertiarySystemBackground)
+    
     var button: Color = Color("AccentColor")
     
     var accent: Color = Color("AccentColor")
@@ -55,6 +58,8 @@ final class Huntington: Theme
     var text: Color = Color("textColor_Huntington")
     
     var themeName: String = "Granny Smith"
+    
+    var listBack: Color = Color(UIColor.tertiarySystemBackground)
 }
 
 final class MangaSoup: Theme
@@ -70,6 +75,8 @@ final class MangaSoup: Theme
     var text: Color = Color("labelColor")
     
     var themeName: String = "MangaSoup"
+    
+    var listBack: Color = Color(UIColor.tertiarySystemBackground)
 }
 
 final class Crunchyroll: Theme
@@ -85,6 +92,8 @@ final class Crunchyroll: Theme
     var text: Color = Color("labelColor")
     
     var themeName: String = "Crunchyroll"
+    
+    var listBack: Color = Color(UIColor.tertiarySystemBackground)
 }
 
 final class Funimation: Theme
@@ -100,6 +109,8 @@ final class Funimation: Theme
     var text: Color = Color("textColor_Funimation")
     
     var themeName: String = "Funimation"
+    
+    var listBack: Color = Color(UIColor.tertiarySystemBackground)
 }
 
 final class Green: Theme
@@ -115,6 +126,8 @@ final class Green: Theme
     var text: Color = Color("labelColor")
     
     var themeName: String = "Green"
+    
+    var listBack: Color = Color(UIColor.tertiarySystemBackground)
 }
 
 final class Blue: Theme
@@ -130,6 +143,8 @@ final class Blue: Theme
     var text: Color = Color("labelColor")
     
     var themeName: String = "Blue"
+    
+    var listBack: Color = Color(UIColor.tertiarySystemBackground)
 }
 
 class ThemeManager: ObservableObject
