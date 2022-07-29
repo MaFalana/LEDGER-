@@ -36,3 +36,28 @@ func Alert5() -> Alert
     let Response = CRUDManager.shared.Response
     return Alert(title: Text(Response) )
 }
+
+func Alert6(userInput: String) -> Alert
+{
+    return Alert(title: Text("\(userInput) already exists") )
+}
+
+func Alert7(previousName: String, currentName: String ) -> Alert
+{
+    return Alert(title: Text("Library \(previousName) is now \(currentName)") )
+}
+
+func Alert8(userInput: String) -> Alert
+{
+    return Alert(title: Text("Library \(userInput) successfully created") )
+}
+
+func Alert9(name: String) -> Alert
+{
+    return Alert(title: Text("Library \(name) and its contents were successfully deleted") )
+}
+
+func Alert10(name: String, library: String) -> Alert
+{
+    return Alert(title: Text("\(name) was successfully removed from \(library)") )
+}

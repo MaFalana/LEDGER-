@@ -17,7 +17,7 @@ struct About: View
             {
                 Text("Version")
                 Spacer()
-                Text("0.1.2").foregroundColor(.gray)
+                Text("1.1.2").foregroundColor(.gray)
             }
             
         }.navigationBarTitle("About")

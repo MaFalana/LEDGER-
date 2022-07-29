@@ -13,7 +13,7 @@ import CloudKit
 
 class CRUDManager: ObservableObject
 {
-    @Published var activeLibraries: [Lib] = [Lib]()
+    @Published var activeLibraries: [Lib] = []
     @Published var tabs: [String] = []
     //@Published var libraryManager = LibraryManager()
     //@Published var mangaManager = MangaManager()
@@ -28,7 +28,7 @@ class CRUDManager: ObservableObject
    // @Published var ZZZ = [String]()
     @Published var History: [Chapter] = [Chapter]()
     
-    
+    @State private var showAlert = false
     @Published var isLoading: Bool = false
     @Published var editMode = false
     @Published var isOrient = false //pageview oreintation
@@ -214,7 +214,7 @@ extension CRUDManager
         //fetchLibraries()
         // Should save here
         Save()
-        load()
+        //load()
         //fetchLibraries()
         //Append() // multiple
         

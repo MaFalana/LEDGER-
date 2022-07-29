@@ -11,7 +11,7 @@ struct Settings: View
 {
     @State var appToggle: Bool = false
     @State var systemToggle: Bool = false
-    @State var showAlert: Bool = false
+    @State private var showAlert: Bool = false
     @EnvironmentObject private var themeManager: ThemeManager
     //@EnvironmentObject private var crud: CRUDManager
     @AppStorage("isDarkMode") private var isDarkMode = false

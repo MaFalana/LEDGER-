@@ -22,16 +22,18 @@ struct Library: View
     //@EnvironmentObject var coreDM: CoreDataManager
     //let libraryData: [CollectionResponse.mangaCollection]
     
-    let libraryData: Lib
+    var libraryData: Lib
     
     @State private var sheetPresented = false
     @State private var searchText: String = ""
     @State private var isHidden: Bool = CRUDManager.shared.isHidden
-    private var ASH: [Manga]
-    {
-        //return (libraryData.data ?? []) as! [Manga]
-        return Array(_immutableCocoaArray: libraryData.data ?? [])
-    }
+    
+    var ASH: [Manga]
+//    {
+//        //return (libraryData.data ?? []) as! [Manga]
+//        return Array(_immutableCocoaArray: libraryData.data ?? [])
+//    }
+    
     
     var body: some View
     {
@@ -50,11 +52,6 @@ struct Library: View
                     {
                         NavigationLink(destination: Profile(info: item).environmentObject(network)  )
                         {
-                            
-                            
-                            
-                           
-
                             LibraryView(urlString: item.cover!, Library: libraryData, selectedManga: item)
                                 .cornerRadius(10)
                         }

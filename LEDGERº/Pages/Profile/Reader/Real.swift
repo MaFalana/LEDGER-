@@ -251,7 +251,7 @@ struct FC: View  //TabBar
                 
                     }
                    
-                }.navigationBarTitle(Chapter.title!, displayMode: .inline).lineLimit(1)
+                }.navigationBarTitle(ReaderTitle, displayMode: .inline).lineLimit(1)
             }
             else
             {

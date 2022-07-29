@@ -18,14 +18,13 @@ struct CustomTabView: View
     
     var body: some View
     {
-        if CRUDManager.shared.tabs.isEmpty
-        {
-            //Text("Empty Library")
-        }
-        else
+        var selectedLibrary = CRUDManager.shared.activeLibraries[selectedTabIndex]
+        var selectedData: [Manga] = Array(_immutableCocoaArray: selectedLibrary.data ?? [])
+        
+        if !CRUDManager.shared.tabs.isEmpty
         {
             SlidingTabView(selection: self.$selectedTabIndex, tabs: CRUDManager.shared.tabs )
-            Library(libraryData: CRUDManager.shared.activeLibraries[selectedTabIndex]).environmentObject(network)
+            Library(libraryData: selectedLibrary, ASH: selectedData).environmentObject(network)
         }
         
     }

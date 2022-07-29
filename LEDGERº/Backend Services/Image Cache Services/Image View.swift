@@ -50,6 +50,9 @@ struct LibraryView: View
     //@EnvironmentObject var crudManager: CRUDManager
     @EnvironmentObject var network: CollectionLoader
     @ObservedObject var urlImageModel: UrlImageModel
+    @State private var showAlert: Bool = false
+    @State private var chosenAlert: Alert = Alert(title: Text("Alert"))
+    
     //let ID: String
     //let Library: Lib
     //var covers: CoverResponse.Cover.Attributes?
@@ -78,11 +81,21 @@ struct LibraryView: View
 //
 //                    }
 //                }
-                Button(action: {CRUDManager.shared.removeManga(Library: urlImageModel.Library!, selectedManga: urlImageModel.selectedManga)} )
+                Button(action:
+                {
+                    showAlert.toggle()
+                    CRUDManager.shared.removeManga(Library: urlImageModel.Library!, selectedManga: urlImageModel.selectedManga)
+                    chosenAlert = Alert10(name: urlImageModel.selectedManga.title, library: urlImageModel.Library!.name)
+                    
+                })
                 {
                     Label("Remove from Library", systemImage: "trash")
                     
                 }.accentColor(.red)
+                .alert(isPresented: $showAlert)
+                {
+                    chosenAlert
+                }
             }
 
 
