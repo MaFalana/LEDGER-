@@ -16,7 +16,10 @@ struct FC: View  //TabBar
     @State var showMenu = false
     //var screenWidth = UIScreen.main.bounds.width
     
-    let Chapter: Chapter
+    var Chapter: Chapter
+    {
+        return CRUDManager.shared.selectedChapter
+    }
     
     var ReaderTitle: String
     {
@@ -228,14 +231,14 @@ struct FC: View  //TabBar
                         Chapter_Menu(Chapters: Chapters).opacity(hideNavigationBar ? 0 : 1)
                     }
                     
-                    ToolbarItemGroup(placement: .navigationBarTrailing)
-                    {
-                        Reader_Menu().opacity(hideNavigationBar ? 0 : 1)
-                        
-                            
-                        Button(action: {}) {Image(systemName: "square.stack.3d.up")}.imageScale(.large).opacity(hideNavigationBar ? 0 : 1)
-                
-                    }
+//                    ToolbarItemGroup(placement: .navigationBarTrailing)
+//                    {
+//                        Reader_Menu().opacity(hideNavigationBar ? 0 : 1)
+//                        
+//                            
+//                        Button(action: {}) {Image(systemName: "square.stack.3d.up")}.imageScale(.large).opacity(hideNavigationBar ? 0 : 1)
+//                
+//                    }
                    
                 }
             }
@@ -250,7 +253,7 @@ struct FC: View  //TabBar
                         //ReadView(urlString: "https://mangaplus.shueisha.co.jp/viewer/1000488")
                         ReadView(urlString: "\(network.pages?.baseURL ?? "")/data/\(network.pages?.chapter.hash ?? "")/\(network.pages?.chapter.data[index] ?? "")" )
                         //ReadView(urlString: nums[index])
-                            .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle()}}
+                            .onTapGesture(count: 1) {withAnimation{self.hideNavigationBar.toggle();print(Chapter);print(CRUDManager.shared.selectedChapter)}}
                             .statusBar(hidden: hideNavigationBar)
                     }
                     //CRUDManager.shared.isOrient ? .vertical() : .horizontal()
@@ -296,14 +299,14 @@ struct FC: View  //TabBar
                         Chapter_Menu(Chapters: Chapters).opacity(hideNavigationBar ? 0 : 1)
                     }
                     
-                    ToolbarItemGroup(placement: .navigationBarTrailing)
-                    {
-                        Reader_Menu().opacity(hideNavigationBar ? 0 : 1)
-                        
-                            
-                        Button(action: {}) {Image(systemName: "square.stack.3d.up")}.imageScale(.large).opacity(hideNavigationBar ? 0 : 1)
-                
-                    }
+//                    ToolbarItemGroup(placement: .navigationBarTrailing)
+//                    {
+//                        Reader_Menu().opacity(hideNavigationBar ? 0 : 1)
+//
+//
+//                        Button(action: {}) {Image(systemName: "square.stack.3d.up")}.imageScale(.large).opacity(hideNavigationBar ? 0 : 1)
+//
+//                    }
                    
                 }
             }

@@ -76,3 +76,8 @@ func AlertXIII(Backup: Backup) -> Alert // Load from Backup Alert
 {
     return Alert(title: Text("Would you like to load from this backup"), primaryButton: .destructive(Text("Yes")) { CRUDManager.shared.loadBackup(selectedBackup: Backup) }, secondaryButton: .cancel() )
 }
+
+func AlertIV(A: Manga, B: Chapter) -> Alert 
+{
+    return Alert(title: Text("Are you sure you want to revomve this bookmark"), primaryButton: .destructive(Text("Yes")) { A.removeFromBookmarks(B) }, secondaryButton: .cancel() )
+}

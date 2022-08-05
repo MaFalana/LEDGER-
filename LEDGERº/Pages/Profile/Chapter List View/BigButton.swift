@@ -61,9 +61,10 @@ struct BigButton: View
                 }
                 print(FirstChapter)
                 CRUDManager.shared.createHistory(Chapter: FirstChapter)
+                CRUDManager.shared.changeChapter(X: FirstChapter)
             }
             .buttonStyle(RoundedRectangleButtonStyle())
-            .fullScreenCover(isPresented: $showFirst, content: {FC(Chapter: FirstChapter).accentColor(BackGround)} )
+            .fullScreenCover(isPresented: $showFirst, content: {FC().accentColor(BackGround)} )
             .sheet(isPresented: $showWebView)
             {
                 WebView(url: URL(string: FirstChapter.externalURL!)!)
@@ -83,9 +84,10 @@ struct BigButton: View
                 }
                 print(LatestChapter)
                 CRUDManager.shared.createHistory(Chapter: LatestChapter)
+                CRUDManager.shared.changeChapter(X: LatestChapter)
             }
             .buttonStyle(RoundedRectangleButtonStyle())
-            .fullScreenCover(isPresented: $showLatest, content: {FC(Chapter: LatestChapter).accentColor(BackGround)} )
+            .fullScreenCover(isPresented: $showLatest, content: {FC().accentColor(BackGround)} )
             .sheet(isPresented: $showWebView)
             {
                 WebView(url: URL(string: LatestChapter.externalURL!)!)

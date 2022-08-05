@@ -65,16 +65,16 @@ struct TabBar: View  //TabBar
 //                                
 //                            }
                             
-                            Menu
-                            {
-                                Button("3 Items") { CRUDManager.shared.rowItems = 3 }
-                                Button("4 Items") { CRUDManager.shared.rowItems = 4 }
-                                Button("5 Items") { CRUDManager.shared.rowItems = 5 }
-                            }
-                            label:
-                            {
-                                Image(systemName: "square.stack.3d.up").imageScale(.large)
-                            }
+//                            Menu
+//                            {
+//                                Button("3 Items") { CRUDManager.shared.rowItems = 3 }
+//                                Button("4 Items") { CRUDManager.shared.rowItems = 4 }
+//                                Button("5 Items") { CRUDManager.shared.rowItems = 5 }
+//                            }
+//                            label:
+//                            {
+//                                Image(systemName: "square.stack.3d.up").imageScale(.large)
+//                            }
                            
             
                             Button(action: {showMenu.toggle()} )

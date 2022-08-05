@@ -11,13 +11,16 @@ struct ChapterRow: View
 {
     @EnvironmentObject var themeManager: ThemeManager
     @EnvironmentObject var network: CollectionLoader
-    let Manga: Manga
-    let Chapter: Chapter
-    @State var Bookmarked: Bool = false
-    @State var isBookmarked: Bool = false
-    
+    @StateObject var Manga: Manga
+    @StateObject var Chapter: Chapter
+
     @State private var showSheet = false
     @State private var showWebView = false
+    private var isBookmarked: Bool
+    {
+        return Chapter.isBookmarked
+    }
+
     
     var Title: String
     {
@@ -43,6 +46,7 @@ struct ChapterRow: View
             showWebView.toggle()
         }
         CRUDManager.shared.createHistory(Chapter: Chapter)
+        CRUDManager.shared.changeChapter(X: Chapter)
     }
  
     var body: some View
@@ -69,7 +73,7 @@ struct ChapterRow: View
             Button(
                 action:
                 {
-                    if Chapter.isBookmarked
+                    if isBookmarked
                     {
                         Manga.removeFromBookmarks(Chapter)
                         //print("\(i.title) un-bookmarked")
@@ -85,7 +89,7 @@ struct ChapterRow: View
                 
                 } )
             {
-                Label(Chapter.isBookmarked ? "Remove Bookmark" : "Bookmark", systemImage: Chapter.isBookmarked ? "bookmark.slash" : "bookmark")
+                Label(isBookmarked ? "Remove Bookmark" : "Bookmark", systemImage: isBookmarked ? "bookmark.slash" : "bookmark")
                 
             }.tint(.yellow)
             
@@ -93,14 +97,10 @@ struct ChapterRow: View
             
             
         }
-        .fullScreenCover(isPresented: $showSheet, content: {FC(Chapter: Chapter).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+        .fullScreenCover(isPresented: $showSheet, content: {FC().accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
         .sheet(isPresented: $showWebView)
         {
             WebView(url: URL(string: Chapter.externalURL!)!)
-        }
-        .task
-        {
-            isBookmarked = Manga.bookmarks!.contains(where: {($0 as AnyObject).id == Chapter.id})
         }
 
     }

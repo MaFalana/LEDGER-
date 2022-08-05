@@ -39,6 +39,7 @@ class CRUDManager: ObservableObject
     @Published var chapterOrder = 0
     @Published var staticLibrary: Lib = Lib()
     @Published var rowItems = 3
+    @Published var selectedChapter: Chapter = Chapter()
     
     var Response: String = ""
     var newCover: String  = ""
@@ -200,6 +201,14 @@ extension CRUDManager
 //
 //
 //    }
+    func changeChapter(X: Chapter)
+    {
+        selectedChapter = X
+        Task
+        {
+            await CollectionLoader.shared.fetchPage(chapterId: X.id!)
+        }
+    }
     
     func createLibrary(name: String, data: NSOrderedSet)
     {

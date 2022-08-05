@@ -148,21 +148,28 @@ struct BrightnessSlider: View
 
 struct Chapter_Menu: View
 {
-    @State private var selectedChapter = 0 //First Chapter
+    @State private var selectedChapter = CRUDManager.shared.selectedChapter //First Chapter
     var Chapters: [Chapter]
     
     var body: some View
     {
         Menu
         {
-            //Picker("Chapters", selection: $selectedChapter)
-            //{
+            Picker("Chapters", selection: $selectedChapter)
+            {
                 ForEach(Chapters)
                 {
                     i in
-                    ChapterRow2(i: i)//.tag(i)
+                    ChapterRow2(i: i).tag(i)
                 }
-            //}
+            }
+            .onReceive([self.selectedChapter].publisher.first())
+            {
+                value in
+                CRUDManager.shared.changeChapter(X: value)
+            }
+
+            
         }
         label:
         {

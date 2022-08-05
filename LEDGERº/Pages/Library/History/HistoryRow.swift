@@ -51,6 +51,7 @@ struct HistoryRow: View
             showWebView.toggle()
         }
         CRUDManager.shared.createHistory(Chapter: i.chapter!)
+        CRUDManager.shared.changeChapter(X: i.chapter!)
     }
     
 
@@ -68,7 +69,7 @@ struct HistoryRow: View
             }
             
         }
-        .fullScreenCover(isPresented: $showSheet, content: {FC(Chapter: i.chapter!).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+        .fullScreenCover(isPresented: $showSheet, content: {FC().accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
         .sheet(isPresented: $showWebView)
         {
             WebView(url: URL(string: i.chapter!.externalURL!)!)
