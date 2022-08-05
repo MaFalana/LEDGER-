@@ -8,7 +8,7 @@
 //import SlidingTabView
 import Foundation
 import SwiftUI
-import Kingfisher
+//import Kingfisher
 
 
 
@@ -27,6 +27,7 @@ struct Library: View
     @State private var sheetPresented = false
     @State private var searchText: String = ""
     @State private var isHidden: Bool = CRUDManager.shared.isHidden
+    @State private var rowItems = CRUDManager.shared.rowItems
     
     var ASH: [Manga]
 //    {
@@ -39,10 +40,10 @@ struct Library: View
     {
         ScrollView(.vertical)
         {
-            let columnLayout = Array(repeating: GridItem(), count: Sort_Menu().rowItems)
+            let columnLayout = Array(repeating: GridItem(), count: CRUDManager.shared.rowItems)
             
             
-            LazyVGrid(columns: columnLayout, spacing: 7.25)
+            LazyVGrid(columns: columnLayout)
             {
                 ForEach(searchResults, id: \.id)
                 {
@@ -71,6 +72,22 @@ struct Library: View
                 Text("\(ASH.count) titles in collection").font(.footnote)
             }
 
+        }
+        .toolbar
+        {
+            ToolbarItem(placement: .navigationBarTrailing)
+            {
+                Menu
+                {
+                    Button("3 Items") { rowItems = 3 }
+                    Button("4 Items") { rowItems = 4 }
+                    Button("5 Items") { rowItems = 5 }
+                }
+                label:
+                {
+                    Image(systemName: "square.stack.3d.up").imageScale(.large)
+                }
+            }
         }
         .searchable(text: $searchText)
         .task

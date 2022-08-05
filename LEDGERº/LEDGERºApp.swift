@@ -12,6 +12,7 @@ struct LEDGERºApp: App
 {
     @StateObject var themeManager = ThemeManager.shared
     @StateObject var network = CollectionLoader.shared
+
     //@StateObject var crudManager = CRUDManager()
     
     @AppStorage("isDarkMode") private var isDarkMode = false

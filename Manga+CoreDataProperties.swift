@@ -16,17 +16,7 @@ extension Manga {
         return NSFetchRequest<Manga>(entityName: "Manga")
     }
 
-    @NSManaged public var cover: String?
-    @NSManaged public var id: String
-    @NSManaged public var status: String?
-    @NSManaged public var synopsis: String?
-    @NSManaged public var title: String
-    @NSManaged public var artist: Artist?
-    @NSManaged public var author: Author?
-    @NSManaged public var bookmarks: NSOrderedSet?
-    @NSManaged public var chapters: NSOrderedSet?
-    @NSManaged public var tags: NSOrderedSet?
-    @NSManaged public var saved: NSOrderedSet?
+    
 
 }
 
@@ -167,6 +157,41 @@ extension Manga {
 
     @objc(removeSaved:)
     @NSManaged public func removeFromSaved(_ values: NSOrderedSet)
+
+}
+
+// MARK: Generated accessors for history
+extension Manga {
+
+    @objc(insertObject:inHistoryAtIndex:)
+    @NSManaged public func insertIntoHistory(_ value: Chapter, at idx: Int)
+
+    @objc(removeObjectFromHistoryAtIndex:)
+    @NSManaged public func removeFromHistory(at idx: Int)
+
+    @objc(insertHistory:atIndexes:)
+    @NSManaged public func insertIntoHistory(_ values: [Chapter], at indexes: NSIndexSet)
+
+    @objc(removeHistoryAtIndexes:)
+    @NSManaged public func removeFromHistory(at indexes: NSIndexSet)
+
+    @objc(replaceObjectInHistoryAtIndex:withObject:)
+    @NSManaged public func replaceHistory(at idx: Int, with value: Chapter)
+
+    @objc(replaceHistoryAtIndexes:withHistory:)
+    @NSManaged public func replaceHistory(at indexes: NSIndexSet, with values: [Chapter])
+
+    @objc(addHistoryObject:)
+    @NSManaged public func addToHistory(_ value: Chapter)
+
+    @objc(removeHistoryObject:)
+    @NSManaged public func removeFromHistory(_ value: Chapter)
+
+    @objc(addHistory:)
+    @NSManaged public func addToHistory(_ values: NSOrderedSet)
+
+    @objc(removeHistory:)
+    @NSManaged public func removeFromHistory(_ values: NSOrderedSet)
 
 }
 

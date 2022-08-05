@@ -45,46 +45,13 @@ struct ChapterRow: View
                 
             }
             Spacer()
-            Text("\(Date,format: .dateTime.month().day().year())").foregroundColor(.gray).font(.caption2).padding() //Date chapter was added
+            Text(Date,format: .dateTime.month().day().year()).foregroundColor(.gray).font(.caption2).padding() //Date chapter was added
         }
         .task
         {
             isBookmarked = Manga.bookmarks!.contains(where: {($0 as AnyObject).id == Chapter.id})
         }
-//        .contextMenu
-//        {
-//            
-//            
-//            Button(
-//                action:
-//                {
-//                    if isBookmarked
-//                    {
-//                        Manga.removeFromBookmarks(Chapter)
-//                        //print("\(Chapter.title) un-bookmarked")
-//                    }
-//                    else
-//                    {
-//                        Manga.addToBookmarks(Chapter)
-//                        //print("\(Chapter.title) bookmarked")
-//                    }
-//                    CRUDManager.shared.Save()
-//                    isBookmarked = Manga.bookmarks!.contains(where: {($0 as AnyObject).id == Chapter.id})
-//                
-//                } )
-//            {
-//                Label(isBookmarked ? "Remove Bookmark" : "Bookmark", systemImage: isBookmarked ? "bookmark.slash" : "bookmark")
-//                
-//            }
-//            
-//            Button(action: {print("Download"); Task{await CRUDManager.shared.downloadChapter(Manga: Manga, Chapter: Chapter)} } )
-//            {
-//                Label("Download", systemImage: "square.and.arrow.down")
-//            }
-//        }
-       
-        
-        
+
     }
 }
 

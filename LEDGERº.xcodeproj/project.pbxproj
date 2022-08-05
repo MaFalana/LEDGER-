@@ -29,10 +29,20 @@
 		0C2D33512853BC9A00D1F72C /* MagnificationGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D33502853BC9A00D1F72C /* MagnificationGesture.swift */; };
 		0C2D33532853D9A700D1F72C /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D33522853D9A700D1F72C /* Photo.swift */; };
 		0C2D33572854123800D1F72C /* Color Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C2D33562854123800D1F72C /* Color Theme.swift */; };
-		0C30D9A428837E4B005EEF86 /* RHistory+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C30D9A228837E4B005EEF86 /* RHistory+CoreDataClass.swift */; };
-		0C30D9A528837E4B005EEF86 /* RHistory+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C30D9A328837E4B005EEF86 /* RHistory+CoreDataProperties.swift */; };
 		0C30D9AA2883C193005EEF86 /* KF Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C30D9A92883C193005EEF86 /* KF Image.swift */; };
 		0C30D9AE28870378005EEF86 /* WebReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C30D9AD28870378005EEF86 /* WebReader.swift */; };
+		0C37F94D289867130034EE2F /* History+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F94B289867130034EE2F /* History+CoreDataClass.swift */; };
+		0C37F94E289867130034EE2F /* History+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F94C289867130034EE2F /* History+CoreDataProperties.swift */; };
+		0C37F95C289ABD7F0034EE2F /* BackupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F95B289ABD7E0034EE2F /* BackupModel.swift */; };
+		0C37F95F289AD4B90034EE2F /* Backup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F95D289AD4B80034EE2F /* Backup+CoreDataClass.swift */; };
+		0C37F960289AD4B90034EE2F /* Backup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F95E289AD4B80034EE2F /* Backup+CoreDataProperties.swift */; };
+		0C37F973289B629A0034EE2F /* Artist+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F96D289B629A0034EE2F /* Artist+CoreDataClass.swift */; };
+		0C37F974289B629A0034EE2F /* Artist+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F96E289B629A0034EE2F /* Artist+CoreDataProperties.swift */; };
+		0C37F975289B629A0034EE2F /* Tag+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F96F289B629A0034EE2F /* Tag+CoreDataClass.swift */; };
+		0C37F976289B629A0034EE2F /* Tag+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F970289B629A0034EE2F /* Tag+CoreDataProperties.swift */; };
+		0C37F977289B629A0034EE2F /* Author+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F971289B629A0034EE2F /* Author+CoreDataClass.swift */; };
+		0C37F978289B629A0034EE2F /* Author+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F972289B629A0034EE2F /* Author+CoreDataProperties.swift */; };
+		0C37F97A289BF2D90034EE2F /* FB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C37F979289BF2D80034EE2F /* FB.swift */; };
 		0C56D90B284874FD0056CF8F /* Library Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C56D90A284874FD0056CF8F /* Library Toggle.swift */; };
 		0C56D90E28487F060056CF8F /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C56D90D28487F060056CF8F /* History.swift */; };
 		0C6685FC285FBF0600A61508 /* ChapterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6685FB285FBF0600A61508 /* ChapterManager.swift */; };
@@ -101,10 +111,20 @@
 		0C2D33502853BC9A00D1F72C /* MagnificationGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnificationGesture.swift; sourceTree = "<group>"; };
 		0C2D33522853D9A700D1F72C /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		0C2D33562854123800D1F72C /* Color Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color Theme.swift"; sourceTree = "<group>"; };
-		0C30D9A228837E4B005EEF86 /* RHistory+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RHistory+CoreDataClass.swift"; sourceTree = "<group>"; };
-		0C30D9A328837E4B005EEF86 /* RHistory+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RHistory+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0C30D9A92883C193005EEF86 /* KF Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KF Image.swift"; sourceTree = "<group>"; };
 		0C30D9AD28870378005EEF86 /* WebReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebReader.swift; sourceTree = "<group>"; };
+		0C37F94B289867130034EE2F /* History+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C37F94C289867130034EE2F /* History+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C37F95B289ABD7E0034EE2F /* BackupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupModel.swift; sourceTree = "<group>"; };
+		0C37F95D289AD4B80034EE2F /* Backup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Backup+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C37F95E289AD4B80034EE2F /* Backup+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Backup+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C37F96D289B629A0034EE2F /* Artist+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Artist+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C37F96E289B629A0034EE2F /* Artist+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Artist+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C37F96F289B629A0034EE2F /* Tag+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C37F970289B629A0034EE2F /* Tag+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tag+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C37F971289B629A0034EE2F /* Author+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataClass.swift"; sourceTree = "<group>"; };
+		0C37F972289B629A0034EE2F /* Author+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Author+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		0C37F979289BF2D80034EE2F /* FB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FB.swift; sourceTree = "<group>"; };
 		0C56D90A284874FD0056CF8F /* Library Toggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Library Toggle.swift"; sourceTree = "<group>"; };
 		0C56D90D28487F060056CF8F /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		0C6685FB285FBF0600A61508 /* ChapterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterManager.swift; sourceTree = "<group>"; };
@@ -141,6 +161,7 @@
 		0C9A985E284D681700C6EB18 /* Real.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Real.swift; sourceTree = "<group>"; };
 		0C9A9862284DAC6F00C6EB18 /* ReaderNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReaderNavBar.swift; sourceTree = "<group>"; };
 		0C9A9864284FF40000C6EB18 /* searchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchList.swift; sourceTree = "<group>"; };
+		0CABCDE52896FB7A00ADAB18 /* LEDGERº.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "LEDGERº.entitlements"; sourceTree = "<group>"; };
 		0CC81017288F44D300895EB2 /* Chapter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chapter+CoreDataClass.swift"; sourceTree = "<group>"; };
 		0CC81018288F44D300895EB2 /* Chapter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Chapter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		0CD6D51D287F388200930F93 /* viewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = viewData.swift; sourceTree = "<group>"; };
@@ -264,6 +285,7 @@
 				0C2D334F2853BC6300D1F72C /* Gestures */,
 				0C9A9862284DAC6F00C6EB18 /* ReaderNavBar.swift */,
 				0C30D9AD28870378005EEF86 /* WebReader.swift */,
+				0C37F979289BF2D80034EE2F /* FB.swift */,
 			);
 			path = Reader;
 			sourceTree = "<group>";
@@ -300,10 +322,18 @@
 		0C8BEC272845B2CC005B9A97 = {
 			isa = PBXGroup;
 			children = (
+				0C37F96D289B629A0034EE2F /* Artist+CoreDataClass.swift */,
+				0C37F96E289B629A0034EE2F /* Artist+CoreDataProperties.swift */,
+				0C37F96F289B629A0034EE2F /* Tag+CoreDataClass.swift */,
+				0C37F970289B629A0034EE2F /* Tag+CoreDataProperties.swift */,
+				0C37F971289B629A0034EE2F /* Author+CoreDataClass.swift */,
+				0C37F972289B629A0034EE2F /* Author+CoreDataProperties.swift */,
+				0C37F95D289AD4B80034EE2F /* Backup+CoreDataClass.swift */,
+				0C37F95E289AD4B80034EE2F /* Backup+CoreDataProperties.swift */,
+				0C37F94B289867130034EE2F /* History+CoreDataClass.swift */,
+				0C37F94C289867130034EE2F /* History+CoreDataProperties.swift */,
 				0CC81017288F44D300895EB2 /* Chapter+CoreDataClass.swift */,
 				0CC81018288F44D300895EB2 /* Chapter+CoreDataProperties.swift */,
-				0C30D9A228837E4B005EEF86 /* RHistory+CoreDataClass.swift */,
-				0C30D9A328837E4B005EEF86 /* RHistory+CoreDataProperties.swift */,
 				0CD6D537288098AB00930F93 /* Manga+CoreDataClass.swift */,
 				0CD6D538288098AB00930F93 /* Manga+CoreDataProperties.swift */,
 				0C164A3828660D7F00416B03 /* Lib+CoreDataClass.swift */,
@@ -324,6 +354,7 @@
 		0C8BEC322845B2CC005B9A97 /* LEDGERº */ = {
 			isa = PBXGroup;
 			children = (
+				0CABCDE52896FB7A00ADAB18 /* LEDGERº.entitlements */,
 				0C9A983C284BA4EF00C6EB18 /* Backend Services */,
 				0C56D905284873550056CF8F /* Pages */,
 				0C8BEC332845B2CC005B9A97 /* LEDGERºApp.swift */,
@@ -364,6 +395,7 @@
 				0C8BEC482845B64C005B9A97 /* PageModel.swift */,
 				0C9A9858284C27D400C6EB18 /* CollectionModel.swift */,
 				0C9A985A284C280200C6EB18 /* JsonModel.swift */,
+				0C37F95B289ABD7E0034EE2F /* BackupModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -528,8 +560,11 @@
 				0C8BEC612846EBAF005B9A97 /* WW.swift in Sources */,
 				0C8BEC5A2845B6DE005B9A97 /* Profile.swift in Sources */,
 				0C164A3A28660D7F00416B03 /* Lib+CoreDataClass.swift in Sources */,
+				0C37F94D289867130034EE2F /* History+CoreDataClass.swift in Sources */,
+				0C37F975289B629A0034EE2F /* Tag+CoreDataClass.swift in Sources */,
 				0C9A9859284C27D400C6EB18 /* CollectionModel.swift in Sources */,
 				0CC81019288F44D300895EB2 /* Chapter+CoreDataClass.swift in Sources */,
+				0C37F977289B629A0034EE2F /* Author+CoreDataClass.swift in Sources */,
 				0C9A019F28564412009AC0F6 /* Settings.swift in Sources */,
 				0C2D33572854123800D1F72C /* Color Theme.swift in Sources */,
 				0CC8101A288F44D300895EB2 /* Chapter+CoreDataProperties.swift in Sources */,
@@ -554,18 +589,24 @@
 				0CD6D53A288098AB00930F93 /* Manga+CoreDataProperties.swift in Sources */,
 				0C2D33512853BC9A00D1F72C /* MagnificationGesture.swift in Sources */,
 				0C2D334C2852EB7A00D1F72C /* Library.swift in Sources */,
-				0C30D9A428837E4B005EEF86 /* RHistory+CoreDataClass.swift in Sources */,
+				0C37F973289B629A0034EE2F /* Artist+CoreDataClass.swift in Sources */,
 				0C8BEC6A2847EC6C005B9A97 /* ChapterList View.swift in Sources */,
 				0C56D90B284874FD0056CF8F /* Library Toggle.swift in Sources */,
 				0C14282D285D3D6600E57F0B /* MangaManager.swift in Sources */,
 				0C142824285C1CE200E57F0B /* CustomTabPage.swift in Sources */,
 				0C9A9863284DAC7000C6EB18 /* ReaderNavBar.swift in Sources */,
+				0C37F976289B629A0034EE2F /* Tag+CoreDataProperties.swift in Sources */,
 				0C56D90E28487F060056CF8F /* History.swift in Sources */,
 				0C142827285C32C700E57F0B /* Ledger.xcdatamodeld in Sources */,
 				0C8BEC592845B6DE005B9A97 /* Reader.swift in Sources */,
 				0C8BEC5D28469118005B9A97 /* Tab Bar.swift in Sources */,
+				0C37F97A289BF2D90034EE2F /* FB.swift in Sources */,
+				0C37F94E289867130034EE2F /* History+CoreDataProperties.swift in Sources */,
 				0C8BEC4D2845B64C005B9A97 /* MangaModel.swift in Sources */,
 				0C0B7F7D286B725E00B64C6F /* Bookmarks.swift in Sources */,
+				0C37F974289B629A0034EE2F /* Artist+CoreDataProperties.swift in Sources */,
+				0C37F978289B629A0034EE2F /* Author+CoreDataProperties.swift in Sources */,
+				0C37F960289AD4B90034EE2F /* Backup+CoreDataProperties.swift in Sources */,
 				0C6685FC285FBF0600A61508 /* ChapterManager.swift in Sources */,
 				0C1428182856FACA00E57F0B /* About.swift in Sources */,
 				0C0B7F6F2868E41700B64C6F /* SwiftUIView.swift in Sources */,
@@ -574,9 +615,10 @@
 				0C8BEC682847EB04005B9A97 /* Button View.swift in Sources */,
 				0CD6D51E287F388200930F93 /* viewData.swift in Sources */,
 				0C91601B284AA8A300B9A7D2 /* Search.swift in Sources */,
+				0C37F95C289ABD7F0034EE2F /* BackupModel.swift in Sources */,
 				0CD6D539288098AB00930F93 /* Manga+CoreDataClass.swift in Sources */,
-				0C30D9A528837E4B005EEF86 /* RHistory+CoreDataProperties.swift in Sources */,
 				0C9A985F284D681700C6EB18 /* Real.swift in Sources */,
+				0C37F95F289AD4B90034EE2F /* Backup+CoreDataClass.swift in Sources */,
 				0C8BEC4A2845B64C005B9A97 /* ChapterModel.swift in Sources */,
 				0C8BEC342845B2CC005B9A97 /* LEDGERºApp.swift in Sources */,
 			);
@@ -704,8 +746,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dark";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = "LEDGERº/LEDGERº.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -719,22 +762,24 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aurum.LEDGER-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -743,8 +788,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dark";
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_ENTITLEMENTS = "LEDGERº/LEDGERº.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -758,22 +804,24 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "Aurum.LEDGER-";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

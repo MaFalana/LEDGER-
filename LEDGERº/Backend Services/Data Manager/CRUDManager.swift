@@ -26,7 +26,8 @@ class CRUDManager: ObservableObject
     @Published var XXX: [Chapter] = [Chapter]()
     @Published var YYY: PageResponse!
    // @Published var ZZZ = [String]()
-    @Published var History: [Chapter] = [Chapter]()
+    @Published var Hist: [History] = []
+    @Published var Back: [Backup] = []
     
     @State private var showAlert = false
     @Published var isLoading: Bool = false
@@ -35,9 +36,9 @@ class CRUDManager: ObservableObject
     @Published var isReading = false
     @Published var isHidden = true
     @Published var isSyncing = false
-    
+    @Published var chapterOrder = 0
     @Published var staticLibrary: Lib = Lib()
-    
+    @Published var rowItems = 3
     
     var Response: String = ""
     var newCover: String  = ""
@@ -114,6 +115,7 @@ class CRUDManager: ObservableObject
         //CacheCheck()
         fetchLibraries()
         fetchHistory()
+        fetchBackup()
     }
     
     
@@ -259,39 +261,6 @@ extension CRUDManager
         }
     }
     
-    func fetchHistory() //Function that fetches all read History
-    {
-        do
-        {
-            History.removeAll()
-            let request = NSFetchRequest<RHistory>(entityName: "RHistory")
-            let X = try viewContext.fetch(request)
-            //print(X.first?.data)
-
-            //print(x.data)
-            
-            //Read_History.fetchRequest().propertiesToFetch?.first.
-            //activeLibraries = NSFetchRequest<Lib>(entityName: "Lib")
-            //print("Libraries: \(activeLibraries)")
-            //print("Libraries: \(activeLibraries[0].data)")
-            
-            //Save()
-        }
-        catch
-        {
-            print("Error fetching Read Data. \(error.localizedDescription)")
-        }
-    }
-    
-    func updateHistory(Source: Chapter) // func that updates history
-    {
-        let newHistory = NSEntityDescription.insertNewObject(forEntityName: "RHistory", into: viewContext) as! RHistory
-        newHistory.addToData(Source)
-        //let X = newHistory.data
-        
-        Save()
-    }
-    
     func deleteLibrary(Library: Lib)
     {
         
@@ -302,6 +271,7 @@ extension CRUDManager
         activeLibraries.remove(at: activeLibraries.firstIndex(of: Library)!)
         print("Removing \(Library.name)")
         viewContext.delete(Library)
+        objectWillChange.send()
         Save()
         //fetchLibraries()
     }
@@ -408,15 +378,18 @@ extension CRUDManager
     
     func removeManga(Library: Lib, selectedManga: Manga) //Function to remove all instances of a Specific Manga from a Specific Library
     {
-        withAnimation
-        {
-            Library.removeFromData(selectedManga)
-        }
+        
         //Library.removeFromData(selectedManga)
         //Library.removeFromData(at: 10)
         do
         {
+            withAnimation
+            {
+                Library.removeFromData(selectedManga)
+                viewContext.delete(selectedManga)
+            }
             try viewContext.save()
+            objectWillChange.send()
             fetchLibraries()
             print("\(selectedManga.title) Successfully removed from \(Library.name)")
         }
@@ -491,7 +464,7 @@ extension CRUDManager
     {
         chapters.removeAll()
         chapterOffset = prevTotal
-        
+        let V: [Chapter] = Array(_immutableCocoaArray: Manga.chapters ?? [])
         while chapters.count != Total
         {
             print("Chapter Count: \(chapters.count)\t Total: \(Total)")
@@ -502,6 +475,7 @@ extension CRUDManager
             }
             await fetchChapter(Manga: Manga)
         }
+        //chapters.sort{Float($0.attributes.chapter!)! < Float($1.attributes.chapter!)!}
         for i in chapters.indices
         {
             let id = chapters[i].id
@@ -514,9 +488,15 @@ extension CRUDManager
             let E = createChapter(id: id, title: title, chapterNumber: Number, pages: Pages, publishDate: ReadDate, externalURL: externalURL)
             if Manga.chapters?.count != chapterTotal
             {
-                Manga.addToChapters(E)
+                if V.contains(where: { $0.id == E.id})
+                {
+                    print("Chapter is already saved")
+                }
+                else
+                {
+                    Manga.addToChapters(E)
+                }
             }
-            
         }
         
     }
@@ -573,7 +553,20 @@ extension CRUDManager
 // MARK:- Chapter related Functions
 extension CRUDManager
 {
-    
+    func sortChapters<Chapter: Comparable>(_ a: [Chapter]) -> [Chapter] //Method to QuickSort chapters in a MangaDex Manga
+    {
+        guard a.count > 1 else
+        {
+            return a //already sorted if less than or equal to one
+        }
+        
+        let pivot = a[a.count / 2]
+        let less = a.filter { $0 < pivot }
+        let equal = a.filter { $0 == pivot }
+        let greater = a.filter { $0 > pivot }
+        
+        return sortChapters(less) + equal + sortChapters(greater)
+    }
     
     func createChapter(id: String, title: String, chapterNumber: String, pages: Int, publishDate: Date, externalURL: String) -> Chapter
     {
@@ -665,3 +658,189 @@ extension CRUDManager
 }
 
 
+extension CRUDManager //Backup
+{
+    func fetchBackup()
+    {
+        do
+        {
+            Back.removeAll()
+            Back = try viewContext.fetch(Backup.fetchRequest())
+            print("Backup 1: \(Back.first?.libraries?.firstObject)")
+            //Save()
+        }
+        catch
+        {
+            print("Error fetching Backups. \(error.localizedDescription)")
+        }
+    }
+    
+    func createBackup()
+    {
+        do
+        {
+            let newBackup = Backup(context: viewContext)
+            
+            let A: [History] = try viewContext.fetch(History.fetchRequest())
+            let B: [Lib] = try viewContext.fetch(Lib.fetchRequest())
+            //let C: [Backup] = try viewContext.fetch(Backup.fetchRequest())
+            
+        
+            newBackup.id = UUID()
+            newBackup.creationDate = Date()
+            for i in A
+            {
+                newBackup.addToHistory(i)
+            }
+            for i in B
+            {
+                newBackup.addToLibraries(i)
+            }
+            print(newBackup)
+            Back.append(newBackup)
+            Save()
+        }
+        catch
+        {
+            print("Error creating Backup. \(error.localizedDescription)")
+        }
+        
+    }
+    
+    func deleteBackup(selectedBackup: Backup)
+    {
+        Back.removeAll(where: {$0 == selectedBackup})
+        viewContext.delete(selectedBackup)
+        Save()
+    }
+    
+    func loadBackup(selectedBackup: Backup)
+    {
+        activeLibraries.removeAll()
+        tabs.removeAll()
+        var newLibraries: [Lib]
+        {
+            return Array(_immutableCocoaArray: selectedBackup.libraries ?? [] )
+        }
+        var newHistory: [History]
+        {
+            return Array(_immutableCocoaArray: selectedBackup.history ?? [] )
+        }
+        activeLibraries = newLibraries
+        for i in activeLibraries
+        {
+            tabs.append(i.name)
+        }
+        Hist = newHistory
+//        selectedTheme = selectedBackup.theme
+        //print(selectedBackup.libraries?.firstObject as! Lib)
+        print("Libraries: \(newLibraries)")
+        print("History: \(newHistory)")
+        print(activeLibraries)
+//        Save()
+//        load()
+//        Save()
+    }
+}
+
+
+extension CRUDManager //History
+{
+    
+    
+    func createHistory(Chapter: Chapter)
+    {
+        let ID = Chapter.id
+        
+        //newHistory.source = Chapter.source
+        if Hist.contains(where: {$0.chapter?.id! == ID})
+        {
+            for i in Hist
+            {
+                if i.chapter?.id! == ID
+                {
+                    i.readDate = Date()
+                }
+            }
+        }
+        else
+        {
+            let newHistory = History(context: viewContext)
+            newHistory.readDate = Date()
+            newHistory.chapter = Chapter
+            Hist.append(newHistory)
+        }
+        Save()
+    }
+    
+    func fetchHistory() //Read function
+    {
+        do
+        {
+            Hist.removeAll()
+            Hist = try viewContext.fetch(History.fetchRequest())
+            //Save()
+        }
+        catch
+        {
+            print("Error readind in History. \(error.localizedDescription)")
+        }
+    }
+    
+    func updateHistory(X: History)
+    {
+        X.readDate = Date()
+    }
+    
+    func deleteHistory()
+    {
+        do
+        {
+            let Objects: [History] = try viewContext.fetch(History.fetchRequest())
+//            Hist.removeAll()
+//            Hist = try viewContext.fetch(History.fetchRequest())
+            for i in Objects // Delete multiple objects
+            {
+                viewContext.delete(i)
+            }
+            Hist.removeAll()
+            try viewContext.save() // Save the deletions to the persistent store
+        }
+        catch
+        {
+            print("Error deleting History. \(error.localizedDescription)")
+        }
+    }
+    
+    func Reset()
+    {
+        do
+        {
+            let A: [History] = try viewContext.fetch(History.fetchRequest())
+            let B: [Lib] = try viewContext.fetch(Lib.fetchRequest())
+            let C: [Backup] = try viewContext.fetch(Backup.fetchRequest())
+            
+            for i in A // Deletes multiple objects
+            {
+                viewContext.delete(i)
+            }
+            for i in B // Delete multiple objects
+            {
+                viewContext.delete(i)
+            }
+            for i in C // Delete multiple objects
+            {
+                viewContext.delete(i)
+            }
+            tabs.removeAll()
+            Hist.removeAll()
+            Back.removeAll()
+            activeLibraries.removeAll()
+            try viewContext.save() // Save the deletions to the persistent store
+        }
+        catch
+        {
+            print("Error resetting App. \(error.localizedDescription)")
+        }
+    }
+}

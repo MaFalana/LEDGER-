@@ -26,10 +26,8 @@ struct ButtonView: View
     //let id, title, author, artist, cover, status, synopsis: String
     
     
-    var Chapter: [Chapter]
-    {
-        return Array(_immutableCocoaArray: queuedManga.chapters ?? [] )
-    }
+    @State var Chapter: [Chapter]
+    
     
     
     var body: some View

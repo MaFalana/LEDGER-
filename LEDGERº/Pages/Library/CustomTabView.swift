@@ -18,11 +18,11 @@ struct CustomTabView: View
     
     var body: some View
     {
-        var selectedLibrary = CRUDManager.shared.activeLibraries[selectedTabIndex]
-        var selectedData: [Manga] = Array(_immutableCocoaArray: selectedLibrary.data ?? [])
-        
         if !CRUDManager.shared.tabs.isEmpty
         {
+            var selectedLibrary = CRUDManager.shared.activeLibraries[selectedTabIndex]
+            var selectedData: [Manga] = Array(_immutableCocoaArray: selectedLibrary.data ?? [])
+            
             SlidingTabView(selection: self.$selectedTabIndex, tabs: CRUDManager.shared.tabs )
             Library(libraryData: selectedLibrary, ASH: selectedData).environmentObject(network)
         }

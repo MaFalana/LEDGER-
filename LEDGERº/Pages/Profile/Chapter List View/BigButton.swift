@@ -60,6 +60,7 @@ struct BigButton: View
                     showWebView.toggle()
                 }
                 print(FirstChapter)
+                CRUDManager.shared.createHistory(Chapter: FirstChapter)
             }
             .buttonStyle(RoundedRectangleButtonStyle())
             .fullScreenCover(isPresented: $showFirst, content: {FC(Chapter: FirstChapter).accentColor(BackGround)} )
@@ -81,6 +82,7 @@ struct BigButton: View
                     showWebView.toggle()
                 }
                 print(LatestChapter)
+                CRUDManager.shared.createHistory(Chapter: LatestChapter)
             }
             .buttonStyle(RoundedRectangleButtonStyle())
             .fullScreenCover(isPresented: $showLatest, content: {FC(Chapter: LatestChapter).accentColor(BackGround)} )

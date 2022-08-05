@@ -9,9 +9,12 @@ import SwiftUI
 
 struct Settings: View
 {
-    @State var appToggle: Bool = false
-    @State var systemToggle: Bool = false
-    @State private var showAlert: Bool = false
+    @State var appToggle = false
+    @State var systemToggle = false
+    @State private var showAlert = false
+    
+    
+    
     @EnvironmentObject private var themeManager: ThemeManager
     //@EnvironmentObject private var crud: CRUDManager
     @AppStorage("isDarkMode") private var isDarkMode = false
@@ -51,7 +54,10 @@ struct Settings: View
                     {
                         Text("Light").tag(false)
                         Text("Dark").tag(true)
-                    }.pickerStyle(.segmented).fixedSize().disabled(isSystem)
+                    }
+                    .pickerStyle(.segmented)
+                    .fixedSize()
+                    .disabled(isSystem)
                 }
                 //Toggle("Appearance", isOn: $isDarkMode).disabled(isSystem)
                 Toggle("Use System Appearance", isOn: $isSystem)
@@ -67,17 +73,21 @@ struct Settings: View
                 }
             }
             
-//            Section("Advanced")
-//            {
+            Section("Advanced")
+            {
 //                Button("Clear Chapter Cache") {}.foregroundColor(themeManager.selectedTheme.text)
 //                Button("Clear Manga Cache") {}.foregroundColor(themeManager.selectedTheme.text)
 //                Button("Clear Network Cache") {}.foregroundColor(themeManager.selectedTheme.text)
-//                Button("Clear Read History") {CRUDManager.shared.History.removeAll()}.foregroundColor(themeManager.selectedTheme.text)
-//                Button("Reset") { showAlert.toggle() }.foregroundColor(themeManager.themes.first?.accent).alert(isPresented: $showAlert)
-//                {
-//                    Alert1()
-//                }
-//            }
+                Button("Clear Read History") {showAlert.toggle()}.foregroundColor(themeManager.selectedTheme.text)
+                    .alert(isPresented: $showAlert)
+                    {
+                        Alert2()
+                    }
+                Button("Reset") { showAlert.toggle() }.foregroundColor(themeManager.themes.first?.accent).alert(isPresented: $showAlert)
+                {
+                    Alert1()
+                }
+            }
             
         }.listStyle(.insetGrouped).background(themeManager.selectedTheme.background)
     }

@@ -16,19 +16,6 @@ extension Lib {
         return NSFetchRequest<Lib>(entityName: "Lib")
     }
     
-    convenience init(id: UUID, name: String, data: NSOrderedSet?, insertIntoManagedObjectContext context: NSManagedObjectContext!)
-    {
-        let entity = NSEntityDescription.entity(forEntityName: "Lib", in: context)!
-        self.init(entity: entity, insertInto: context)
-        self.id = id
-        self.name = name
-        self.data = data
-    }
-
-    @NSManaged public var id: UUID
-    @NSManaged public var name: String
-    @NSManaged public var data: NSOrderedSet?
-
 }
 
 // MARK: Generated accessors for data

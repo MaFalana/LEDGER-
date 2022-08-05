@@ -27,7 +27,10 @@ struct listRow: View
         selectedItems.contains(library.id)
     }
     
-    
+    var C: [Manga]
+    {
+        return Array(_immutableCocoaArray:library.data ?? [])
+    }
     
     
     var body: some View
@@ -37,7 +40,7 @@ struct listRow: View
         {
             Text(library.name)
             Spacer()
-            if isSelected || library.data!.contains(where: {($0 as AnyObject).id == queuedManga.id}) // Checking to see if library has a manga
+            if isSelected || C.contains(where: { $0.id == queuedManga.id}) // Checking to see if library has a manga
             {
                 Image(systemName: "checkmark")
             }
@@ -62,7 +65,7 @@ struct listRow: View
                 //await network.populateChapter(ID: mangaInfo[0])
                 
                 
-                if library.data!.contains(where: {($0 as AnyObject).id == queuedManga.id}) //Only allows one of each manga to be added
+                if C.contains(where: {$0.id == queuedManga.id}) //Only allows one of each manga to be added
                 {
                     
                     print("\(queuedManga.title) is already in \(library.name)")

@@ -64,6 +64,17 @@ struct TabBar: View  //TabBar
 //                                .imageScale(.large)
 //                                
 //                            }
+                            
+                            Menu
+                            {
+                                Button("3 Items") { CRUDManager.shared.rowItems = 3 }
+                                Button("4 Items") { CRUDManager.shared.rowItems = 4 }
+                                Button("5 Items") { CRUDManager.shared.rowItems = 5 }
+                            }
+                            label:
+                            {
+                                Image(systemName: "square.stack.3d.up").imageScale(.large)
+                            }
                            
             
                             Button(action: {showMenu.toggle()} )
@@ -79,7 +90,7 @@ struct TabBar: View  //TabBar
                         
                         ToolbarItemGroup(placement: .navigationBarLeading)
                         {
-                            NavigationLink(destination: History() )
+                            NavigationLink(destination: HistoryView() )
                             {
                                 Image(systemName: "clock.arrow.circlepath").foregroundColor(Color.yellow).imageScale(.large)
                                 

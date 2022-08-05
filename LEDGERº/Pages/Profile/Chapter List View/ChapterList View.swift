@@ -14,6 +14,7 @@ struct ChapterListView: View
     //@EnvironmentObject var libraryManager: LibraryManager
     //@EnvironmentObject var crudManager: CRUDManager
     @EnvironmentObject private var themeManager: ThemeManager
+    @State private var X = 0
     
     @StateObject var quequedManga: Manga
     
@@ -24,9 +25,17 @@ struct ChapterListView: View
     
     var ChapterList: [Chapter]
     {
-        if mode == false
+        if mode == false && X == 0
         {
-            return Array(_immutableCocoaArray: quequedManga.chapters ?? [] )
+            return Array(_immutableCocoaArray: quequedManga.chapters ?? [] ).sorted{Float($0.chapterNumber!)! < Float($1.chapterNumber!)!}  // least to great
+        }
+        else if mode == false && X == 1
+        {
+            return Array(_immutableCocoaArray: quequedManga.chapters ?? [] ).sorted{Float($0.chapterNumber!)! > Float($1.chapterNumber!)!}  // great to least
+        }
+        else if mode == false && X == 3
+        {
+            return Array(_immutableCocoaArray: quequedManga.chapters ?? [] ) // Source
         }
         else
         {
@@ -67,78 +76,169 @@ struct ChapterListView: View
     
     @State private var mode: Bool = false
     
+    
+    
     var body: some View
     {
-        //HStack
-        //{
-            Text(mode ? Header2 : Header).fontWeight(.bold).frame(width: 415, alignment: .leading)
-            //Spacer()
-            //chapterSort().padding() // Chapter Sorting button
-        //}
+        HStack
+        {
+            Text(mode ? Header2 : Header).fontWeight(.bold)
+            Spacer()
+            Menu
+            {
+                Picker("Chapter Order", selection: $X )
+                {
+                    
+                    Button("Source") { X = 3 }.tag(3)
+                    Button("Chapter") { X = 0 }.tag(0)
+                }
+               
+            }
+            label:
+            {
+                Image(systemName: "line.3.horizontal.decrease").imageScale(.large)
+            } // Chapter Sorting button
+        }
         Divider() // Third Divider
         Picker("Chapters", selection: $mode)
         {
             Text("Chapters").tag(false)
             Text("Bookmarks").tag(true)
-        }.pickerStyle(.segmented).foregroundColor(themeManager.selectedTheme.accent)
+        }.pickerStyle(.segmented)
         
         List(ChapterList)
         {
             i in
-            
-            Button(action: { N = 0 ; if i.pages != 0 { print(i);readChapter.toggle() } else{showWebView.toggle()}; CRUDManager.shared.updateHistory(Source: ChapterList[N]) } )
+            if i.pages == 0
             {
-                ChapterRow(Manga: quequedManga, Chapter: i)
-       
-            }
-            .swipeActions(edge: .leading, allowsFullSwipe: false)
-            {
-                Button
+                Button(action: { showWebView.toggle() } )
                 {
-                    print("Deleting Chapter")
-                    quequedManga.removeFromSaved(i)
-                    CRUDManager.shared.Save()
+                    ChapterRow(Manga: quequedManga, Chapter: i)
                 }
-                label:
+                .swipeActions(edge: .leading, allowsFullSwipe: false)
                 {
-                    Label("Delete", systemImage: "trash")
-                    
-                }.tint(.indigo).hidden()
-                
-                
-                
-                Button(
-                    action:
-                    {
-                        if i.isBookmarked
+                    Button(
+                        action:
                         {
-                            quequedManga.removeFromBookmarks(i)
-                            //print("\(i.title) un-bookmarked")
-                        }
-                        else
-                        {
-                            quequedManga.addToBookmarks(i)
-                            //print("\(i.title) bookmarked")
-                        }
-                        CRUDManager.shared.Save()
-                        i.isBookmarked.toggle()
+                            if i.isBookmarked
+                            {
+                                quequedManga.removeFromBookmarks(i)
+                                //print("\(i.title) un-bookmarked")
+                            }
+                            else
+                            {
+                                quequedManga.addToBookmarks(i)
+                                //print("\(i.title) bookmarked")
+                            }
+                            CRUDManager.shared.Save()
+                            i.isBookmarked.toggle()
+                            
                         
+                        } )
+                    {
+                        Label(i.isBookmarked ? "Remove Bookmark" : "Bookmark", systemImage: i.isBookmarked ? "bookmark.slash" : "bookmark")
+                        
+                    }.tint(.yellow)
                     
-                    } )
+                    
+                    
+                    
+                }
+                .sheet(isPresented: $showWebView)
                 {
-                    Label(i.isBookmarked ? "Remove Bookmark" : "Bookmark", systemImage: i.isBookmarked ? "bookmark.slash" : "bookmark")
-                    
-                }.tint(.yellow)
-                
-                
-                
-                
+                    WebView(url: URL(string: i.externalURL!)!)
+                }
             }
-            .fullScreenCover(isPresented: $readChapter, content: {FC(Chapter: i).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
-            .sheet(isPresented: $showWebView)
+            else
             {
-                WebView(url: URL(string: i.externalURL!)!)
+                Button(action: { readChapter.toggle(); print(i); CRUDManager.shared.createHistory(Chapter: i) } )
+                {
+                    ChapterRow(Manga: quequedManga, Chapter: i)
+                }
+                .swipeActions(edge: .leading, allowsFullSwipe: false)
+                {
+                    Button(
+                        action:
+                        {
+                            if i.isBookmarked
+                            {
+                                quequedManga.removeFromBookmarks(i)
+                                //print("\(i.title) un-bookmarked")
+                            }
+                            else
+                            {
+                                quequedManga.addToBookmarks(i)
+                                //print("\(i.title) bookmarked")
+                            }
+                            CRUDManager.shared.Save()
+                            i.isBookmarked.toggle()
+                            
+                        
+                        } )
+                    {
+                        Label(i.isBookmarked ? "Remove Bookmark" : "Bookmark", systemImage: i.isBookmarked ? "bookmark.slash" : "bookmark")
+                        
+                    }.tint(.yellow)
+                    
+                    
+                    
+                    
+                }
+                .fullScreenCover(isPresented: $readChapter, content: {FC(Chapter: i).accentColor(themeManager.selectedTheme.accent)} )
             }
+//            Button(action: { N = 0 ; if i.pages != 0 { print(i);readChapter.toggle() } else{showWebView.toggle()}; CRUDManager.shared.updateHistory(Source: ChapterList[N]) } )
+//            {
+//                ChapterRow(Manga: quequedManga, Chapter: i)
+//
+//            }
+//            .swipeActions(edge: .leading, allowsFullSwipe: false)
+//            {
+//                Button
+//                {
+//                    print("Deleting Chapter")
+//                    quequedManga.removeFromSaved(i)
+//                    CRUDManager.shared.Save()
+//                }
+//                label:
+//                {
+//                    Label("Delete", systemImage: "trash")
+//
+//                }.tint(.indigo).hidden()
+//
+//
+//
+//                Button(
+//                    action:
+//                    {
+//                        if i.isBookmarked
+//                        {
+//                            quequedManga.removeFromBookmarks(i)
+//                            //print("\(i.title) un-bookmarked")
+//                        }
+//                        else
+//                        {
+//                            quequedManga.addToBookmarks(i)
+//                            //print("\(i.title) bookmarked")
+//                        }
+//                        CRUDManager.shared.Save()
+//                        i.isBookmarked.toggle()
+//
+//
+//                    } )
+//                {
+//                    Label(i.isBookmarked ? "Remove Bookmark" : "Bookmark", systemImage: i.isBookmarked ? "bookmark.slash" : "bookmark")
+//
+//                }.tint(.yellow)
+//
+//
+//
+//
+//            }
+//            .fullScreenCover(isPresented: $readChapter, content: {FC(Chapter: i).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+//            .sheet(isPresented: $showWebView)
+//            {
+//                WebView(url: URL(string: i.externalURL!)!)
+//            }
             //Divider()
             
         }

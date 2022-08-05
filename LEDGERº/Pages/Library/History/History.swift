@@ -7,19 +7,18 @@
 
 import SwiftUI
 
-struct History: View
+struct HistoryView: View
 {
 
-    @EnvironmentObject var network: CollectionLoader
+    //@EnvironmentObject var network: CollectionLoader
     @EnvironmentObject private var themeManager: ThemeManager
     //@EnvironmentObject var crudManager: CRUDManager
-    @State var showSheet: Bool = false
+    //@State private var showSheet = false
     
-    private var History: [Chapter]
+    private var History: [History]
     {
-        return CRUDManager.shared.History
+        return CRUDManager.shared.Hist.sorted{ $0.readDate! > $1.readDate! } 
     }
-   // init(){ UITableView.appearance().backgroundColor = .clear }
     
     var body: some View
     {
@@ -29,25 +28,21 @@ struct History: View
             List(History) // Will need to populate an array of recently read manga
             {
                 i in //Sentry value
-                
-                Button( action: { showSheet.toggle() } )
-                {
-                    HistoryRow(Title: i.source!.title, Title2: i.title!, Num: i.chapterNumber!, Date: Date())
-                }.fullScreenCover(isPresented: $showSheet, content: {FC(Chapter: i).accentColor(themeManager.selectedTheme.accent).environmentObject(network)} )
+                HistoryRow(i:i)
 
-                
                // Divider()
-            }
+            }.listStyle(.insetGrouped)
         }
         .background(themeManager.selectedTheme.background)
         .task
         {
             for i in History
             {
-                print("\(i)")
+                print(i.chapter!.source?.title)
             }
         }
         .navigationTitle("History")
+        .navigationBarTitleDisplayMode(.large)
         //.listStyle(.insetGrouped)
         //.task{ await viewModel.fetchData() }
     }

@@ -29,12 +29,12 @@ struct InfoView: View
                 Divider() // First Divider
                 NavigationLink(destination: viewAuthor(Author: Author).background(themeManager.selectedTheme.background) )
                 {
-                    Text("By \(Author.name!)").padding() // Manga Author
+                    Text("By \(Author.name!)").padding().lineLimit(1) // Manga Author
                 }.foregroundColor(themeManager.selectedTheme.label)
                 Text(Status).padding() // Manga Status
                 NavigationLink(destination: viewArtist(Artist: Artist).background(themeManager.selectedTheme.background) )
                 {
-                    Text("Art by \(Artist.name!)").padding() // Manga illustrator
+                    Text("Art by \(Artist.name!)").padding().lineLimit(1) // Manga illustrator
                 }.foregroundColor(themeManager.selectedTheme.label)
                 Text("\(Count) Unique Chapter(s)") // Number of chapters //add 1 because arrays start at 0
             }
