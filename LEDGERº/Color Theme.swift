@@ -74,7 +74,7 @@ final class MangaSoup: Theme
     
     var text: Color = Color("labelColor")
     
-    var themeName: String = "MangaSoup"
+    var themeName: String = "Purple"
     
     var listBack: Color = Color(UIColor.tertiarySystemBackground)
 }
@@ -158,9 +158,9 @@ class ThemeManager: ObservableObject
         Green(),
         Blue(),
         MangaSoup(),
-        Crunchyroll(),
+        //Crunchyroll(),
         //Funimation(),
-        Huntington()
+        //Huntington()
     ]
     
     
