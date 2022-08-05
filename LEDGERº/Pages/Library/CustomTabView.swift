@@ -26,6 +26,10 @@ struct CustomTabView: View
             SlidingTabView(selection: self.$selectedTabIndex, tabs: CRUDManager.shared.tabs )
             Library(libraryData: selectedLibrary, ASH: selectedData).environmentObject(network)
         }
+//        ZStack
+//        {
+//            themeManager.selectedTheme.background.ignoresSafeArea(.all)
+//        }
         
     }
     
