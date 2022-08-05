@@ -203,10 +203,14 @@ extension CRUDManager
 //    }
     func changeChapter(X: Chapter)
     {
-        selectedChapter = X
-        Task
+        
+        if X.pages != 0
         {
-            await CollectionLoader.shared.fetchPage(chapterId: X.id!)
+            selectedChapter = X
+            Task
+            {
+                await CollectionLoader.shared.fetchPage(chapterId: X.id!)
+            }
         }
     }
     
